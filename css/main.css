@@ -1,0 +1,158 @@
+/*
+	ぐちゃぐちゃなコードなんで、あんまり見ても価値ないです
+	Google先生にでも聞いた方がよくできますよ
+*/
+@font-face {
+	font-family: "Yu Gothic";
+	src: local("Yu Gothic Medium");
+	font-weight: 100;
+}
+@font-face {
+	font-family: "Yu Gothic";
+	src: local("Yu Gothic Medium");
+	font-weight: 200;
+}
+@font-face {
+	font-family: "Yu Gothic";
+	src: local("Yu Gothic Medium");
+	font-weight: 300;
+}
+@font-face {
+	font-family: "Yu Gothic";
+	src: local("Yu Gothic Medium");
+	font-weight: 400;
+}
+@font-face {
+	font-family: "Yu Gothic";
+	src: local("Yu Gothic Bold");
+	font-weight: bold;
+}
+body {
+	font-family: "Yu Gothic", YuGothic;
+}
+html{
+	height: 100%;
+}
+
+body{
+	font-family: "Open Sans", "Helvetica Neue", Helvetica, "Arial", "Yu Gothic", YuGothic, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
+	font-size: 16px;
+	line-height: 1.2;
+	color: #303030;
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	background-color: #f9f9f9;
+}
+
+.main {
+	padding:70px 5px 20px 5px;
+}
+
+.main,.side-menu {
+}
+
+a{
+	color: #2196f3;
+	text-decoration: none;
+}
+a:hover, a:focus {
+	color: #0a48ad;
+	text-decoration: underline;
+}
+i{
+	margin: 8px;
+}
+#menu {
+ 	list-style-type: none;
+}
+#top{
+	margin: 0px;
+}
+section p{
+	text-indent:0.6em;
+}
+.overlay {
+	content: '';
+	visibility: hidden;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0);
+	-webkit-transition: all .5s ease;
+	transition: all .5s ease;
+	z-index: 3;
+}
+
+.overlay::after {
+	visibility: hidden;
+	position: fixed;
+	top: 40%;
+	left: 0;
+	display: block;
+	width: 100%;
+	height: 50px;
+	color: rgba(255,255,255,0);
+	font-size: 70px;
+	font-weight: bold;
+	text-align: left;
+	padding-left: 30px;
+	-webkit-transition: all .5s ease;
+	transition: all .5s ease;
+}
+.side-open .overlay {
+	visibility: visible;
+	cursor: pointer;
+	background: rgba(0,0,0,.7);
+}
+.side-open .overlay::after {
+	visibility: visible;
+	color: rgba(255,255,255,.8);
+}
+.side-menu-btn {
+	position: fixed;
+	top: 0px;
+	left: : 20px;
+	width: 50px;
+	height: 50px;
+	padding: 5px;
+	background: #DDD;
+	cursor: pointer;
+	text-align: center;
+	z-index: 4;
+}
+.wrapper {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-color: #f9f9f9;
+	-webkit-transition: all .5s ease;
+	transition: all .5s ease;
+	z-index: 2;
+}
+.side-menu {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 300px;
+	height: 100%;
+	padding-top: 180px;
+	text-align: left;
+	font-size: 18px;
+	background: #EEE;
+	z-index: 1;
+}
+
+.side-open .wrapper,
+.side-open .overlay {
+	-webkit-transform: translate3d(300px, 0, 0);
+	transform: translate3d(300px, 0, 0);
+}
+@media(min-width: 768px){
+	.main {
+		padding:70px 20px 50px 60px;
+	}
+}
