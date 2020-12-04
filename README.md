@@ -1,5 +1,9 @@
 # My Memo Blog
 
+
+## SAML OpenID OAuth
+TODO
+
 ## 外国語学習のコツ
 from [外国語学習に成功する人，しない人 第二言語習得論への招待](https://www.iwanami.co.jp/book/b265858.html)
 * インプット
