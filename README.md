@@ -1,5 +1,8 @@
 # My Memo Blog
 
+## 12/8
+Stack Driverと標準出力とトレースとを使いこなす
+
 ## [Go Memo](Go/Golang.md)
 
 ## 「超」入門 失敗の本質
