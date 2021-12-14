@@ -28,3 +28,18 @@
 * Terraform Cloud
     * Gitと繋いで自動的に構成の提案したり、実行環境を用意して構成変更の競合を防いだりする
 
+## Install Terraform
+* 内容をコピペして動く
+
+### Quick start tutorial
+* nginxのdocker image作成
+
+```
+terraform init
+terraform plan
+terraform apply
+terraform destroy
+```
+
+## Build Infrastructure
+
