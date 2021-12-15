@@ -43,3 +43,5 @@ terraform destroy
 
 ## Build Infrastructure
 
+* GCPのアカウント作成
+* サービスアカウント作成
