@@ -45,3 +45,35 @@ terraform destroy
 
 * GCPのアカウント作成
 * サービスアカウント作成
+
+* terraform ブロック
+    * インフラストラクチャのプロビジョニング(準備)に必要な設定を書く
+        * provider名
+        * providerのソース
+            * 大体公式のprovider名を指定
+        * バージョン指定がない場合は最新のを用いる
+
+```tf
+terraform {
+  required_providers {
+    google = {
+      source = "hashicorp/google" // 指定しないときデフォルトでhashicorpのレジストリを見に行く
+      version = "3.5.0" // バージョン指定がない時は最新のものを利用する
+    }
+  }
+}
+```
+
+* provider ブロック
+    * 指定したproviderの各環境に接続する設定などを記載
+
+```
+provider "google" {
+  credentials = file("credential.json")
+
+  project = "project-name"
+  region  = "us-central1"
+  zone    = "us-central1-c"
+}
+
+```
