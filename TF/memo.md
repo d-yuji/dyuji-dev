@@ -77,3 +77,14 @@ provider "google" {
 }
 
 ```
+
+* ロックファイル(.lock.hcl)
+    * すべてのTerraform実行に一貫性を持たせるために使用される正確なprovider versionを指定
+
+```
+terraform fmt : フォーマットチェック
+terraform validate : 構文チェック
+```
+
+* メモ：GCPアカウントを作りたてだとComputeEngineAPIが有効化されていないので有効化する
+* サービスアカウントの権限が足りないときは IMAと管理/IAM でプリンシパルを編集する
