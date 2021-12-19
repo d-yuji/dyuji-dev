@@ -88,3 +88,17 @@ terraform validate : 構文チェック
 
 * メモ：GCPアカウントを作りたてだとComputeEngineAPIが有効化されていないので有効化する
 * サービスアカウントの権限が足りないときは IMAと管理/IAM でプリンシパルを編集する
+
+* terraform show // 現在の状態を表示
+
+https://github.com/github/gitignore/blob/main/Terraform.gitignore
+
+
+## Change Infrastructure
+* 実運用するときはバージョン管理を使うことを勧める
+
+### Create New resource
+
+* VMインスタンス作成の定義
+* (Resource Type).(Reference name).(field)
+* Terraform はリソースの依存関係グラフを作成して適切な順序で作成されるよう制御
