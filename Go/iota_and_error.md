@@ -22,7 +22,7 @@
 	}
 ```
 
-* goで|=はOR演算子を表すが、エラーでなんでOR演算子を使うのか？
+* goで`|=`はOR演算子を表すが、エラーでなんでOR演算子を使うのか？
 
 * [dgrijalva/jwt-go/erros.go](https://github.com/dgrijalva/jwt-go/blob/master/errors.go)をみる
 
