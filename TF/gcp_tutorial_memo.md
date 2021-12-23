@@ -102,3 +102,34 @@ https://github.com/github/gitignore/blob/main/Terraform.gitignore
 * VMインスタンス作成の定義
 * (Resource Type).(Reference name).(field)
 * Terraform はリソースの依存関係グラフを作成して適切な順序で作成されるよう制御
+* access_configブロックが存在すると引数がなくてもVMに外部IPが与えられれインターネット経由でアクセスできる
+    * こういう仕様はちゃんとドキュメントを読む
+
+```tf
+resource "google_compute_instance" "vm_instance" {
+  name         = "terraform-instance"
+  machine_type = "f1-micro"
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-9"
+    }
+  }
+
+  network_interface {
+    network = google_compute_network.vpc_network.name
+    access_config {
+    }
+  }
+}
+
+```
+
+* tags - (Optional) インスタンスにつけるネットワークタグのリスト
+* ネットワークタグ：VMインスタンスに適用されるファイアウォールのルールやトラフィックの経路を設定できる
+    * https://cloud.google.com/vpc/docs/add-remove-network-tags
+* `~`は変更がある個所を示す
+
+### Introduce destructive changes
+* 破壊的変更をともなうもの(ex インスタンスのimageを変更)
+* `-/+`は破棄と作成を行うことを示す
