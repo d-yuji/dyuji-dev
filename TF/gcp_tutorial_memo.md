@@ -67,7 +67,7 @@ terraform {
 * provider ブロック
     * 指定したproviderの各環境に接続する設定などを記載
 
-```
+```tf
 provider "google" {
   credentials = file("credential.json")
 
@@ -133,3 +133,16 @@ resource "google_compute_instance" "vm_instance" {
 ### Introduce destructive changes
 * 破壊的変更をともなうもの(ex インスタンスのimageを変更)
 * `-/+`は破棄と作成を行うことを示す
+
+
+## Destroy Infrastructure
+```
+terraform destroy
+```
+* 管理しているインフラをすべて終了する
+* リソースの破棄の順序も依存関係に基づいて破棄してくれる
+
+
+## Define Input Variables
+* Terraformは.tfのファイルをすべて読み込むため、構成ファイルに任意の名前をつけることができる
+* .tfvars または .auto.tfvars のファイルは自動的にロードされ変数を取り扱うことができる
