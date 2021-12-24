@@ -146,3 +146,19 @@ terraform destroy
 ## Define Input Variables
 * Terraformは.tfのファイルをすべて読み込むため、構成ファイルに任意の名前をつけることができる
 * .tfvars または .auto.tfvars のファイルは自動的にロードされ変数を取り扱うことができる
+
+
+## Query Data with Output Variables
+
+* 出力変数の定義
+
+```
+output "ip" {
+  value = google_compute_instance.vm_instance.network_interface.0.network_ip
+}
+```
+* 変数の名前は他のモジュールの入力として利用される場合はTerraform変数の命名規則に準拠している必要がある
+
+```
+terraform output
+```
