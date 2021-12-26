@@ -10,14 +10,14 @@
   if c.VerifyExpiresAt(now, false) == false { delta := time.Unix(now, 0).Sub(time.Unix(c.ExpiresAt, 0)) vErr.Inner = fmt.Errorf(&#34;token is expired by %v&#34;, delta) vErr.Errors |= ValidationErrorExpired } if c.VerifyIssuedAt(now, false) == false { vErr.Inner = fmt.Errorf(&#34;Token used before issued&#34;) vErr.Errors |= ValidationErrorIssuedAt } if c.VerifyNotBefore(now, false) == false { vErr.Inner = fmt.Errorf(&#34;token is not valid yet&#34;) vErr.Errors |= ValidationErrorNotValidYet }   goで|=はOR演算子を表すが、エラーでなんでOR演算子を使うのか？
   dgrijalva/jwt-go/erros.">
 <meta name=author content>
-<link rel=canonical href=http://dyuji.dev/blog/go/iota_and_error/>
+<link rel=canonical href=https://dyuji.dev/blog/go/iota_and_error/>
 <link crossorigin=anonymous href=/assets/css/stylesheet.min.c88963fe2d79462000fd0fb1b3737783c32855d340583e4523343f8735c787f0.css integrity="sha256-yIlj/i15RiAA/Q+xs3N3g8MoVdNAWD5FIzQ/hzXHh/A=" rel="preload stylesheet" as=style>
 <script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
-<link rel=icon href=http://dyuji.dev/favicon.ico>
-<link rel=icon type=image/png sizes=16x16 href=http://dyuji.dev/favicon-16x16.png>
-<link rel=icon type=image/png sizes=32x32 href=http://dyuji.dev/favicon-32x32.png>
-<link rel=apple-touch-icon href=http://dyuji.dev/apple-touch-icon.png>
-<link rel=mask-icon href=http://dyuji.dev/safari-pinned-tab.svg>
+<link rel=icon href=https://dyuji.dev/favicon.ico>
+<link rel=icon type=image/png sizes=16x16 href=https://dyuji.dev/favicon-16x16.png>
+<link rel=icon type=image/png sizes=32x32 href=https://dyuji.dev/favicon-32x32.png>
+<link rel=apple-touch-icon href=https://dyuji.dev/apple-touch-icon.png>
+<link rel=mask-icon href=https://dyuji.dev/safari-pinned-tab.svg>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
 <meta name=generator content="Hugo 0.91.2">
@@ -30,22 +30,22 @@
   if c.VerifyExpiresAt(now, false) == false { delta := time.Unix(now, 0).Sub(time.Unix(c.ExpiresAt, 0)) vErr.Inner = fmt.Errorf(&#34;token is expired by %v&#34;, delta) vErr.Errors |= ValidationErrorExpired } if c.VerifyIssuedAt(now, false) == false { vErr.Inner = fmt.Errorf(&#34;Token used before issued&#34;) vErr.Errors |= ValidationErrorIssuedAt } if c.VerifyNotBefore(now, false) == false { vErr.Inner = fmt.Errorf(&#34;token is not valid yet&#34;) vErr.Errors |= ValidationErrorNotValidYet }   goで|=はOR演算子を表すが、エラーでなんでOR演算子を使うのか？
   dgrijalva/jwt-go/erros.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="http://dyuji.dev/blog/go/iota_and_error/"><meta property="article:section" content="blog">
+<meta property="og:url" content="https://dyuji.dev/blog/go/iota_and_error/"><meta property="article:section" content="blog">
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content>
 <meta name=twitter:description content="iotaとエラーハンドリング   jwtのエラーを調べている時に以下のコードを見て不思議に思った
   dgrijalva/jwt-go/claims.go#L38-L52
   if c.VerifyExpiresAt(now, false) == false { delta := time.Unix(now, 0).Sub(time.Unix(c.ExpiresAt, 0)) vErr.Inner = fmt.Errorf(&#34;token is expired by %v&#34;, delta) vErr.Errors |= ValidationErrorExpired } if c.VerifyIssuedAt(now, false) == false { vErr.Inner = fmt.Errorf(&#34;Token used before issued&#34;) vErr.Errors |= ValidationErrorIssuedAt } if c.VerifyNotBefore(now, false) == false { vErr.Inner = fmt.Errorf(&#34;token is not valid yet&#34;) vErr.Errors |= ValidationErrorNotValidYet }   goで|=はOR演算子を表すが、エラーでなんでOR演算子を使うのか？
   dgrijalva/jwt-go/erros.">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Blogs","item":"http://dyuji.dev/blog/"},{"@type":"ListItem","position":2,"name":"","item":"http://dyuji.dev/blog/go/iota_and_error/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"","name":"","description":"iotaとエラーハンドリング   jwtのエラーを調べている時に以下のコードを見て不思議に思った\n  dgrijalva/jwt-go/claims.go#L38-L52\n  if c.VerifyExpiresAt(now, false) == false { delta := time.Unix(now, 0).Sub(time.Unix(c.ExpiresAt, 0)) vErr.Inner = fmt.Errorf(\u0026#34;token is expired by %v\u0026#34;, delta) vErr.Errors |= ValidationErrorExpired } if c.VerifyIssuedAt(now, false) == false { vErr.Inner = fmt.Errorf(\u0026#34;Token used before issued\u0026#34;) vErr.Errors |= ValidationErrorIssuedAt } if c.VerifyNotBefore(now, false) == false { vErr.Inner = fmt.Errorf(\u0026#34;token is not valid yet\u0026#34;) vErr.Errors |= ValidationErrorNotValidYet }   goで|=はOR演算子を表すが、エラーでなんでOR演算子を使うのか？\n  dgrijalva/jwt-go/erros.","keywords":[],"articleBody":"iotaとエラーハンドリング   jwtのエラーを調べている時に以下のコードを見て不思議に思った\n  dgrijalva/jwt-go/claims.go#L38-L52\n  if c.VerifyExpiresAt(now, false) == false { delta := time.Unix(now, 0).Sub(time.Unix(c.ExpiresAt, 0)) vErr.Inner = fmt.Errorf(\"token is expired by %v\", delta) vErr.Errors |= ValidationErrorExpired } if c.VerifyIssuedAt(now, false) == false { vErr.Inner = fmt.Errorf(\"Token used before issued\") vErr.Errors |= ValidationErrorIssuedAt } if c.VerifyNotBefore(now, false) == false { vErr.Inner = fmt.Errorf(\"token is not valid yet\") vErr.Errors |= ValidationErrorNotValidYet }   goで|=はOR演算子を表すが、エラーでなんでOR演算子を使うのか？\n  dgrijalva/jwt-go/erros.goをみる\n  const ( ValidationErrorMalformed uint32 = 1  iota // Token is malformed \tValidationErrorUnverifiable // Token could not be verified because of signing problems \tValidationErrorSignatureInvalid // Signature validation failed  // Standard Claim validation errors \tValidationErrorAudience // AUD validation failed \tValidationErrorExpired // EXP validation failed \tValidationErrorIssuedAt // IAT validation failed \tValidationErrorIssuer // ISS validation failed \tValidationErrorNotValidYet // NBF validation failed \tValidationErrorId // JTI validation failed \tValidationErrorClaimsInvalid // Generic claims validation error )  これはconst識別子iotaを使ってエラーの定数を定義している « はbitの左シフトでValidationErrorMalformed以下の定数は1桁ずつ増えていく(1,2,4,8…) uint32のなかでビットごとの値をエラーに割り当てることで、エラーのフラグ管理のようなものを上のOR演算子で実現してると解釈できる  参考 Golangのconst識別子iotaの紹介 -Qiita\n","wordCount":"138","inLanguage":"en","datePublished":"0001-01-01T00:00:00Z","dateModified":"0001-01-01T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"http://dyuji.dev/blog/go/iota_and_error/"},"publisher":{"@type":"Organization","name":"dyuji.dev","logo":{"@type":"ImageObject","url":"http://dyuji.dev/favicon.ico"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Blogs","item":"https://dyuji.dev/blog/"},{"@type":"ListItem","position":2,"name":"","item":"https://dyuji.dev/blog/go/iota_and_error/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"","name":"","description":"iotaとエラーハンドリング   jwtのエラーを調べている時に以下のコードを見て不思議に思った\n  dgrijalva/jwt-go/claims.go#L38-L52\n  if c.VerifyExpiresAt(now, false) == false { delta := time.Unix(now, 0).Sub(time.Unix(c.ExpiresAt, 0)) vErr.Inner = fmt.Errorf(\u0026#34;token is expired by %v\u0026#34;, delta) vErr.Errors |= ValidationErrorExpired } if c.VerifyIssuedAt(now, false) == false { vErr.Inner = fmt.Errorf(\u0026#34;Token used before issued\u0026#34;) vErr.Errors |= ValidationErrorIssuedAt } if c.VerifyNotBefore(now, false) == false { vErr.Inner = fmt.Errorf(\u0026#34;token is not valid yet\u0026#34;) vErr.Errors |= ValidationErrorNotValidYet }   goで|=はOR演算子を表すが、エラーでなんでOR演算子を使うのか？\n  dgrijalva/jwt-go/erros.","keywords":[],"articleBody":"iotaとエラーハンドリング   jwtのエラーを調べている時に以下のコードを見て不思議に思った\n  dgrijalva/jwt-go/claims.go#L38-L52\n  if c.VerifyExpiresAt(now, false) == false { delta := time.Unix(now, 0).Sub(time.Unix(c.ExpiresAt, 0)) vErr.Inner = fmt.Errorf(\"token is expired by %v\", delta) vErr.Errors |= ValidationErrorExpired } if c.VerifyIssuedAt(now, false) == false { vErr.Inner = fmt.Errorf(\"Token used before issued\") vErr.Errors |= ValidationErrorIssuedAt } if c.VerifyNotBefore(now, false) == false { vErr.Inner = fmt.Errorf(\"token is not valid yet\") vErr.Errors |= ValidationErrorNotValidYet }   goで|=はOR演算子を表すが、エラーでなんでOR演算子を使うのか？\n  dgrijalva/jwt-go/erros.goをみる\n  const ( ValidationErrorMalformed uint32 = 1  iota // Token is malformed \tValidationErrorUnverifiable // Token could not be verified because of signing problems \tValidationErrorSignatureInvalid // Signature validation failed  // Standard Claim validation errors \tValidationErrorAudience // AUD validation failed \tValidationErrorExpired // EXP validation failed \tValidationErrorIssuedAt // IAT validation failed \tValidationErrorIssuer // ISS validation failed \tValidationErrorNotValidYet // NBF validation failed \tValidationErrorId // JTI validation failed \tValidationErrorClaimsInvalid // Generic claims validation error )  これはconst識別子iotaを使ってエラーの定数を定義している « はbitの左シフトでValidationErrorMalformed以下の定数は1桁ずつ増えていく(1,2,4,8…) uint32のなかでビットごとの値をエラーに割り当てることで、エラーのフラグ管理のようなものを上のOR演算子で実現してると解釈できる  参考 Golangのconst識別子iotaの紹介 -Qiita\n","wordCount":"138","inLanguage":"en","datePublished":"0001-01-01T00:00:00Z","dateModified":"0001-01-01T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dyuji.dev/blog/go/iota_and_error/"},"publisher":{"@type":"Organization","name":"dyuji.dev","logo":{"@type":"ImageObject","url":"https://dyuji.dev/favicon.ico"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
 <header class=header>
 <nav class=nav>
 <div class=logo>
-<a href=http://dyuji.dev/ accesskey=h title="dyuji.dev (Alt + H)">dyuji.dev</a>
+<a href=https://dyuji.dev/ accesskey=h title="dyuji.dev (Alt + H)">dyuji.dev</a>
 <span class=logo-switches>
 <button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 </button>
@@ -123,7 +123,7 @@
 </article>
 </main>
 <footer class=footer>
-<span>&copy; 2021 <a href=http://dyuji.dev/>dyuji.dev</a></span>
+<span>&copy; 2021 <a href=https://dyuji.dev/>dyuji.dev</a></span>
 <span>
 Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
