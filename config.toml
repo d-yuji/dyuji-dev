@@ -1,0 +1,4 @@
+baseURL = 'http://dyuji.dev/'
+languageCode = 'ja'
+title = 'dyuji.dev'
+theme = "PaperMod"
