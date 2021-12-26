@@ -1,4 +1,4 @@
-baseURL = 'http://dyuji.dev/'
+baseURL = 'https://dyuji.dev/'
 languageCode = 'ja'
 title = 'dyuji.dev'
 theme = "PaperMod"
