@@ -51,61 +51,132 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
-<h2>
+<h2>URL Encode
 </h2>
 </header>
 <section class=entry-content>
-<p>2020/12/2 デバッグ 変更でエラーが発生するようになった時は正しく動いていたversionまで遡ってみる 大きな変更に注意する ライブラリのメジャーバージョンアップ 変更の履歴をちゃんと残す </p>
+<p>net/urlパッケージのURLエンコードは2種類 url.QueryEscape() スペースが+になる url.PathEscape() スペースが%20になる こちらに詳しい URI エンコーディングについて
+url.EncodeではQueryEscapeの方が使われているため、URLの+を変換したいときは正規表現を用いる こちらに詳しい</p>
 </section>
-<footer class=entry-footer></footer>
-<a class=entry-link aria-label="post link to " href=https://dyuji.dev/blog/memo/debug/></a>
+<footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
+<a class=entry-link aria-label="post link to URL Encode" href=https://dyuji.dev/blog/go/urlencode/></a>
 </article>
 <article class=post-entry>
 <header class=entry-header>
-<h2>
+<h2>WIP スタートアップ企業の業績決定要因 -質的比較分析(QCA)によるアプローチ
 </h2>
 </header>
 <section class=entry-content>
-<p>dockerからlocalhostに接続 Docker for Mac上のコンテナから、Mac上のアプリケーションに簡単に接続する方法
-Mysqlに接続する例 DSN user1:password@tcp(docker.for.mac.localhost)/database_name </p>
+<p>https://www.jstage.jst.go.jp/article/keieijournal/42/0/42_40/_article/-char/ja/ 2019 年 42 巻 p. 40-51
+中小企業の業績に影響を与える要因 企業家の特性 リーダーシップ 経営資源 戦略 社会的関係資本 創業者の年齢 成長指向 開業から28カ月以内のスタートアップ
+質的比較分析(QCA : Qualitative Compare Analysis) *
+日本政策金融公庫 政策金融機関の一つ。どちらかというと小規模な法人向けに融資する金融機関。そこに関する調査論文やデータとかも出している
+政策金融機関：政府の出資による金融機関、特殊法人。政府系金融機関とも呼ばれる QCA</p>
 </section>
-<footer class=entry-footer></footer>
-<a class=entry-link aria-label="post link to " href=https://dyuji.dev/blog/memo/docker_localhost/></a>
+<footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
+<a class=entry-link aria-label="post link to WIP スタートアップ企業の業績決定要因 -質的比較分析(QCA)によるアプローチ" href=https://dyuji.dev/blog/memo/start_up/></a>
 </article>
 <article class=post-entry>
 <header class=entry-header>
-<h2>
+<h2>「超」入門 失敗の本質
 </h2>
 </header>
 <section class=entry-content>
-<p>2020/11/30 Googleドメインの設定 Google Domainにてドメインを購入しました。 購入にあたってKyashは使えませんでした。 昔、Github Pages用に作ったリポジトリを転用しています。 Githubのsettingから購入したドメインを設定し、GoogleDomain側からもレコードを設定しました。 レコードの反映は思ったより早かったです。 細かい見た目とかはおいおいやるとして、とりあえずmarkdownで記録を残そうと思います。</p>
+<p> 大きな戦略における目標に寄与しない無駄な目標を実施しない 勝利の条件を理解するのは優れたリーダーに必要なこと 戦略の成功を図る指標をアップデートする 既存の指標の発見 敵対する指標の無効化 新たな指標で戦う戦う 成功体験を分析する。経験知を汎用的な指標にする 新しいルールをつくる 人・組織の柔軟な活用 新技術の開発 技術の運用方法 ダブルループ学習を心掛ける シングルループ学習 目標と問題構造を所与ないし一定とした上で最適解を探す ダブルループ学習 想定した目標と問題自体が間違っているという疑問・検討を含めた学習 現場と上層部の乖離を避ける 専門分野は専門家の知識をあげられるように リーダーが前線で直接確認することで、情報の正確さと問題解決の速度を上げる リーダーは見たくない問題を解決する覚悟の強さが要求される 正しい警告を無視しない 評価制度は組織に対するメッセージ 居心地の良い安定にならず変化できる組織 異質な情報・知識の交流 権力構造の均衡破壊 万が一の想定を持っておく </p>
 </section>
-<footer class=entry-footer></footer>
-<a class=entry-link aria-label="post link to " href=https://dyuji.dev/blog/memo/domain/></a>
+<footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
+<a class=entry-link aria-label="post link to 「超」入門 失敗の本質" href=https://dyuji.dev/blog/books/essence_of_failure/></a>
 </article>
 <article class=post-entry>
 <header class=entry-header>
-<h2>
+<h2>チャネルの受信とClose
 </h2>
 </header>
 <section class=entry-content>
-<p>echoとbase64 echoコマンドはデフォルトでは改行文字が含まれるため、暗号化時などに気をつける これが原因でmysqlのdsnでエラーが発生した 改行なしオプションは-n 例
-## 改行あり echo "hogehoge" | base64 > aG9nZWhvZ2UK ## 改行なし echo -n "hogehoge" | base64 > aG9nZWhvZ2U= </p>
+<p> チャネルはCloseしたら0値を返すので、受信側がCloseかどうかは第二引数をとって判別する package main import ( "fmt" "time" ) func A(ch chan int) { for { select { case v, ok := &lt;-ch: fmt.Println(v, ok) } } } func main() { ch := make(chan int, 10) go A(ch) for i := 1; i &lt;= 5; i++ { ch &lt;- i } close(ch) time.Sleep(100 * time.Microsecond) } 結果
+1 true
+2 true
+3 true
+4 true
+5 true
+0 false
+0 false
+0 false
+0 false
+0 false
+0 false
+0 false
+0 false
+0 false
+0 false
+0 false
+0 false
+0 false
+0 false
+0 false
+0 false
+以下略
+参考 Go の channel 処理パターン集 </p>
 </section>
-<footer class=entry-footer></footer>
-<a class=entry-link aria-label="post link to " href=https://dyuji.dev/blog/memo/echo_base64/></a>
+<footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
+<a class=entry-link aria-label="post link to チャネルの受信とClose" href=https://dyuji.dev/blog/go/channel_receive/></a>
 </article>
 <article class=post-entry>
 <header class=entry-header>
-<h2>
+<h2>デバッグ
 </h2>
 </header>
 <section class=entry-content>
-<p>外国語学習のコツ from 外国語学習に成功する人，しない人 第二言語習得論への招待
+<p> 変更でエラーが発生するようになった時は正しく動いていたversionまで遡ってみる 大きな変更に注意する ライブラリのメジャーバージョンアップ 変更の履歴をちゃんと残す </p>
+</section>
+<footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
+<a class=entry-link aria-label="post link to デバッグ" href=https://dyuji.dev/blog/memo/debug/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>価値観をアップデートしていくにはどうするべきか(仮)
+</h2>
+</header>
+<section class=entry-content>
+<p>価値観をアップデートしていくにはどうするべきか(仮) 軸を増やす 未知の体験 サンプリングを変える </p>
+</section>
+<footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
+<a class=entry-link aria-label="post link to 価値観をアップデートしていくにはどうするべきか(仮)" href=https://dyuji.dev/blog/memo/update_values/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>図解 モチベーション大百科
+</h2>
+</header>
+<section class=entry-content>
+<p>目標設定のコツ 図解 モチベーション大百科より
+目標を具体的な数値に変える 数値にする(割合、時刻など) 最大値、最小値の範囲で予測する 多めに目標を持つ 期待をもって行動する 運が良いと思う 学べることがあると思い行動する 締め切りは細かく区切る タスクを分解する 締め切りをつける 行動する理由を考えるより、行動のための手順を書く やることを書き出すのと、遂行することを分ける </p>
+</section>
+<footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
+<a class=entry-link aria-label="post link to 図解 モチベーション大百科" href=https://dyuji.dev/blog/books/motivation/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>外国語学習に成功する人，しない人 第二言語習得論への招待
+</h2>
+</header>
+<section class=entry-content>
+<p>from 外国語学習に成功する人，しない人 第二言語習得論への招待
 インプット 背景知識がある題材を選ぶと良い リスニングは80％くらいわかる教材を何度も聞く方がよい リスニングのスクリプトを読んで理解してから再度聞いてみる 外国語で情報を収集する ほとんどわからないものでも、聞かないより聞いた方がいい アウトプット アウトプット(話すこと、書くこと)は、毎日少しづつでもやる 話す練習はまずは意味を通じさせること、次に正しい文を意識する 話すときにコミュニケーションストラテジー(間の語)を話して時間を稼ぐ 言いたい単語が思いつかない時は別の簡単な表現で言い換える 単語の学習 文脈の中で覚える 丸暗記はなるべく避ける 知らない単語はなるべく推測する 発音・音声 難しい発音は意識しておき(lとrなど)、意識すればできるようにする 意味文法などを理解している文の音声をできるだけ正確に真似て練習する 文法 基本的なものを文をつくりアウトプットできるレベルに 説明を読んでも分からないものは無視 動機付け 高める工夫する 授業をとる、仲間とやる、好きな内容を使う、資格を受ける、外国語のことに興味を持つ </p>
 </section>
-<footer class=entry-footer></footer>
-<a class=entry-link aria-label="post link to " href=https://dyuji.dev/blog/memo/foreign_language/></a>
+<footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
+<a class=entry-link aria-label="post link to 外国語学習に成功する人，しない人 第二言語習得論への招待" href=https://dyuji.dev/blog/memo/foreign_language/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>Googleドメインの設定
+</h2>
+</header>
+<section class=entry-content>
+<p>Google Domainにてドメインを購入しました。 購入にあたってKyashは使えませんでした。 昔、Github Pages用に作ったリポジトリを転用しています。 Githubのsettingから購入したドメインを設定し、GoogleDomain側からもレコードを設定しました。 レコードの反映は思ったより早かったです。 細かい見た目とかはおいおいやるとして、とりあえずmarkdownで記録を残そうと思います。</p>
+</section>
+<footer class=entry-footer><span title="2020-11-30 11:15:29 +0900 +0900">November 30, 2020</span></footer>
+<a class=entry-link aria-label="post link to Googleドメインの設定" href=https://dyuji.dev/blog/memo/domain/></a>
 </article>
 <article class=post-entry>
 <header class=entry-header>
@@ -117,64 +188,6 @@ Mysqlに接続する例 DSN user1:password@tcp(docker.for.mac.localhost)/databas
 </section>
 <footer class=entry-footer></footer>
 <a class=entry-link aria-label="post link to " href=https://dyuji.dev/blog/memo/jmeter/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>
-</h2>
-</header>
-<section class=entry-content>
-<p>mysqlのkey index describeはテーブル情報を出すが、複合キーの場合keyのカラムが1つのみmulになる indexを全て確認する際はshow indexを使う describe table_name; show index from table_name; 例
-create table books(book_id int, name varchar(255), author varchar(255), publication_date datetime); mysql> alter table books add index book_index(name,author); mysql> describe books; +------------------+--------------+------+-----+---------+-------+ | Field | Type | Null | Key | Default | Extra | +------------------+--------------+------+-----+---------+-------+ | book_id | int | NO | PRI | NULL | | | name | varchar(255) | YES | MUL | NULL | | | author | varchar(255) | YES | | NULL | | | publication_date | datetime | YES | | NULL | | +------------------+--------------+------+-----+---------+-------+ 4 rows in set (0....</p>
-</section>
-<footer class=entry-footer></footer>
-<a class=entry-link aria-label="post link to " href=https://dyuji.dev/blog/memo/mysql_key_index/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>
-</h2>
-</header>
-<section class=entry-content>
-<p>スタートアップ企業の業績決定要因 -質的比較分析(QCA)によるアプローチ https://www.jstage.jst.go.jp/article/keieijournal/42/0/42_40/_article/-char/ja/ 2019 年 42 巻 p. 40-51
-中小企業の業績に影響を与える要因 企業家の特性 リーダーシップ 経営資源 戦略 社会的関係資本 創業者の年齢 成長指向 開業から28カ月以内のスタートアップ
-質的比較分析(QCA : Qualitative Compare Analysis) *
-日本政策金融公庫 政策金融機関の一つ。どちらかというと小規模な法人向けに融資する金融機関。そこに関する調査論文やデータとかも出している
-政策金融機関：政府の出資による金融機関、特殊法人。政府系金融機関とも呼ばれる QCA</p>
-</section>
-<footer class=entry-footer></footer>
-<a class=entry-link aria-label="post link to " href=https://dyuji.dev/blog/memo/start_up/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>
-</h2>
-</header>
-<section class=entry-content>
-<p>価値観をアップデートしていくにはどうするべきか(仮) 軸を増やす 未知の体験 サンプリングを変える </p>
-</section>
-<footer class=entry-footer></footer>
-<a class=entry-link aria-label="post link to " href=https://dyuji.dev/blog/memo/update_values/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>
-</h2>
-</header>
-<section class=entry-content>
-<p>Terraform 勉強 Introduction to Infrastructure as Code with Terraform Infrastructure as Code(IaC)
-Terraformはproviderと呼ばれるTerraformプラグインでAPIを呼び出し、インフラの操作をする
-AWS GCP Azureなど有名なもののproviderは作成されている 独自でproviderを作成することも可能 providerがインフラの要素をresourceとして定義
-インスタンスやネットワークなど 様々なproviderのリソースをmoduleに構成
-moduleは再利用可能なTerraformの構成
-Terraformは宣言型
-インフラの最終状態を記述し、Terraform providerが自動で計算 Terraformでインフラ展開の流れ
-Scope 適用範囲の把握 Author 構成の記述 Initialize 必要プラグインのインストール Plan 変更のプレビュー Apply 変更の実施 State file
-インフラの状態を追跡するためのソース これの状態を見て、宣言した構成と合うよう変更を加える Terraform Cloud
-Gitと繋いで自動的に構成の提案したり、実行環境を用意して構成変更の競合を防いだりする Install Terraform 内容をコピペして動く Quick start tutorial nginxのdocker image作成 terraform init terraform plan terraform apply terraform destroy Build Infrastructure GCPのアカウント作成...</p>
-</section>
-<footer class=entry-footer></footer>
-<a class=entry-link aria-label="post link to " href=https://dyuji.dev/blog/tf/gcp_tutorial_memo/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

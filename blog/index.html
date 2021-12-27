@@ -62,134 +62,121 @@
 </article>
 <article class=post-entry>
 <header class=entry-header>
-<h2>
+<h2>dockerからlocalhostに接続
 </h2>
 </header>
 <section class=entry-content>
-<p>「超」入門 失敗の本質 大きな戦略における目標に寄与しない無駄な目標を実施しない 勝利の条件を理解するのは優れたリーダーに必要なこと 戦略の成功を図る指標をアップデートする 既存の指標の発見 敵対する指標の無効化 新たな指標で戦う戦う 成功体験を分析する。経験知を汎用的な指標にする 新しいルールをつくる 人・組織の柔軟な活用 新技術の開発 技術の運用方法 ダブルループ学習を心掛ける シングルループ学習 目標と問題構造を所与ないし一定とした上で最適解を探す ダブルループ学習 想定した目標と問題自体が間違っているという疑問・検討を含めた学習 現場と上層部の乖離を避ける 専門分野は専門家の知識をあげられるように リーダーが前線で直接確認することで、情報の正確さと問題解決の速度を上げる リーダーは見たくない問題を解決する覚悟の強さが要求される 正しい警告を無視しない 評価制度は組織に対するメッセージ 居心地の良い安定にならず変化できる組織 異質な情報・知識の交流 権力構造の均衡破壊 万が一の想定を持っておく </p>
+<p>Docker for Mac上のコンテナから、Mac上のアプリケーションに簡単に接続する方法
+Mysqlに接続する例 DSN user1:password@tcp(docker.for.mac.localhost)/database_name </p>
 </section>
-<footer class=entry-footer></footer>
-<a class=entry-link aria-label="post link to " href=https://dyuji.dev/blog/books/essence_of_failure/></a>
+<footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
+<a class=entry-link aria-label="post link to dockerからlocalhostに接続" href=https://dyuji.dev/blog/memo/docker_localhost/></a>
 </article>
 <article class=post-entry>
 <header class=entry-header>
-<h2>
+<h2>echoとbase64
 </h2>
 </header>
 <section class=entry-content>
-<p>目標設定のコツ 図解 モチベーション大百科より
-目標を具体的な数値に変える 数値にする(割合、時刻など) 最大値、最小値の範囲で予測する 多めに目標を持つ 期待をもって行動する 運が良いと思う 学べることがあると思い行動する 締め切りは細かく区切る タスクを分解する 締め切りをつける 行動する理由を考えるより、行動のための手順を書く やることを書き出すのと、遂行することを分ける </p>
+<p> echoコマンドはデフォルトでは改行文字が含まれるため、暗号化時などに気をつける これが原因でmysqlのdsnでエラーが発生した 改行なしオプションは-n 例
+## 改行あり echo "hogehoge" | base64 > aG9nZWhvZ2UK ## 改行なし echo -n "hogehoge" | base64 > aG9nZWhvZ2U= </p>
 </section>
-<footer class=entry-footer></footer>
-<a class=entry-link aria-label="post link to " href=https://dyuji.dev/blog/books/motivation/></a>
+<footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
+<a class=entry-link aria-label="post link to echoとbase64" href=https://dyuji.dev/blog/memo/echo_base64/></a>
 </article>
 <article class=post-entry>
 <header class=entry-header>
-<h2>
+<h2>go testをDockerfileで実施する
 </h2>
 </header>
 <section class=entry-content>
-<p>チャネルの受信とClose チャネルはCloseしたら0値を返すので、受信側がCloseかどうかは第二引数をとって判別する package main import ( "fmt" "time" ) func A(ch chan int) { for { select { case v, ok := &lt;-ch: fmt.Println(v, ok) } } } func main() { ch := make(chan int, 10) go A(ch) for i := 1; i &lt;= 5; i++ { ch &lt;- i } close(ch) time.Sleep(100 * time.Microsecond) } 結果
-1 true
-2 true
-3 true
-4 true
-5 true
-0 false
-0 false
-0 false
-0 false
-0 false
-0 false
-0 false
-0 false
-0 false
-0 false
-0 false
-0 false
-0 false
-0 false
-0 false
-0 false
-以下略
-参考 Go の channel 処理パターン集 </p>
+<p>gorm v2がgo v1.14以降じゃないとビルドできない Jenkinsサーバーがgo v1.12でgo testのときにエラーがでる docker imageのビルドの時にgo imageでgo testがしたいができるのか? テストが落ちたらビルドも止まるか 試作コード cmd/main.go
+package main import ( "docker-gotest/service" "fmt" ) func main() { _ = service.Add(1, 2) fmt.Println("Hello World") } service/calc.go
+package service func Add(a int, b int) int { return a + b } service/calc_test.go
+package service import "testing" func Test_Add(t *testing.T) { result := Add(1, 2) if result != 3 { t.Errorf("Error") } } Dockerfile...</p>
 </section>
-<footer class=entry-footer></footer>
-<a class=entry-link aria-label="post link to " href=https://dyuji.dev/blog/go/channel_receive/></a>
+<footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
+<a class=entry-link aria-label="post link to go testをDockerfileで実施する" href=https://dyuji.dev/blog/go/gotest_and_docker/></a>
 </article>
 <article class=post-entry>
 <header class=entry-header>
-<h2>
+<h2>Golang memo
 </h2>
 </header>
 <section class=entry-content>
 <p>Golang memo 他の言語からすると紛らわしい単語 map Goでは辞書型 interface go 環境変数の場所を間違えない 基本wslで書いて検証したとしても、vscodeの補完に使うgoのライブラリたちはwindows本体側を参照しているのでちゃんと設定する switch と select 見た目が似てるけど、違う用途
 //条件分岐 switch n { case 1: fmt.Println("1") case 2,3: fmt.Println("2 or 3") default: fmt.Println("other") } // 条件部分を省略した書き方もできる switch { case n == 1: fmt.Println("1") case n == 2 || n == 3: fmt.Println("2 or 3") default: fmt.Println("other") } // channelの授受の分岐 select { case v1 := &lt;-ch1: fmt.Println(v1) case v2 := &lt;-ch2: fmt....</p>
 </section>
-<footer class=entry-footer></footer>
-<a class=entry-link aria-label="post link to " href=https://dyuji.dev/blog/go/golang/></a>
+<footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
+<a class=entry-link aria-label="post link to Golang memo" href=https://dyuji.dev/blog/go/golang/></a>
 </article>
 <article class=post-entry>
 <header class=entry-header>
-<h2>
+<h2>iotaとエラーハンドリング
 </h2>
 </header>
 <section class=entry-content>
-<p>2021/12/02 go testをDockerfileで実施する gorm v2がgo v1.14以降じゃないとビルドできない Jenkinsサーバーがgo v1.12でgo testのときにエラーがでる docker imageのビルドの時にgo imageでgo testがしたいができるのか? テストが落ちたらビルドも止まるか 試作コード cmd/main.go
-package main import ( "docker-gotest/service" "fmt" ) func main() { _ = service.Add(1, 2) fmt.Println("Hello World") } service/calc.go
-package service func Add(a int, b int) int { return a + b } service/calc_test.go
-package service import "testing" func Test_Add(t *testing.T) { result := Add(1, 2) if result != 3 { t....</p>
-</section>
-<footer class=entry-footer></footer>
-<a class=entry-link aria-label="post link to " href=https://dyuji.dev/blog/go/gotest_and_docker/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>
-</h2>
-</header>
-<section class=entry-content>
-<p>iotaとエラーハンドリング jwtのエラーを調べている時に以下のコードを見て不思議に思った
+<p>jwtのエラーを調べている時に以下のコードを見て不思議に思った
 dgrijalva/jwt-go/claims.go#L38-L52
 if c.VerifyExpiresAt(now, false) == false { delta := time.Unix(now, 0).Sub(time.Unix(c.ExpiresAt, 0)) vErr.Inner = fmt.Errorf("token is expired by %v", delta) vErr.Errors |= ValidationErrorExpired } if c.VerifyIssuedAt(now, false) == false { vErr.Inner = fmt.Errorf("Token used before issued") vErr.Errors |= ValidationErrorIssuedAt } if c.VerifyNotBefore(now, false) == false { vErr.Inner = fmt.Errorf("token is not valid yet") vErr.Errors |= ValidationErrorNotValidYet } goで|=はOR演算子を表すが、エラーでなんでOR演算子を使うのか？
-dgrijalva/jwt-go/erros....</p>
+dgrijalva/jwt-go/erros.goをみる...</p>
 </section>
-<footer class=entry-footer></footer>
-<a class=entry-link aria-label="post link to " href=https://dyuji.dev/blog/go/iota_and_error/></a>
+<footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
+<a class=entry-link aria-label="post link to iotaとエラーハンドリング" href=https://dyuji.dev/blog/go/iota_and_error/></a>
 </article>
 <article class=post-entry>
 <header class=entry-header>
-<h2>
+<h2>jwtの"Token used before issued" Error
 </h2>
 </header>
 <section class=entry-content>
-<p>jwtの"Token used before issued" Error Token used before issued はjwtのParseの時iatが現在時刻より未来の場合発生する サーバー間の時刻のずれでも発生するので注意する Parseはerrroがnilでない時もtokenを返すので、後処理はできる package main import ( "fmt" "github.com/dgrijalva/jwt-go" ) func main() { // iatが2030年になっている tokenstring := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxOTE2MjM5MDIyfQ.jHQiBm09vEVjEx9347u2hU7LTreUVtEbWRPWrr9DG_A" secret := "my_secret_token" token, err := tokenParse(tokenstring, []byte(secret)) if err != nil { fmt.Printf("Error:%v\n", err) return } claims, ok := token.Claims.(jwt.MapClaims) if ok { fmt.Println(claims) fmt.Println(claims["name"]) return } } func tokenParse(idToken string, hmacSecret []byte) (*jwt.Token, error) { token, err := jwt....</p>
+<p>Token used before issued はjwtのParseの時iatが現在時刻より未来の場合発生する サーバー間の時刻のずれでも発生するので注意する Parseはerrroがnilでない時もtokenを返すので、後処理はできる package main import ( "fmt" "github.com/dgrijalva/jwt-go" ) func main() { // iatが2030年になっている tokenstring := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxOTE2MjM5MDIyfQ.jHQiBm09vEVjEx9347u2hU7LTreUVtEbWRPWrr9DG_A" secret := "my_secret_token" token, err := tokenParse(tokenstring, []byte(secret)) if err != nil { fmt.Printf("Error:%v\n", err) return } claims, ok := token.Claims.(jwt.MapClaims) if ok { fmt.Println(claims) fmt.Println(claims["name"]) return } } func tokenParse(idToken string, hmacSecret []byte) (*jwt.Token, error) { token, err := jwt.Parse(idToken, func(token *jwt.Token) (interface{}, error) { // アルゴリズムの判定 if _, ok := token....</p>
 </section>
-<footer class=entry-footer></footer>
-<a class=entry-link aria-label="post link to " href=https://dyuji.dev/blog/go/jwt/></a>
+<footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
+<a class=entry-link aria-label='post link to jwtの"Token used before issued" Error' href=https://dyuji.dev/blog/go/jwt/></a>
 </article>
 <article class=post-entry>
 <header class=entry-header>
-<h2>
+<h2>mysqlのkey index
+</h2>
+</header>
+<section class=entry-content>
+<p>describeはテーブル情報を出すが、複合キーの場合keyのカラムが1つのみmulになる indexを全て確認する際はshow indexを使う describe table_name; show index from table_name; 例
+create table books(book_id int, name varchar(255), author varchar(255), publication_date datetime); mysql> alter table books add index book_index(name,author); mysql> describe books; +------------------+--------------+------+-----+---------+-------+ | Field | Type | Null | Key | Default | Extra | +------------------+--------------+------+-----+---------+-------+ | book_id | int | NO | PRI | NULL | | | name | varchar(255) | YES | MUL | NULL | | | author | varchar(255) | YES | | NULL | | | publication_date | datetime | YES | | NULL | | +------------------+--------------+------+-----+---------+-------+ 4 rows in set (0....</p>
+</section>
+<footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
+<a class=entry-link aria-label="post link to mysqlのkey index" href=https://dyuji.dev/blog/memo/mysql_key_index/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>Terraform 勉強
+</h2>
+</header>
+<section class=entry-content>
+<p>Terraform 勉強 Introduction to Infrastructure as Code with Terraform Infrastructure as Code(IaC)
+Terraformはproviderと呼ばれるTerraformプラグインでAPIを呼び出し、インフラの操作をする
+AWS GCP Azureなど有名なもののproviderは作成されている 独自でproviderを作成することも可能 providerがインフラの要素をresourceとして定義
+インスタンスやネットワークなど 様々なproviderのリソースをmoduleに構成
+moduleは再利用可能なTerraformの構成
+Terraformは宣言型
+インフラの最終状態を記述し、Terraform providerが自動で計算 Terraformでインフラ展開の流れ
+Scope 適用範囲の把握 Author 構成の記述 Initialize 必要プラグインのインストール Plan 変更のプレビュー Apply 変更の実施 State file
+インフラの状態を追跡するためのソース これの状態を見て、宣言した構成と合うよう変更を加える Terraform Cloud
+Gitと繋いで自動的に構成の提案したり、実行環境を用意して構成変更の競合を防いだりする Install Terraform 内容をコピペして動く Quick start tutorial nginxのdocker image作成 terraform init terraform plan terraform apply terraform destroy Build Infrastructure GCPのアカウント作成...</p>
+</section>
+<footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
+<a class=entry-link aria-label="post link to Terraform 勉強" href=https://dyuji.dev/blog/tf/gcp_tutorial_memo/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
+<h2>time
 </h2>
 </header>
 <section class=entry-content>
 <p>time timeパッケージはデフォルトがmsなので注意する </p>
 </section>
-<footer class=entry-footer></footer>
-<a class=entry-link aria-label="post link to " href=https://dyuji.dev/blog/go/time/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>
-</h2>
-</header>
-<section class=entry-content>
-<p>URL Encode net/urlパッケージのURLエンコードは2種類 url.QueryEscape() スペースが+になる url.PathEscape() スペースが%20になる こちらに詳しい URI エンコーディングについて
-url.EncodeではQueryEscapeの方が使われているため、URLの+を変換したいときは正規表現を用いる こちらに詳しい</p>
-</section>
-<footer class=entry-footer></footer>
-<a class=entry-link aria-label="post link to " href=https://dyuji.dev/blog/go/urlencode/></a>
+<footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
+<a class=entry-link aria-label="post link to time" href=https://dyuji.dev/blog/go/time/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>

@@ -3,9 +3,9 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=robots content="index, follow">
-<title>dyuji.dev</title>
+<title>チャネルの受信とClose | dyuji.dev</title>
 <meta name=keywords content>
-<meta name=description content="チャネルの受信とClose  チャネルはCloseしたら0値を返すので、受信側がCloseかどうかは第二引数をとって判別する  package main import ( &#34;fmt&#34; &#34;time&#34; ) func A(ch chan int) { for { select { case v, ok := <-ch: fmt.Println(v, ok) } } } func main() { ch := make(chan int, 10) go A(ch) for i := 1; i <= 5; i++ { ch <- i } close(ch) time.Sleep(100 * time.Microsecond) } 結果
+<meta name=description content=" チャネルはCloseしたら0値を返すので、受信側がCloseかどうかは第二引数をとって判別する  package main import ( &#34;fmt&#34; &#34;time&#34; ) func A(ch chan int) { for { select { case v, ok := <-ch: fmt.Println(v, ok) } } } func main() { ch := make(chan int, 10) go A(ch) for i := 1; i <= 5; i++ { ch <- i } close(ch) time.Sleep(100 * time.Microsecond) } 結果
 1 true2 true3 true4 true5 true0 false0 false0 false0 false0 false0 false0 false0 false0 false0 false0 false0 false0 false0 false0 false0 false以下略参考  Go の channel 処理パターン集  ">
 <meta name=author content>
 <link rel=canonical href=https://dyuji.dev/blog/go/channel_receive/>
@@ -22,17 +22,19 @@
 <noscript>
 <style>#theme-toggle,.top-link{display:none}</style>
 <style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
-</noscript><meta property="og:title" content>
-<meta property="og:description" content="チャネルの受信とClose  チャネルはCloseしたら0値を返すので、受信側がCloseかどうかは第二引数をとって判別する  package main import ( &#34;fmt&#34; &#34;time&#34; ) func A(ch chan int) { for { select { case v, ok := <-ch: fmt.Println(v, ok) } } } func main() { ch := make(chan int, 10) go A(ch) for i := 1; i <= 5; i++ { ch <- i } close(ch) time.Sleep(100 * time.Microsecond) } 結果
+</noscript><meta property="og:title" content="チャネルの受信とClose">
+<meta property="og:description" content=" チャネルはCloseしたら0値を返すので、受信側がCloseかどうかは第二引数をとって判別する  package main import ( &#34;fmt&#34; &#34;time&#34; ) func A(ch chan int) { for { select { case v, ok := <-ch: fmt.Println(v, ok) } } } func main() { ch := make(chan int, 10) go A(ch) for i := 1; i <= 5; i++ { ch <- i } close(ch) time.Sleep(100 * time.Microsecond) } 結果
 1 true2 true3 true4 true5 true0 false0 false0 false0 false0 false0 false0 false0 false0 false0 false0 false0 false0 false0 false0 false0 false以下略参考  Go の channel 処理パターン集  ">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://dyuji.dev/blog/go/channel_receive/"><meta property="article:section" content="blog">
+<meta property="article:published_time" content="2021-12-26T11:15:29+09:00">
+<meta property="article:modified_time" content="2021-12-26T11:15:29+09:00">
 <meta name=twitter:card content="summary">
-<meta name=twitter:title content>
-<meta name=twitter:description content="チャネルの受信とClose  チャネルはCloseしたら0値を返すので、受信側がCloseかどうかは第二引数をとって判別する  package main import ( &#34;fmt&#34; &#34;time&#34; ) func A(ch chan int) { for { select { case v, ok := <-ch: fmt.Println(v, ok) } } } func main() { ch := make(chan int, 10) go A(ch) for i := 1; i <= 5; i++ { ch <- i } close(ch) time.Sleep(100 * time.Microsecond) } 結果
+<meta name=twitter:title content="チャネルの受信とClose">
+<meta name=twitter:description content=" チャネルはCloseしたら0値を返すので、受信側がCloseかどうかは第二引数をとって判別する  package main import ( &#34;fmt&#34; &#34;time&#34; ) func A(ch chan int) { for { select { case v, ok := <-ch: fmt.Println(v, ok) } } } func main() { ch := make(chan int, 10) go A(ch) for i := 1; i <= 5; i++ { ch <- i } close(ch) time.Sleep(100 * time.Microsecond) } 結果
 1 true2 true3 true4 true5 true0 false0 false0 false0 false0 false0 false0 false0 false0 false0 false0 false0 false0 false0 false0 false0 false以下略参考  Go の channel 処理パターン集  ">
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Blogs","item":"https://dyuji.dev/blog/"},{"@type":"ListItem","position":2,"name":"","item":"https://dyuji.dev/blog/go/channel_receive/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"","name":"","description":"チャネルの受信とClose  チャネルはCloseしたら0値を返すので、受信側がCloseかどうかは第二引数をとって判別する  package main import ( \u0026#34;fmt\u0026#34; \u0026#34;time\u0026#34; ) func A(ch chan int) { for { select { case v, ok := \u0026lt;-ch: fmt.Println(v, ok) } } } func main() { ch := make(chan int, 10) go A(ch) for i := 1; i \u0026lt;= 5; i++ { ch \u0026lt;- i } close(ch) time.Sleep(100 * time.Microsecond) } 結果\n1 true\r2 true\r3 true\r4 true\r5 true\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r以下略\r参考  Go の channel 処理パターン集  ","keywords":[],"articleBody":"チャネルの受信とClose  チャネルはCloseしたら0値を返すので、受信側がCloseかどうかは第二引数をとって判別する  package main import ( \"fmt\" \"time\" ) func A(ch chan int) { for { select { case v, ok := ch: fmt.Println(v, ok) } } } func main() { ch := make(chan int, 10) go A(ch) for i := 1; i  5; i++ { ch  i } close(ch) time.Sleep(100 * time.Microsecond) } 結果\n1 true\r2 true\r3 true\r4 true\r5 true\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r以下略\r参考  Go の channel 処理パターン集  ","wordCount":"105","inLanguage":"en","datePublished":"0001-01-01T00:00:00Z","dateModified":"0001-01-01T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dyuji.dev/blog/go/channel_receive/"},"publisher":{"@type":"Organization","name":"dyuji.dev","logo":{"@type":"ImageObject","url":"https://dyuji.dev/favicon.ico"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Blogs","item":"https://dyuji.dev/blog/"},{"@type":"ListItem","position":2,"name":"チャネルの受信とClose","item":"https://dyuji.dev/blog/go/channel_receive/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"チャネルの受信とClose","name":"チャネルの受信とClose","description":" チャネルはCloseしたら0値を返すので、受信側がCloseかどうかは第二引数をとって判別する  package main import ( \u0026#34;fmt\u0026#34; \u0026#34;time\u0026#34; ) func A(ch chan int) { for { select { case v, ok := \u0026lt;-ch: fmt.Println(v, ok) } } } func main() { ch := make(chan int, 10) go A(ch) for i := 1; i \u0026lt;= 5; i++ { ch \u0026lt;- i } close(ch) time.Sleep(100 * time.Microsecond) } 結果\n1 true\r2 true\r3 true\r4 true\r5 true\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r以下略\r参考  Go の channel 処理パターン集  ","keywords":[],"articleBody":" チャネルはCloseしたら0値を返すので、受信側がCloseかどうかは第二引数をとって判別する  package main import ( \"fmt\" \"time\" ) func A(ch chan int) { for { select { case v, ok := ch: fmt.Println(v, ok) } } } func main() { ch := make(chan int, 10) go A(ch) for i := 1; i  5; i++ { ch  i } close(ch) time.Sleep(100 * time.Microsecond) } 結果\n1 true\r2 true\r3 true\r4 true\r5 true\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r0 false\r以下略\r参考  Go の channel 処理パターン集  ","wordCount":"104","inLanguage":"en","datePublished":"2021-12-26T11:15:29+09:00","dateModified":"2021-12-26T11:15:29+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://dyuji.dev/blog/go/channel_receive/"},"publisher":{"@type":"Organization","name":"dyuji.dev","logo":{"@type":"ImageObject","url":"https://dyuji.dev/favicon.ico"}}}</script>
 </head>
 <body id=top>
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
@@ -53,12 +55,12 @@
 <article class=post-single>
 <header class=post-header>
 <h1 class=post-title>
+チャネルの受信とClose
 </h1>
-<div class=post-meta>
+<div class=post-meta><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span>
 </div>
 </header>
-<div class=post-content><h1 id=チャネルの受信とclose>チャネルの受信とClose<a hidden class=anchor aria-hidden=true href=#チャネルの受信とclose>#</a></h1>
-<ul>
+<div class=post-content><ul>
 <li>チャネルはCloseしたら0値を返すので、受信側がCloseかどうかは第二引数をとって判別する</li>
 </ul>
 <div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
