@@ -1,4 +1,9 @@
-# スタートアップ企業の業績決定要因 -質的比較分析(QCA)によるアプローチ
+---
+title: "WIP スタートアップ企業の業績決定要因 -質的比較分析(QCA)によるアプローチ"
+date: 2021-12-26T11:15:29+09:00
+
+---
+
 https://www.jstage.jst.go.jp/article/keieijournal/42/0/42_40/_article/-char/ja/
 2019 年 42 巻 p. 40-51
 

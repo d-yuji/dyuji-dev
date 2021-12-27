@@ -1,6 +1,8 @@
-# 2021/12/02
+---
+title: "go testをDockerfileで実施する"
+date: 2021-12-26T11:15:29+09:00
 
-## go testをDockerfileで実施する
+---
 
 * gorm v2がgo v1.14以降じゃないとビルドできない
 * Jenkinsサーバーがgo v1.12でgo testのときにエラーがでる

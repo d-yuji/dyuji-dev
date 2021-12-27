@@ -1,0 +1,16 @@
+baseURL: 'https://dyuji.dev/'
+languageCode: 'ja'
+title: 'dyuji.dev'
+theme: 'PaperMod'
+
+params:
+  defaultTheme: auto
+  homeInfoParams:
+    Title: "dyuji.dev"
+    Content: >
+        about software development so on.
+  socialIcons:
+      - name: github
+        url: "https://github.com/d-yuji"
+      - name: twitter
+        url: "https://twitter.com/dyuji1"

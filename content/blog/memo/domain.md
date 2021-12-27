@@ -1,4 +1,9 @@
-## 2020/11/30 Googleドメインの設定
+---
+title: "Googleドメインの設定"
+date: 2020-11-30T11:15:29+09:00
+
+---
+
 [Google Domain](https://domains.google/intl/ja_jp/)にてドメインを購入しました。
 購入にあたってKyashは使えませんでした。
 昔、Github Pages用に作ったリポジトリを転用しています。

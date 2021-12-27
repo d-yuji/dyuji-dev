@@ -1,4 +1,9 @@
-## jwtの"Token used before issued" Error
+---
+title: "jwtの\"Token used before issued\" Error"
+date: 2021-12-26T11:15:29+09:00
+
+---
+
 
 * Token used before issued はjwtのParseの時iatが現在時刻より未来の場合発生する
 * サーバー間の時刻のずれでも発生するので注意する

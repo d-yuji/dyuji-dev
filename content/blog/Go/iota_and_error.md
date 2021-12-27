@@ -1,4 +1,9 @@
-# iotaとエラーハンドリング
+---
+title: "iotaとエラーハンドリング"
+date: 2021-12-26T11:15:29+09:00
+
+---
+
 * [jwtのエラー](jwt.md)を調べている時に以下のコードを見て不思議に思った
 
 * [dgrijalva/jwt-go/claims.go#L38-L52](https://github.com/dgrijalva/jwt-go/blob/master/claims.go#L38-L52)

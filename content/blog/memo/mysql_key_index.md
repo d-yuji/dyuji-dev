@@ -1,4 +1,8 @@
-# mysqlのkey index
+---
+title: "mysqlのkey index"
+date: 2021-12-26T11:15:29+09:00
+
+---
 
 * describeはテーブル情報を出すが、複合キーの場合keyのカラムが1つのみmulになる
 * indexを全て確認する際はshow indexを使う
