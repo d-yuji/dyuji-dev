@@ -51,6 +51,17 @@
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>Jmeter Hash
+</h2>
+</header>
+<section class=entry-content>
+<p> JMeterのシナリオで変数をHash化する時はBeanShell PreProcesserを使う import java.security.MessageDigest; String token = vars.get("token"); // Jmeterの変数を取得 String api_key = "hogehuga"; String encrypt_str = token+api_key; MessageDigest digest = MessageDigest.getInstance("SHA-256"); byte[] hash = digest.digest(encrypt_str.getBytes()); StringBuilder sb = new StringBuilder(2*hash.length); for (byte b: hash) { String hexStr = Integer.toHexString(b).replaceAll("ffffff",""); String hex = (hexStr.length() == 1) ? "0" + hexStr : hexStr; sb.append(hex); } String newVariable = sb.toString(); var.put("ENCRYPTED_TOKEN",newVariable); // Jmeterの変数にセット </p>
+</section>
+<footer class=entry-footer><span title="2021-12-28 23:46:09 +0900 +0900">December 28, 2021</span></footer>
+<a class=entry-link aria-label="post link to Jmeter Hash" href=https://dyuji.dev/blog/memo/jmeter_hash/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>5G
 </h2>
 </header>
@@ -166,17 +177,6 @@ Gitと繋いで自動的に構成の提案したり、実行環境を用意し�
 </section>
 <footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
 <a class=entry-link aria-label="post link to Terraform 勉強" href=https://dyuji.dev/blog/tf/gcp_tutorial_memo/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>time
-</h2>
-</header>
-<section class=entry-content>
-<p>time timeパッケージはデフォルトがmsなので注意する </p>
-</section>
-<footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
-<a class=entry-link aria-label="post link to time" href=https://dyuji.dev/blog/go/time/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>
