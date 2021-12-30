@@ -47,6 +47,26 @@
 <main class=main>
 <article class=post-entry>
 <header class=entry-header>
+<h2>Terraform 勉強
+</h2>
+</header>
+<section class=entry-content>
+<p>Terraform 勉強 Introduction to Infrastructure as Code with Terraform Infrastructure as Code(IaC)
+Terraformはproviderと呼ばれるTerraformプラグインでAPIを呼び出し、インフラの操作をする
+AWS GCP Azureなど有名なもののproviderは作成されている 独自でproviderを作成することも可能 providerがインフラの要素をresourceとして定義
+インスタンスやネットワークなど 様々なproviderのリソースをmoduleに構成
+moduleは再利用可能なTerraformの構成
+Terraformは宣言型
+インフラの最終状態を記述し、Terraform providerが自動で計算 Terraformでインフラ展開の流れ
+Scope 適用範囲の把握 Author 構成の記述 Initialize 必要プラグインのインストール Plan 変更のプレビュー Apply 変更の実施 State file
+インフラの状態を追跡するためのソース これの状態を見て、宣言した構成と合うよう変更を加える Terraform Cloud
+Gitと繋いで自動的に構成の提案したり、実行環境を用意して構成変更の競合を防いだりする Install Terraform 内容をコピペして動く Quick start tutorial nginxのdocker image作成 terraform init terraform plan terraform apply terraform destroy Build Infrastructure GCPのアカウント作成...</p>
+</section>
+<footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
+<a class=entry-link aria-label="post link to Terraform 勉強" href=https://dyuji.dev/blog/tf/gcp_tutorial_memo/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>time
 </h2>
 </header>
@@ -173,17 +193,6 @@ url.EncodeではQueryEscapeの方が使われているため、URLの+を変換�
 </section>
 <footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
 <a class=entry-link aria-label="post link to 外国語学習に成功する人，しない人 第二言語習得論への招待" href=https://dyuji.dev/blog/memo/foreign_language/></a>
-</article>
-<article class=post-entry>
-<header class=entry-header>
-<h2>Googleドメインの設定
-</h2>
-</header>
-<section class=entry-content>
-<p>Google Domainにてドメインを購入しました。 購入にあたってKyashは使えませんでした。 昔、Github Pages用に作ったリポジトリを転用しています。 Githubのsettingから購入したドメインを設定し、GoogleDomain側からもレコードを設定しました。 レコードの反映は思ったより早かったです。 細かい見た目とかはおいおいやるとして、とりあえずmarkdownで記録を残そうと思います。</p>
-</section>
-<footer class=entry-footer><span title="2020-11-30 11:15:29 +0900 +0900">November 30, 2020</span></footer>
-<a class=entry-link aria-label="post link to Googleドメインの設定" href=https://dyuji.dev/blog/memo/domain/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>
