@@ -53,3 +53,9 @@ export PATH=$(pwd)/bin:$PATH
 protoc --doc_out=./doc --doc_opt=html,deepthought.html deepthought.proto
 protoc --doc_out=./doc --doc_opt=markdown,deepthought.md deepthought.proto
 ```
+
+* gRPCサーバーを動かすためのインターフェースの生成
+```
+protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative deepthought.proto
+```
+* インターフェースをGoで実装することでServer作成
