@@ -14,3 +14,5 @@ params:
         url: "https://github.com/d-yuji"
       - name: twitter
         url: "https://twitter.com/dyuji1"
+      - name: email
+        url: "https://forms.gle/JhcSaYd6bmRRqccbA"
