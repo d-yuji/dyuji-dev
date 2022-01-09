@@ -1,4 +1,4 @@
-<!doctype html><html lang=en dir=auto>
+<!doctype html><html lang=ja dir=" auto">
 <head><meta charset=utf-8>
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
@@ -29,7 +29,7 @@
 <meta name=twitter:description content>
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"Organization","name":"dyuji.dev","url":"https://dyuji.dev/","description":"","thumbnailUrl":"https://dyuji.dev/favicon.ico","sameAs":["https://github.com/d-yuji","https://twitter.com/dyuji1","https://forms.gle/JhcSaYd6bmRRqccbA"]}</script>
 </head>
-<body class=list id=top>
+<body class=list id=" top">
 <script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
 <header class=header>
 <nav class=nav>
@@ -69,18 +69,7 @@
 </h2>
 </header>
 <section class=entry-content>
-<p>grpcチュートリアルメモ
-https://github.com/ymmt2005/grpc-tutorial
-Remote Procedure Call
-リモートで呼び出しする手順 gRPC
-Googleで開発された多言語間のRPCを実現するプロトコル 多言語対応であることが特徴 IDL(interface definition langurage)
-インターフェース記述言語 IDLコンパイラが変換してくれる gRPCではIDLにProtocol Buffersを採用
-学習コストが低い 通信プロトコルはHTTP/2
-ストリーム：不定長の連続したデータ
-リクエストチェーン全体にわたるタイムアウトやキャンセルをプロトコルレベルでサポート
-マイクロサービスとかで利用 他のプロトコル
-HTTP/REST API OpenAPI Graph QL vscode-proto3の拡張を入れると便利
-はじめてのgRPC実装 protoc, protp-gen-docのインストール...</p>
+<p>grpcチュートリアルメモ https://github.com/ymmt2005/grpc-tutorial Remote Procedure Call リモートで呼び出しする手順 gRPC Googleで開発された多言語間のRPCを実現するプロトコル 多言語対応であるこ...</p>
 </section>
 <footer class=entry-footer><span title="2021-12-30 11:14:06 +0900 +0900">December 30, 2021</span></footer>
 <a class=entry-link aria-label="post link to Grpc" href=https://dyuji.dev/blog/memo/grpc/></a>
@@ -91,7 +80,7 @@ HTTP/REST API OpenAPI Graph QL vscode-proto3の拡張を入れると便利
 </h2>
 </header>
 <section class=entry-content>
-<p> JMeterのシナリオで変数をHash化する時はBeanShell PreProcesserを使う import java.security.MessageDigest; String token = vars.get("token"); // Jmeterの変数を取得 String api_key = "hogehuga"; String encrypt_str = token+api_key; MessageDigest digest = MessageDigest.getInstance("SHA-256"); byte[] hash = digest.digest(encrypt_str.getBytes()); StringBuilder sb = new StringBuilder(2*hash.length); for (byte b: hash) { String hexStr = Integer.toHexString(b).replaceAll("ffffff",""); String hex = (hexStr.length() == 1) ? "0" + hexStr : hexStr; sb.append(hex); } String newVariable = sb.toString(); var.put("ENCRYPTED_TOKEN",newVariable); // Jmeterの変数にセット </p>
+<p>JMeterのシナリオで変数をHash化する時はBeanShell PreProcesserを使う import java.security.MessageDigest; String token = vars.get("token"); // Jmeterの変数を取得 String api_key =...</p>
 </section>
 <footer class=entry-footer><span title="2021-12-28 23:46:09 +0900 +0900">December 28, 2021</span></footer>
 <a class=entry-link aria-label="post link to Jmeter Hash" href=https://dyuji.dev/blog/memo/jmeter_hash/></a>
@@ -102,7 +91,7 @@ HTTP/REST API OpenAPI Graph QL vscode-proto3の拡張を入れると便利
 </h2>
 </header>
 <section class=entry-content>
-<p>5G 大容量・低遅延・多接続のしくみ 感想：5Gの普及でより情報量の多いコンテンツの配信等ができるようになるのは間違いない。今まで有線のPCでしか出来なかったことがスマホ端末でもできるようになっていくと思われるが、消費者的に一番恩恵を受けるのはゲームの分野かと思った。</p>
+<p>5G 大容量・低遅延・多接続のしくみ 感想：5Gの普及でより情報量の多いコンテンツの配信等ができるようになるのは間違いない。今まで有線のPCでしか...</p>
 </section>
 <footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
 <a class=entry-link aria-label="post link to 5G" href=https://dyuji.dev/blog/books/5g/></a>
@@ -113,8 +102,7 @@ HTTP/REST API OpenAPI Graph QL vscode-proto3の拡張を入れると便利
 </h2>
 </header>
 <section class=entry-content>
-<p>Docker for Mac上のコンテナから、Mac上のアプリケーションに簡単に接続する方法
-Mysqlに接続する例 DSN user1:password@tcp(docker.for.mac.localhost)/database_name </p>
+<p>Docker for Mac上のコンテナから、Mac上のアプリケーションに簡単に接続する方法 Mysqlに接続する例 DSN user1:password@tcp(docker.for.mac.localhost)/database_name</p>
 </section>
 <footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
 <a class=entry-link aria-label="post link to dockerからlocalhostに接続" href=https://dyuji.dev/blog/memo/docker_localhost/></a>
@@ -125,8 +113,7 @@ Mysqlに接続する例 DSN user1:password@tcp(docker.for.mac.localhost)/databas
 </h2>
 </header>
 <section class=entry-content>
-<p> echoコマンドはデフォルトでは改行文字が含まれるため、暗号化時などに気をつける これが原因でmysqlのdsnでエラーが発生した 改行なしオプションは-n 例
-## 改行あり echo "hogehoge" | base64 > aG9nZWhvZ2UK ## 改行なし echo -n "hogehoge" | base64 > aG9nZWhvZ2U= </p>
+<p>echoコマンドはデフォルトでは改行文字が含まれるため、暗号化時などに気をつける これが原因でmysqlのdsnでエラーが発生した 改行なしオプ...</p>
 </section>
 <footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
 <a class=entry-link aria-label="post link to echoとbase64" href=https://dyuji.dev/blog/memo/echo_base64/></a>
@@ -137,10 +124,7 @@ Mysqlに接続する例 DSN user1:password@tcp(docker.for.mac.localhost)/databas
 </h2>
 </header>
 <section class=entry-content>
-<p>gorm v2がgo v1.14以降じゃないとビルドできない Jenkinsサーバーがgo v1.12でgo testのときにエラーがでる docker imageのビルドの時にgo imageでgo testがしたいができるのか? テストが落ちたらビルドも止まるか 試作コード cmd/main.go
-package main import ( "docker-gotest/service" "fmt" ) func main() { _ = service.Add(1, 2) fmt.Println("Hello World") } service/calc.go
-package service func Add(a int, b int) int { return a + b } service/calc_test.go
-package service import "testing" func Test_Add(t *testing.T) { result := Add(1, 2) if result != 3 { t.Errorf("Error") } } Dockerfile...</p>
+<p>gorm v2がgo v1.14以降じゃないとビルドできない Jenkinsサーバーがgo v1.12でgo testのときにエラーがでる docker imageのビル...</p>
 </section>
 <footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
 <a class=entry-link aria-label="post link to go testをDockerfileで実施する" href=https://dyuji.dev/blog/go/gotest_and_docker/></a>
@@ -151,8 +135,7 @@ package service import "testing" func Test_Add(t *testing.T) { result := Add(1, 
 </h2>
 </header>
 <section class=entry-content>
-<p>Golang memo 他の言語からすると紛らわしい単語 map Goでは辞書型 interface go 環境変数の場所を間違えない 基本wslで書いて検証したとしても、vscodeの補完に使うgoのライブラリたちはwindows本体側を参照しているのでちゃんと設定する switch と select 見た目が似てるけど、違う用途
-//条件分岐 switch n { case 1: fmt.Println("1") case 2,3: fmt.Println("2 or 3") default: fmt.Println("other") } // 条件部分を省略した書き方もできる switch { case n == 1: fmt.Println("1") case n == 2 || n == 3: fmt.Println("2 or 3") default: fmt.Println("other") } // channelの授受の分岐 select { case v1 := &lt;-ch1: fmt.Println(v1) case v2 := &lt;-ch2: fmt....</p>
+<p>Golang memo 他の言語からすると紛らわしい単語 map Goでは辞書型 interface go 環境変数の場所を間違えない 基本wslで書いて検証したとしても、vscodeの補完に使...</p>
 </section>
 <footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
 <a class=entry-link aria-label="post link to Golang memo" href=https://dyuji.dev/blog/go/golang/></a>
@@ -163,10 +146,7 @@ package service import "testing" func Test_Add(t *testing.T) { result := Add(1, 
 </h2>
 </header>
 <section class=entry-content>
-<p>jwtのエラーを調べている時に以下のコードを見て不思議に思った
-dgrijalva/jwt-go/claims.go#L38-L52
-if c.VerifyExpiresAt(now, false) == false { delta := time.Unix(now, 0).Sub(time.Unix(c.ExpiresAt, 0)) vErr.Inner = fmt.Errorf("token is expired by %v", delta) vErr.Errors |= ValidationErrorExpired } if c.VerifyIssuedAt(now, false) == false { vErr.Inner = fmt.Errorf("Token used before issued") vErr.Errors |= ValidationErrorIssuedAt } if c.VerifyNotBefore(now, false) == false { vErr.Inner = fmt.Errorf("token is not valid yet") vErr.Errors |= ValidationErrorNotValidYet } goで|=はOR演算子を表すが、エラーでなんでOR演算子を使うのか？
-dgrijalva/jwt-go/erros.goをみる...</p>
+<p>jwtのエラーを調べている時に以下のコードを見て不思議に思った dgrijalva/jwt-go/claims.go#L38-L52 if c.VerifyExpiresAt(now, false) == false { delta := time.Unix(now, 0).Sub(time.Unix(c.ExpiresAt, 0)) vErr.Inner = fmt.Errorf("token is expired by %v", delta) vErr.Errors |= ValidationErrorExpired } if c.VerifyIssuedAt(now, false) == false { vErr.Inner = fmt.Errorf("Token used before issued") vErr.Errors |= ValidationErrorIssuedAt...</p>
 </section>
 <footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
 <a class=entry-link aria-label="post link to iotaとエラーハンドリング" href=https://dyuji.dev/blog/go/iota_and_error/></a>
@@ -177,7 +157,7 @@ dgrijalva/jwt-go/erros.goをみる...</p>
 </h2>
 </header>
 <section class=entry-content>
-<p>Token used before issued はjwtのParseの時iatが現在時刻より未来の場合発生する サーバー間の時刻のずれでも発生するので注意する Parseはerrroがnilでない時もtokenを返すので、後処理はできる package main import ( "fmt" "github.com/dgrijalva/jwt-go" ) func main() { // iatが2030年になっている tokenstring := "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxOTE2MjM5MDIyfQ.jHQiBm09vEVjEx9347u2hU7LTreUVtEbWRPWrr9DG_A" secret := "my_secret_token" token, err := tokenParse(tokenstring, []byte(secret)) if err != nil { fmt.Printf("Error:%v\n", err) return } claims, ok := token.Claims.(jwt.MapClaims) if ok { fmt.Println(claims) fmt.Println(claims["name"]) return } } func tokenParse(idToken string, hmacSecret []byte) (*jwt.Token, error) { token, err := jwt.Parse(idToken, func(token *jwt.Token) (interface{}, error) { // アルゴリズムの判定 if _, ok := token....</p>
+<p>Token used before issued はjwtのParseの時iatが現在時刻より未来の場合発生する サーバー間の時刻のずれでも発生するので注意する Parseはerrroが...</p>
 </section>
 <footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
 <a class=entry-link aria-label='post link to jwtの"Token used before issued" Error' href=https://dyuji.dev/blog/go/jwt/></a>
@@ -188,15 +168,14 @@ dgrijalva/jwt-go/erros.goをみる...</p>
 </h2>
 </header>
 <section class=entry-content>
-<p>describeはテーブル情報を出すが、複合キーの場合keyのカラムが1つのみmulになる indexを全て確認する際はshow indexを使う describe table_name; show index from table_name; 例
-create table books(book_id int, name varchar(255), author varchar(255), publication_date datetime); mysql> alter table books add index book_index(name,author); mysql> describe books; +------------------+--------------+------+-----+---------+-------+ | Field | Type | Null | Key | Default | Extra | +------------------+--------------+------+-----+---------+-------+ | book_id | int | NO | PRI | NULL | | | name | varchar(255) | YES | MUL | NULL | | | author | varchar(255) | YES | | NULL | | | publication_date | datetime | YES | | NULL | | +------------------+--------------+------+-----+---------+-------+ 4 rows in set (0....</p>
+<p>describeはテーブル情報を出すが、複合キーの場合keyのカラムが1つのみmulになる indexを全て確認する際はshow indexを使...</p>
 </section>
 <footer class=entry-footer><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span></footer>
 <a class=entry-link aria-label="post link to mysqlのkey index" href=https://dyuji.dev/blog/memo/mysql_key_index/></a>
 </article>
 <footer class=page-footer>
 <nav class=pagination>
-<a class=next href=https://dyuji.dev/page/2/>Next Page »</a>
+<a class=next href=https://dyuji.dev/page/2/>次のページ »</a>
 </nav>
 </footer>
 </main>
