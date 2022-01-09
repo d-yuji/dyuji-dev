@@ -1,9 +1,12 @@
 baseURL: 'https://dyuji.dev/'
 languageCode: 'ja'
+defaultContentLanguage: "ja"
+hasCJKLanguage: true
 title: 'dyuji.dev'
 theme: 'PaperMod'
 
 params:
+  env: production
   defaultTheme: auto
   homeInfoParams:
     Title: "dyuji.dev"
