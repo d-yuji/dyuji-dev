@@ -19,3 +19,14 @@ params:
         url: "https://twitter.com/dyuji1"
       - name: email
         url: "https://forms.gle/JhcSaYd6bmRRqccbA"
+
+menu:
+  main:
+    - identifier: about
+      name: about
+      url: /about
+      weight: 10
+    - identifier: privacy policy
+      name: privacy
+      url: /privacy
+      weight: 20
