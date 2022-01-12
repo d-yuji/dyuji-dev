@@ -12,3 +12,5 @@ draft: true
 * thread rumpupperiod loopcount
 
 * 負荷をかける側の計算リソースに対して、送るリクエストの数が多い場合OutOfMemoryが起きる
+
+* リソースの量によるけど、threadの数は数百に抑える
