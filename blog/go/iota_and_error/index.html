@@ -3,13 +3,12 @@
 <meta http-equiv=x-ua-compatible content="IE=edge">
 <meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
 <meta name=robots content="index, follow">
-<title>iotaとエラーハンドリング | dyuji.dev</title>
-<meta name=keywords content>
+<title>iotaとエラーハンドリング | dyuji.dev</title><meta name=keywords content>
 <meta name=description content="jwtのエラーを調べている時に以下のコードを見て不思議に思った dgrijalva/jwt-go/claims.go#L38-L52 if c.VerifyExpiresAt(now, false) == false { delta := time.Unix(now, 0).Sub(time.Unix(c.ExpiresAt, 0)) vErr.Inner = fmt.Errorf(&#34;token is expired by %v&#34;, delta) vErr.Errors |= ValidationErrorExpired } if c.VerifyIssuedAt(now, false) == false { vErr.Inner = fmt.Errorf(&#34;Token used before issued&#34;) vErr.Errors |= ValidationErrorIssuedAt">
 <meta name=author content>
 <link rel=canonical href=https://dyuji.dev/blog/go/iota_and_error/>
 <link crossorigin=anonymous href=/assets/css/stylesheet.min.c88963fe2d79462000fd0fb1b3737783c32855d340583e4523343f8735c787f0.css integrity="sha256-yIlj/i15RiAA/Q+xs3N3g8MoVdNAWD5FIzQ/hzXHh/A=" rel="preload stylesheet" as=style>
-<script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
+<script defer crossorigin=anonymous src=/assets/js/highlight.min.4dcb3c4f38462f66c6b6137227726f5543cb934cca9788f041c087e374491df2.js integrity="sha256-Tcs8TzhGL2bGthNyJ3JvVUPLk0zKl4jwQcCH43RJHfI=" onload=hljs.initHighlightingOnLoad()></script>
 <link rel=icon href=https://dyuji.dev/favicon.ico>
 <link rel=icon type=image/png sizes=16x16 href=https://dyuji.dev/favicon-16x16.png>
 <link rel=icon type=image/png sizes=32x32 href=https://dyuji.dev/favicon-32x32.png>
@@ -17,11 +16,9 @@
 <link rel=mask-icon href=https://dyuji.dev/safari-pinned-tab.svg>
 <meta name=theme-color content="#2e2e33">
 <meta name=msapplication-TileColor content="#2e2e33">
-<meta name=generator content="Hugo 0.92.0">
+<meta name=generator content="Hugo 0.93.0">
 <noscript>
-<style>#theme-toggle,.top-link{display:none}</style>
-<style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
-</noscript><meta property="og:title" content="iotaとエラーハンドリング">
+<style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:title" content="iotaとエラーハンドリング">
 <meta property="og:description" content="jwtのエラーを調べている時に以下のコードを見て不思議に思った dgrijalva/jwt-go/claims.go#L38-L52 if c.VerifyExpiresAt(now, false) == false { delta := time.Unix(now, 0).Sub(time.Unix(c.ExpiresAt, 0)) vErr.Inner = fmt.Errorf(&#34;token is expired by %v&#34;, delta) vErr.Errors |= ValidationErrorExpired } if c.VerifyIssuedAt(now, false) == false { vErr.Inner = fmt.Errorf(&#34;Token used before issued&#34;) vErr.Errors |= ValidationErrorIssuedAt">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://dyuji.dev/blog/go/iota_and_error/"><meta property="article:section" content="blog">
@@ -31,12 +28,11 @@
 <meta name=twitter:title content="iotaとエラーハンドリング">
 <meta name=twitter:description content="jwtのエラーを調べている時に以下のコードを見て不思議に思った dgrijalva/jwt-go/claims.go#L38-L52 if c.VerifyExpiresAt(now, false) == false { delta := time.Unix(now, 0).Sub(time.Unix(c.ExpiresAt, 0)) vErr.Inner = fmt.Errorf(&#34;token is expired by %v&#34;, delta) vErr.Errors |= ValidationErrorExpired } if c.VerifyIssuedAt(now, false) == false { vErr.Inner = fmt.Errorf(&#34;Token used before issued&#34;) vErr.Errors |= ValidationErrorIssuedAt">
 <script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Blogs","item":"https://dyuji.dev/blog/"},{"@type":"ListItem","position":2,"name":"iotaとエラーハンドリング","item":"https://dyuji.dev/blog/go/iota_and_error/"}]}</script>
-<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"iotaとエラーハンドリング","name":"iotaとエラーハンドリング","description":"jwtのエラーを調べている時に以下のコードを見て不思議に思った dgrijalva/jwt-go/claims.go#L38-L52 if c.VerifyExpiresAt(now, false) == false { delta := time.Unix(now, 0).Sub(time.Unix(c.ExpiresAt, 0)) vErr.Inner = fmt.Errorf(\u0026#34;token is expired by %v\u0026#34;, delta) vErr.Errors |= ValidationErrorExpired } if c.VerifyIssuedAt(now, false) == false { vErr.Inner = fmt.Errorf(\u0026#34;Token used before issued\u0026#34;) vErr.Errors |= ValidationErrorIssuedAt","keywords":[],"articleBody":"  jwtのエラーを調べている時に以下のコードを見て不思議に思った\n  dgrijalva/jwt-go/claims.go#L38-L52\n  if c.VerifyExpiresAt(now, false) == false { delta := time.Unix(now, 0).Sub(time.Unix(c.ExpiresAt, 0)) vErr.Inner = fmt.Errorf(\"token is expired by %v\", delta) vErr.Errors |= ValidationErrorExpired } if c.VerifyIssuedAt(now, false) == false { vErr.Inner = fmt.Errorf(\"Token used before issued\") vErr.Errors |= ValidationErrorIssuedAt } if c.VerifyNotBefore(now, false) == false { vErr.Inner = fmt.Errorf(\"token is not valid yet\") vErr.Errors |= ValidationErrorNotValidYet }   goで|=はOR演算子を表すが、エラーでなんでOR演算子を使うのか？\n  dgrijalva/jwt-go/erros.goをみる\n  const ( ValidationErrorMalformed uint32 = 1  iota // Token is malformed \tValidationErrorUnverifiable // Token could not be verified because of signing problems \tValidationErrorSignatureInvalid // Signature validation failed  // Standard Claim validation errors \tValidationErrorAudience // AUD validation failed \tValidationErrorExpired // EXP validation failed \tValidationErrorIssuedAt // IAT validation failed \tValidationErrorIssuer // ISS validation failed \tValidationErrorNotValidYet // NBF validation failed \tValidationErrorId // JTI validation failed \tValidationErrorClaimsInvalid // Generic claims validation error )  これはconst識別子iotaを使ってエラーの定数を定義している « はbitの左シフトでValidationErrorMalformed以下の定数は1桁ずつ増えていく(1,2,4,8…) uint32のなかでビットごとの値をエラーに割り当てることで、エラーのフラグ管理のようなものを上のOR演算子で実現してると解釈できる  参考 Golangのconst識別子iotaの紹介 -Qiita\n","wordCount":"410","inLanguage":"ja","datePublished":"2021-12-26T11:15:29+09:00","dateModified":"2021-12-26T11:15:29+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://dyuji.dev/blog/go/iota_and_error/"},"publisher":{"@type":"Organization","name":"dyuji.dev","logo":{"@type":"ImageObject","url":"https://dyuji.dev/favicon.ico"}}}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"iotaとエラーハンドリング","name":"iotaとエラーハンドリング","description":"jwtのエラーを調べている時に以下のコードを見て不思議に思った dgrijalva/jwt-go/claims.go#L38-L52 if c.VerifyExpiresAt(now, false) == false { delta := time.Unix(now, 0).Sub(time.Unix(c.ExpiresAt, 0)) vErr.Inner = fmt.Errorf(\u0026#34;token is expired by %v\u0026#34;, delta) vErr.Errors |= ValidationErrorExpired } if c.VerifyIssuedAt(now, false) == false { vErr.Inner = fmt.Errorf(\u0026#34;Token used before issued\u0026#34;) vErr.Errors |= ValidationErrorIssuedAt","keywords":[],"articleBody":"  jwtのエラーを調べている時に以下のコードを見て不思議に思った\n  dgrijalva/jwt-go/claims.go#L38-L52\n    if c.VerifyExpiresAt(now, false) == false { \tdelta := time.Unix(now, 0).Sub(time.Unix(c.ExpiresAt, 0)) \tvErr.Inner = fmt.Errorf(\"token is expired by %v\", delta) \tvErr.Errors |= ValidationErrorExpired \t}  \tif c.VerifyIssuedAt(now, false) == false { \tvErr.Inner = fmt.Errorf(\"Token used before issued\") \tvErr.Errors |= ValidationErrorIssuedAt \t}  \tif c.VerifyNotBefore(now, false) == false { \tvErr.Inner = fmt.Errorf(\"token is not valid yet\") \tvErr.Errors |= ValidationErrorNotValidYet \t}   goで|=はOR演算子を表すが、エラーでなんでOR演算子を使うのか？\n  dgrijalva/jwt-go/erros.goをみる\n  const ( \tValidationErrorMalformed uint32 = 1  iota // Token is malformed \tValidationErrorUnverifiable // Token could not be verified because of signing problems \tValidationErrorSignatureInvalid // Signature validation failed  \t// Standard Claim validation errors \tValidationErrorAudience // AUD validation failed \tValidationErrorExpired // EXP validation failed \tValidationErrorIssuedAt // IAT validation failed \tValidationErrorIssuer // ISS validation failed \tValidationErrorNotValidYet // NBF validation failed \tValidationErrorId // JTI validation failed \tValidationErrorClaimsInvalid // Generic claims validation error )  これはconst識別子iotaを使ってエラーの定数を定義している « はbitの左シフトでValidationErrorMalformed以下の定数は1桁ずつ増えていく(1,2,4,8…) uint32のなかでビットごとの値をエラーに割り当てることで、エラーのフラグ管理のようなものを上のOR演算子で実現してると解釈できる  参考 Golangのconst識別子iotaの紹介 -Qiita\n","wordCount":"410","inLanguage":"ja","datePublished":"2021-12-26T11:15:29+09:00","dateModified":"2021-12-26T11:15:29+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://dyuji.dev/blog/go/iota_and_error/"},"publisher":{"@type":"Organization","name":"dyuji.dev","logo":{"@type":"ImageObject","url":"https://dyuji.dev/favicon.ico"}}}</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZL48NFQQ3"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-TZL48NFQQ3')</script>
-</head>
-<body id=" top">
-<script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-TZL48NFQQ3")</script>
+</head><body id=" top">
+<script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script>
 <header class=header>
 <nav class=nav>
 <div class=logo>
@@ -45,100 +41,69 @@
 <button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 </button>
 </span>
-</div>
-<ul id=menu>
+</div><ul id=menu>
 <li>
 <a href=https://dyuji.dev/about title=about>
 <span>about</span>
 </a>
-</li>
-<li>
+</li><li>
 <a href=https://dyuji.dev/privacy title=privacy>
 <span>privacy</span>
 </a>
-</li>
-</ul>
-</nav>
-</header>
-<main class=main>
+</li></ul></nav></header><main class=main>
 <article class=post-single>
 <header class=post-header>
 <h1 class=post-title>
 iotaとエラーハンドリング
-</h1>
-<div class=post-meta><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span>
-</div>
-</header>
-<div class=post-content><ul>
+</h1><div class=post-meta><span title="2021-12-26 11:15:29 +0900 +0900">December 26, 2021</span>
+</div></header><div class=post-content><ul>
 <li>
-<p><a href=jwt.md>jwtのエラー</a>を調べている時に以下のコードを見て不思議に思った</p>
-</li>
+<p><a href=jwt.md>jwtのエラー</a>を調べている時に以下のコードを見て不思議に思った</p></li><li>
+<p><a href=https://github.com/dgrijalva/jwt-go/blob/master/claims.go#L38-L52>dgrijalva/jwt-go/claims.go#L38-L52</a></p></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>VerifyExpiresAt</span>(<span style=color:#a6e22e>now</span>, <span style=color:#66d9ef>false</span>) <span style=color:#f92672>==</span> <span style=color:#66d9ef>false</span> {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>delta</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Unix</span>(<span style=color:#a6e22e>now</span>, <span style=color:#ae81ff>0</span>).<span style=color:#a6e22e>Sub</span>(<span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Unix</span>(<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>ExpiresAt</span>, <span style=color:#ae81ff>0</span>))
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>vErr</span>.<span style=color:#a6e22e>Inner</span> = <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;token is expired by %v&#34;</span>, <span style=color:#a6e22e>delta</span>)
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>vErr</span>.<span style=color:#a6e22e>Errors</span> <span style=color:#f92672>|=</span> <span style=color:#a6e22e>ValidationErrorExpired</span>
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>VerifyIssuedAt</span>(<span style=color:#a6e22e>now</span>, <span style=color:#66d9ef>false</span>) <span style=color:#f92672>==</span> <span style=color:#66d9ef>false</span> {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>vErr</span>.<span style=color:#a6e22e>Inner</span> = <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;Token used before issued&#34;</span>)
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>vErr</span>.<span style=color:#a6e22e>Errors</span> <span style=color:#f92672>|=</span> <span style=color:#a6e22e>ValidationErrorIssuedAt</span>
+</span></span><span style=display:flex><span>	}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>VerifyNotBefore</span>(<span style=color:#a6e22e>now</span>, <span style=color:#66d9ef>false</span>) <span style=color:#f92672>==</span> <span style=color:#66d9ef>false</span> {
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>vErr</span>.<span style=color:#a6e22e>Inner</span> = <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;token is not valid yet&#34;</span>)
+</span></span><span style=display:flex><span>		<span style=color:#a6e22e>vErr</span>.<span style=color:#a6e22e>Errors</span> <span style=color:#f92672>|=</span> <span style=color:#a6e22e>ValidationErrorNotValidYet</span>
+</span></span><span style=display:flex><span>	}
+</span></span></code></pre></div><ul>
 <li>
-<p><a href=https://github.com/dgrijalva/jwt-go/blob/master/claims.go#L38-L52>dgrijalva/jwt-go/claims.go#L38-L52</a></p>
-</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>
-    <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>VerifyExpiresAt</span>(<span style=color:#a6e22e>now</span>, <span style=color:#66d9ef>false</span>) <span style=color:#f92672>==</span> <span style=color:#66d9ef>false</span> {
-		<span style=color:#a6e22e>delta</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Unix</span>(<span style=color:#a6e22e>now</span>, <span style=color:#ae81ff>0</span>).<span style=color:#a6e22e>Sub</span>(<span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Unix</span>(<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>ExpiresAt</span>, <span style=color:#ae81ff>0</span>))
-		<span style=color:#a6e22e>vErr</span>.<span style=color:#a6e22e>Inner</span> = <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;token is expired by %v&#34;</span>, <span style=color:#a6e22e>delta</span>)
-		<span style=color:#a6e22e>vErr</span>.<span style=color:#a6e22e>Errors</span> <span style=color:#f92672>|=</span> <span style=color:#a6e22e>ValidationErrorExpired</span>
-	}
-
-	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>VerifyIssuedAt</span>(<span style=color:#a6e22e>now</span>, <span style=color:#66d9ef>false</span>) <span style=color:#f92672>==</span> <span style=color:#66d9ef>false</span> {
-		<span style=color:#a6e22e>vErr</span>.<span style=color:#a6e22e>Inner</span> = <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;Token used before issued&#34;</span>)
-		<span style=color:#a6e22e>vErr</span>.<span style=color:#a6e22e>Errors</span> <span style=color:#f92672>|=</span> <span style=color:#a6e22e>ValidationErrorIssuedAt</span>
-	}
-
-	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>VerifyNotBefore</span>(<span style=color:#a6e22e>now</span>, <span style=color:#66d9ef>false</span>) <span style=color:#f92672>==</span> <span style=color:#66d9ef>false</span> {
-		<span style=color:#a6e22e>vErr</span>.<span style=color:#a6e22e>Inner</span> = <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Errorf</span>(<span style=color:#e6db74>&#34;token is not valid yet&#34;</span>)
-		<span style=color:#a6e22e>vErr</span>.<span style=color:#a6e22e>Errors</span> <span style=color:#f92672>|=</span> <span style=color:#a6e22e>ValidationErrorNotValidYet</span>
-	}
-</code></pre></div><ul>
-<li>
-<p>goで<code>|=</code>はOR演算子を表すが、エラーでなんでOR演算子を使うのか？</p>
-</li>
-<li>
-<p><a href=https://github.com/dgrijalva/jwt-go/blob/master/errors.go>dgrijalva/jwt-go/erros.go</a>をみる</p>
-</li>
-</ul>
-<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#66d9ef>const</span> (
-	<span style=color:#a6e22e>ValidationErrorMalformed</span>        <span style=color:#66d9ef>uint32</span> = <span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> <span style=color:#66d9ef>iota</span> <span style=color:#75715e>// Token is malformed
-</span><span style=color:#75715e></span>	<span style=color:#a6e22e>ValidationErrorUnverifiable</span>                        <span style=color:#75715e>// Token could not be verified because of signing problems
-</span><span style=color:#75715e></span>	<span style=color:#a6e22e>ValidationErrorSignatureInvalid</span>                    <span style=color:#75715e>// Signature validation failed
-</span><span style=color:#75715e></span>
-	<span style=color:#75715e>// Standard Claim validation errors
-</span><span style=color:#75715e></span>	<span style=color:#a6e22e>ValidationErrorAudience</span>      <span style=color:#75715e>// AUD validation failed
-</span><span style=color:#75715e></span>	<span style=color:#a6e22e>ValidationErrorExpired</span>       <span style=color:#75715e>// EXP validation failed
-</span><span style=color:#75715e></span>	<span style=color:#a6e22e>ValidationErrorIssuedAt</span>      <span style=color:#75715e>// IAT validation failed
-</span><span style=color:#75715e></span>	<span style=color:#a6e22e>ValidationErrorIssuer</span>        <span style=color:#75715e>// ISS validation failed
-</span><span style=color:#75715e></span>	<span style=color:#a6e22e>ValidationErrorNotValidYet</span>   <span style=color:#75715e>// NBF validation failed
-</span><span style=color:#75715e></span>	<span style=color:#a6e22e>ValidationErrorId</span>            <span style=color:#75715e>// JTI validation failed
-</span><span style=color:#75715e></span>	<span style=color:#a6e22e>ValidationErrorClaimsInvalid</span> <span style=color:#75715e>// Generic claims validation error
-</span><span style=color:#75715e></span>)
-</code></pre></div><ul>
-<li>これはconst識別子iotaを使ってエラーの定数を定義している</li>
-<li>&#171; はbitの左シフトでValidationErrorMalformed以下の定数は1桁ずつ増えていく(1,2,4,8&mldr;)</li>
-<li>uint32のなかでビットごとの値をエラーに割り当てることで、エラーのフラグ管理のようなものを上のOR演算子で実現してると解釈できる</li>
-</ul>
-<h3 id=参考>参考<a hidden class=anchor aria-hidden=true href=#参考>#</a></h3>
-<p><a href=https://qiita.com/curepine/items/2ae2f6504f0d28016411>Golangのconst識別子iotaの紹介 -Qiita</a></p>
-</div>
-<footer class=post-footer>
-</footer>
-</article>
-</main>
-<footer class=footer>
+<p>goで<code>|=</code>はOR演算子を表すが、エラーでなんでOR演算子を使うのか？</p></li><li>
+<p><a href=https://github.com/dgrijalva/jwt-go/blob/master/errors.go>dgrijalva/jwt-go/erros.go</a>をみる</p></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#66d9ef>const</span> (
+</span></span><span style=display:flex><span>	<span style=color:#a6e22e>ValidationErrorMalformed</span>        <span style=color:#66d9ef>uint32</span> = <span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> <span style=color:#66d9ef>iota</span> <span style=color:#75715e>// Token is malformed
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>ValidationErrorUnverifiable</span>                        <span style=color:#75715e>// Token could not be verified because of signing problems
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>ValidationErrorSignatureInvalid</span>                    <span style=color:#75715e>// Signature validation failed
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>
+</span></span><span style=display:flex><span>	<span style=color:#75715e>// Standard Claim validation errors
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>ValidationErrorAudience</span>      <span style=color:#75715e>// AUD validation failed
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>ValidationErrorExpired</span>       <span style=color:#75715e>// EXP validation failed
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>ValidationErrorIssuedAt</span>      <span style=color:#75715e>// IAT validation failed
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>ValidationErrorIssuer</span>        <span style=color:#75715e>// ISS validation failed
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>ValidationErrorNotValidYet</span>   <span style=color:#75715e>// NBF validation failed
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>ValidationErrorId</span>            <span style=color:#75715e>// JTI validation failed
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>	<span style=color:#a6e22e>ValidationErrorClaimsInvalid</span> <span style=color:#75715e>// Generic claims validation error
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span>)
+</span></span></code></pre></div><ul>
+<li>これはconst識別子iotaを使ってエラーの定数を定義している</li><li>&#171; はbitの左シフトでValidationErrorMalformed以下の定数は1桁ずつ増えていく(1,2,4,8&mldr;)</li><li>uint32のなかでビットごとの値をエラーに割り当てることで、エラーのフラグ管理のようなものを上のOR演算子で実現してると解釈できる</li></ul><h3 id=参考>参考<a hidden class=anchor aria-hidden=true href=#参考>#</a></h3><p><a href=https://qiita.com/curepine/items/2ae2f6504f0d28016411>Golangのconst識別子iotaの紹介 -Qiita</a></p></div><footer class=post-footer>
+</footer></article></main><footer class=footer>
 <span>&copy; 2022 <a href=https://dyuji.dev/>dyuji.dev</a></span>
 <span>
 Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
         <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
 </span>
-</footer>
-<a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
 </a>
-<script>let menu=document.getElementById('menu');menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
+<script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(t){t.preventDefault();var e=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(e)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(e)}']`).scrollIntoView({behavior:"smooth"}),e==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${e}`)})})</script>
 <script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
-<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
-</body>
-</html>
+<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script>
+</body></html>
