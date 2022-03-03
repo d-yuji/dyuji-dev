@@ -34,7 +34,7 @@ main()
 
 * fab hello で実行して echo $?で確認すると1になる
 * python cmd.py で実行して echo $?で確認すると0になる
-* subprocess.callっがエラーハンドリングに対応してない。
+* subprocess.callがエラーハンドリングに対応してない。
 * 代わりにsubprocess.check_callを使う
 * fabricの1系がpython2系の対応のためsubprocess.runが使えないのでエラーハンドリングが異なることに注意
     * 特にデプロイ周りのエラーで注意する
