@@ -1,7 +1,6 @@
 ---
 title: "実用Go言語 Forkwell Library #7"
 date: 2022-10-26T19:56:43+09:00
-draft: true
 ---
 
 # 実用Go言語 Forkwell Library #7
