@@ -29,7 +29,7 @@ date: 2021-12-26T11:15:29+09:00
 
 * goで`|=`はOR演算子を表すが、エラーでなんでOR演算子を使うのか？
 
-* [dgrijalva/jwt-go/erros.go](https://github.com/dgrijalva/jwt-go/blob/master/errors.go)をみる
+* [dgrijalva/jwt-go/errors.go](https://github.com/dgrijalva/jwt-go/blob/master/errors.go)をみる
 
 ```go
 const (

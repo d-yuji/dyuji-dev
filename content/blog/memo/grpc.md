@@ -13,7 +13,7 @@ date: 2021-12-30T11:14:06+09:00
 * gRPC
     * Googleで開発された多言語間のRPCを実現するプロトコル
     * 多言語対応であることが特徴
-* IDL(interface definition langurage)
+* IDL(interface definition language)
     * インターフェース記述言語
     * IDLコンパイラが変換してくれる
 * gRPCではIDLにProtocol Buffersを採用
