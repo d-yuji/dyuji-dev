@@ -1,5 +1,5 @@
 ---
-title: "Go_prog_forkwell#27"
+title: "Go_prog_forkwell_27"
 date: 2023-07-08T19:44:33+09:00
 ---
 
