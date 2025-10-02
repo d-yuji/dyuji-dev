@@ -20,6 +20,11 @@ params:
       - name: email
         url: "https://forms.gle/JhcSaYd6bmRRqccbA"
 
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
 menu:
   main:
     - identifier: about
@@ -30,3 +35,13 @@ menu:
       name: privacy
       url: /privacy
       weight: 20
+    - identifier: search
+      name: search
+      url: /search
+    - identifier: tags
+      name: tags
+      url: /tags/
+
+taxonomies:
+  category: categories
+  tag: tags
