@@ -1,0 +1,294 @@
+<!doctype html><html lang=ja dir=auto><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Hugoの改善 | dyuji.dev</title><meta name=keywords content="hugo,goat"><meta name=description content="Hugoの改善
+Hugo単体のバージョンアップ
+
+aptでインストールできるバージョンが古いので手動でインストール
+
+参考→ https://gkzz.dev/posts/hugo-installation-on-ubuntu/
+
+
+
+wget https://github.com/gohugoio/hugo/releases/download/v0.140.2/hugo_0.140.2_linux-amd64.deb
+sudo dpkg -i hugo_0.140.2_linux-amd64.deb
+hugo version
+tagページとsearchページの追加
+
+config.ymlに以下を追記
+
+    - identifier: search
+      name: search
+      url: /search
+    - identifier: tags
+      name: tags
+      url: /tags/
+iframeの表示
+
+config.ymlに以下を追記
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+グラフ
+
+goat記法が使える
+
+https://github.com/bep/goat
+
+
+
+
+
+
+
+  
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1
+2
+3
+4
+1
+2
+3
+4
+1
+2
+3
+4
+1
+2
+3
+4
+1
+2
+3
+4
+1
+2
+3
+4
+
+
+    
+  
+"><meta name=author content><link rel=canonical href=https://dyuji.dev/blog/memo/2025_0102_hugo/><link crossorigin=anonymous href=/assets/css/stylesheet.a090830a421002426baafbd314e38f149d77b4c48a12ee9312700d770b27fb26.css integrity="sha256-oJCDCkIQAkJrqvvTFOOPFJ13tMSKEu6TEnANdwsn+yY=" rel="preload stylesheet" as=style><link rel=icon href=https://dyuji.dev/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dyuji.dev/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dyuji.dev/favicon-32x32.png><link rel=apple-touch-icon href=https://dyuji.dev/apple-touch-icon.png><link rel=mask-icon href=https://dyuji.dev/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=ja href=https://dyuji.dev/blog/memo/2025_0102_hugo/><noscript><style>#theme-toggle,.top-link{display:none}</style><style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--code-block-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style></noscript><meta property="og:url" content="https://dyuji.dev/blog/memo/2025_0102_hugo/"><meta property="og:site_name" content="dyuji.dev"><meta property="og:title" content="Hugoの改善"><meta property="og:description" content="Hugoの改善 Hugo単体のバージョンアップ aptでインストールできるバージョンが古いので手動でインストール 参考→ https://gkzz.dev/posts/hugo-installation-on-ubuntu/ wget https://github.com/gohugoio/hugo/releases/download/v0.140.2/hugo_0.140.2_linux-amd64.deb sudo dpkg -i hugo_0.140.2_linux-amd64.deb hugo version tagページとsearchページの追加 config.ymlに以下を追記 - identifier: search name: search url: /search - identifier: tags name: tags url: /tags/ iframeの表示 config.ymlに以下を追記 markup: goldmark: renderer: unsafe: true グラフ goat記法が使える https://github.com/bep/goat 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 "><meta property="og:locale" content="ja"><meta property="og:type" content="article"><meta property="article:section" content="blog"><meta property="article:published_time" content="2025-01-02T19:00:00+09:00"><meta property="article:modified_time" content="2025-01-02T19:00:00+09:00"><meta property="article:tag" content="Hugo"><meta property="article:tag" content="Goat"><meta name=twitter:card content="summary"><meta name=twitter:title content="Hugoの改善"><meta name=twitter:description content="Hugoの改善
+Hugo単体のバージョンアップ
+
+aptでインストールできるバージョンが古いので手動でインストール
+
+参考→ https://gkzz.dev/posts/hugo-installation-on-ubuntu/
+
+
+
+wget https://github.com/gohugoio/hugo/releases/download/v0.140.2/hugo_0.140.2_linux-amd64.deb
+sudo dpkg -i hugo_0.140.2_linux-amd64.deb
+hugo version
+tagページとsearchページの追加
+
+config.ymlに以下を追記
+
+    - identifier: search
+      name: search
+      url: /search
+    - identifier: tags
+      name: tags
+      url: /tags/
+iframeの表示
+
+config.ymlに以下を追記
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+グラフ
+
+goat記法が使える
+
+https://github.com/bep/goat
+
+
+
+
+
+
+
+  
+    
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1
+2
+3
+4
+1
+2
+3
+4
+1
+2
+3
+4
+1
+2
+3
+4
+1
+2
+3
+4
+1
+2
+3
+4
+
+
+    
+  
+"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Blogs","item":"https://dyuji.dev/blog/"},{"@type":"ListItem","position":2,"name":"Hugoの改善","item":"https://dyuji.dev/blog/memo/2025_0102_hugo/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Hugoの改善","name":"Hugoの改善","description":"Hugoの改善 Hugo単体のバージョンアップ aptでインストールできるバージョンが古いので手動でインストール 参考→ https://gkzz.dev/posts/hugo-installation-on-ubuntu/ wget https://github.com/gohugoio/hugo/releases/download/v0.140.2/hugo_0.140.2_linux-amd64.deb sudo dpkg -i hugo_0.140.2_linux-amd64.deb hugo version tagページとsearchページの追加 config.ymlに以下を追記 - identifier: search name: search url: /search - identifier: tags name: tags url: /tags/ iframeの表示 config.ymlに以下を追記 markup: goldmark: renderer: unsafe: true グラフ goat記法が使える https://github.com/bep/goat 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 ","keywords":["hugo","goat"],"articleBody":"Hugoの改善 Hugo単体のバージョンアップ aptでインストールできるバージョンが古いので手動でインストール 参考→ https://gkzz.dev/posts/hugo-installation-on-ubuntu/ wget https://github.com/gohugoio/hugo/releases/download/v0.140.2/hugo_0.140.2_linux-amd64.deb sudo dpkg -i hugo_0.140.2_linux-amd64.deb hugo version tagページとsearchページの追加 config.ymlに以下を追記 - identifier: search name: search url: /search - identifier: tags name: tags url: /tags/ iframeの表示 config.ymlに以下を追記 markup: goldmark: renderer: unsafe: true グラフ goat記法が使える https://github.com/bep/goat 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 ","wordCount":"183","inLanguage":"ja","datePublished":"2025-01-02T19:00:00+09:00","dateModified":"2025-01-02T19:00:00+09:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://dyuji.dev/blog/memo/2025_0102_hugo/"},"publisher":{"@type":"Organization","name":"dyuji.dev","logo":{"@type":"ImageObject","url":"https://dyuji.dev/favicon.ico"}}}</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-TZL48NFQQ3"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-TZL48NFQQ3")</script></head><body id=" top"><script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add("dark"):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove("dark"):window.matchMedia("(prefers-color-scheme: dark)").matches&&document.body.classList.add("dark")</script><header class=header><nav class=nav><div class=logo><a href=https://dyuji.dev/ accesskey=h title="dyuji.dev (Alt + H)">dyuji.dev</a><div class=logo-switches><button id=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg id="moon" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg id="sun" width="24" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu><li><a href=https://dyuji.dev/about title=about><span>about</span></a></li><li><a href=https://dyuji.dev/privacy title=privacy><span>privacy</span></a></li><li><a href=https://dyuji.dev/search title="search (Alt + /)" accesskey=/><span>search</span></a></li><li><a href=https://dyuji.dev/tags/ title=tags><span>tags</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><h1 class="post-title entry-hint-parent">Hugoの改善</h1><div class=post-meta><span title='2025-01-02 19:00:00 +0900 +0900'>2025年1月2日</span></div></header><div class=post-content><h1 id=hugoの改善>Hugoの改善<a hidden class=anchor aria-hidden=true href=#hugoの改善>#</a></h1><h2 id=hugo単体のバージョンアップ>Hugo単体のバージョンアップ<a hidden class=anchor aria-hidden=true href=#hugo単体のバージョンアップ>#</a></h2><ul><li>aptでインストールできるバージョンが古いので手動でインストール<ul><li>参考→ <a href=https://gkzz.dev/posts/hugo-installation-on-ubuntu/>https://gkzz.dev/posts/hugo-installation-on-ubuntu/</a></li></ul></li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>wget https://github.com/gohugoio/hugo/releases/download/v0.140.2/hugo_0.140.2_linux-amd64.deb
+</span></span><span style=display:flex><span>sudo dpkg -i hugo_0.140.2_linux-amd64.deb
+</span></span><span style=display:flex><span>hugo version
+</span></span></code></pre></div><h2 id=tagページとsearchページの追加>tagページとsearchページの追加<a hidden class=anchor aria-hidden=true href=#tagページとsearchページの追加>#</a></h2><ul><li>config.ymlに以下を追記</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=display:flex><span>    - <span style=color:#f92672>identifier</span>: <span style=color:#ae81ff>search</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>name</span>: <span style=color:#ae81ff>search</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>url</span>: <span style=color:#ae81ff>/search</span>
+</span></span><span style=display:flex><span>    - <span style=color:#f92672>identifier</span>: <span style=color:#ae81ff>tags</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>name</span>: <span style=color:#ae81ff>tags</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>url</span>: <span style=color:#ae81ff>/tags/</span>
+</span></span></code></pre></div><h2 id=iframeの表示>iframeの表示<a hidden class=anchor aria-hidden=true href=#iframeの表示>#</a></h2><ul><li>config.ymlに以下を追記</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-yml data-lang=yml><span style=display:flex><span><span style=color:#f92672>markup</span>:
+</span></span><span style=display:flex><span>  <span style=color:#f92672>goldmark</span>:
+</span></span><span style=display:flex><span>    <span style=color:#f92672>renderer</span>:
+</span></span><span style=display:flex><span>      <span style=color:#f92672>unsafe</span>: <span style=color:#66d9ef>true</span>
+</span></span></code></pre></div><h2 id=グラフ>グラフ<a hidden class=anchor aria-hidden=true href=#グラフ>#</a></h2><ul><li>goat記法が使える<ul><li><a href=https://github.com/bep/goat>https://github.com/bep/goat</a></li></ul></li></ul><div class="goat svg-container"><svg font-family="Menlo,Lucida Console,monospace" viewBox="0 0 680 121"><g transform="translate(8,16)"><path d="M440 0h24" fill="none" stroke="currentColor"/><path d="M576 0h8" fill="none" stroke="currentColor"/><path d="M408 16h32" fill="none" stroke="currentColor"/><path d="M552 16h8" fill="none" stroke="currentColor"/><path d="M144 32h32" fill="none" stroke="currentColor"/><path d="M176 32h32" fill="none" stroke="currentColor"/><path d="M296 32h16" fill="none" stroke="currentColor"/><path d="M312 32h16" fill="none" stroke="currentColor"/><path d="M440 32h24" fill="none" stroke="currentColor"/><path d="M576 32h8" fill="none" stroke="currentColor"/><path d="M384 48h24" fill="none" stroke="currentColor"/><path d="M512 48h24" fill="none" stroke="currentColor"/><path d="M128 64h16" fill="none" stroke="currentColor"/><path d="M144 64h16" fill="none" stroke="currentColor"/><path d="M192 64h16" fill="none" stroke="currentColor"/><path d="M208 64h16" fill="none" stroke="currentColor"/><path d="M440 64h24" fill="none" stroke="currentColor"/><path d="M576 64h8" fill="none" stroke="currentColor"/><path d="M408 80h32" fill="none" stroke="currentColor"/><path d="M552 80h8" fill="none" stroke="currentColor"/><path d="M440 96h24" fill="none" stroke="currentColor"/><path d="M576 96h8" fill="none" stroke="currentColor"/><path d="M128 64V80" fill="none" stroke="currentColor"/><path d="M144 32V64" fill="none" stroke="currentColor"/><path d="M160 64V80" fill="none" stroke="currentColor"/><path d="M176 0V32" fill="none" stroke="currentColor"/><path d="M192 64V80" fill="none" stroke="currentColor"/><path d="M208 32V64" fill="none" stroke="currentColor"/><path d="M224 64V80" fill="none" stroke="currentColor"/><path d="M280 48V64" fill="none" stroke="currentColor"/><path d="M312 0V32" fill="none" stroke="currentColor"/><path d="M344 48V64" fill="none" stroke="currentColor"/><path d="M408 16V48" fill="none" stroke="currentColor"/><path d="M408 48V80" fill="none" stroke="currentColor"/><path d="M440 0V16" fill="none" stroke="currentColor"/><path d="M440 16V32" fill="none" stroke="currentColor"/><path d="M440 64V80" fill="none" stroke="currentColor"/><path d="M440 80V96" fill="none" stroke="currentColor"/><path d="M536 32V48" fill="none" stroke="currentColor"/><path d="M536 48V64" fill="none" stroke="currentColor"/><path d="M8 80 24 48" fill="none" stroke="currentColor"/><path d="M24 48 48 0" fill="none" stroke="currentColor"/><path d="M56 80 72 48" fill="none" stroke="currentColor"/><path d="M624 48l16-32" fill="none" stroke="currentColor"/><path d="M640 16l8-16" fill="none" stroke="currentColor"/><path d="M640 80l8-16" fill="none" stroke="currentColor"/><path d="M24 48 40 80" fill="none" stroke="currentColor"/><path d="M48 0 72 48" fill="none" stroke="currentColor"/><path d="M72 48 88 80" fill="none" stroke="currentColor"/><path d="M624 48l16 32" fill="none" stroke="currentColor"/><path d="M640 80l8 16" fill="none" stroke="currentColor"/><path d="M640 16l8 16" fill="none" stroke="currentColor"/><path d="M576 0A16 16 0 00560 16" fill="none" stroke="currentColor"/><path d="M552 16A16 16 0 00536 32" fill="none" stroke="currentColor"/><path d="M296 32A16 16 0 00280 48" fill="none" stroke="currentColor"/><path d="M328 32a16 16 0 0116 16" fill="none" stroke="currentColor"/><path d="M560 16a16 16 0 0016 16" fill="none" stroke="currentColor"/><path d="M280 64A16 16 0 00264 80" fill="none" stroke="currentColor"/><path d="M280 64a16 16 0 0116 16" fill="none" stroke="currentColor"/><path d="M344 64A16 16 0 00328 80" fill="none" stroke="currentColor"/><path d="M344 64a16 16 0 0116 16" fill="none" stroke="currentColor"/><path d="M576 64A16 16 0 00560 80" fill="none" stroke="currentColor"/><path d="M536 64a16 16 0 0016 16" fill="none" stroke="currentColor"/><path d="M560 80a16 16 0 0016 16" fill="none" stroke="currentColor"/><text text-anchor="middle" x="8" y="100" fill="currentColor" style="font-size:1em">1</text><text text-anchor="middle" x="40" y="100" fill="currentColor" style="font-size:1em">2</text><text text-anchor="middle" x="56" y="100" fill="currentColor" style="font-size:1em">3</text><text text-anchor="middle" x="88" y="100" fill="currentColor" style="font-size:1em">4</text><text text-anchor="middle" x="128" y="100" fill="currentColor" style="font-size:1em">1</text><text text-anchor="middle" x="160" y="100" fill="currentColor" style="font-size:1em">2</text><text text-anchor="middle" x="192" y="100" fill="currentColor" style="font-size:1em">3</text><text text-anchor="middle" x="224" y="100" fill="currentColor" style="font-size:1em">4</text><text text-anchor="middle" x="264" y="100" fill="currentColor" style="font-size:1em">1</text><text text-anchor="middle" x="296" y="100" fill="currentColor" style="font-size:1em">2</text><text text-anchor="middle" x="328" y="100" fill="currentColor" style="font-size:1em">3</text><text text-anchor="middle" x="360" y="100" fill="currentColor" style="font-size:1em">4</text><text text-anchor="middle" x="480" y="4" fill="currentColor" style="font-size:1em">1</text><text text-anchor="middle" x="480" y="36" fill="currentColor" style="font-size:1em">2</text><text text-anchor="middle" x="480" y="68" fill="currentColor" style="font-size:1em">3</text><text text-anchor="middle" x="480" y="100" fill="currentColor" style="font-size:1em">4</text><text text-anchor="middle" x="600" y="4" fill="currentColor" style="font-size:1em">1</text><text text-anchor="middle" x="600" y="36" fill="currentColor" style="font-size:1em">2</text><text text-anchor="middle" x="600" y="68" fill="currentColor" style="font-size:1em">3</text><text text-anchor="middle" x="600" y="100" fill="currentColor" style="font-size:1em">4</text><text text-anchor="middle" x="664" y="4" fill="currentColor" style="font-size:1em">1</text><text text-anchor="middle" x="664" y="36" fill="currentColor" style="font-size:1em">2</text><text text-anchor="middle" x="664" y="68" fill="currentColor" style="font-size:1em">3</text><text text-anchor="middle" x="664" y="100" fill="currentColor" style="font-size:1em">4</text></g></svg></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://dyuji.dev/tags/hugo/>Hugo</a></li><li><a href=https://dyuji.dev/tags/goat/>Goat</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2025 <a href=https://dyuji.dev/>dyuji.dev</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
+</a><script>let menu=document.getElementById("menu");menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove("dark"),localStorage.setItem("pref-theme","light")):(document.body.classList.add("dark"),localStorage.setItem("pref-theme","dark"))})</script></body></html>

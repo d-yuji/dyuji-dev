@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Go on dyuji.dev</title><link>https://dyuji.dev/tags/go/</link><description>Recent content in Go on dyuji.dev</description><generator>Hugo -- 0.150.1</generator><language>ja</language><lastBuildDate>Thu, 02 Oct 2025 15:15:00 +0900</lastBuildDate><atom:link href="https://dyuji.dev/tags/go/index.xml" rel="self" type="application/rss+xml"/><item><title>Golang Tokyo #41 参加メモ</title><link>https://dyuji.dev/blog/memo/2025_0929_golang.tokyo/</link><pubDate>Thu, 02 Oct 2025 15:15:00 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2025_0929_golang.tokyo/</guid><description>&lt;h1 id="golangtokyo-41"&gt;golang.tokyo #41&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Goコミュニティの技術談義&lt;/li&gt;
+&lt;li&gt;今回はGMOベパポ主催&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://golangtokyo.connpass.com/event/366620/"&gt;イベントURL&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="lt1-go-embedでwasm埋め込み"&gt;LT1 Go Embedでwasm埋め込み&lt;/h2&gt;
+&lt;script async class="docswell-embed" src="https://www.docswell.com/assets/libs/docswell-embed/docswell-embed.min.js" data-src="https://www.docswell.com/slide/KLV6VQ/embed" data-aspect="0.5625"&gt;&lt;/script&gt;&lt;div class="docswell-link"&gt;&lt;a href="https://www.docswell.com/s/7328957/KLV6VQ-2025-09-30-073314"&gt;Go Embedでwasm埋め込み by @7328957&lt;/a&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;竹田さん&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;株式会社ラクス&lt;/p&gt;</description></item></channel></rss>

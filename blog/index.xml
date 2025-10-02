@@ -1,668 +1,861 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Blogs on dyuji.dev</title><link>https://dyuji.dev/blog/</link><description>Recent content in Blogs on dyuji.dev</description><generator>Hugo -- 0.140.2</generator><language>ja</language><lastBuildDate>Sat, 08 Jul 2023 19:44:33 +0900</lastBuildDate><atom:link href="https://dyuji.dev/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Go_prog_forkwell_27</title><link>https://dyuji.dev/blog/memo/2023_0708_go_prog_forkwell27/</link><pubDate>Sat, 08 Jul 2023 19:44:33 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2023_0708_go_prog_forkwell27/</guid><description>&lt;h1 id="go言語プログラミングエッセンス---forkwell-library27">Go言語プログラミングエッセンス - Forkwell Library#27&lt;/h1>
-&lt;ul>
-&lt;li>&lt;a href="https://forkwell.connpass.com/event/288035/">イベント内容&lt;/a>&lt;/li>
-&lt;li>&lt;a href="https://t.co/Iz5nswgxtz">動画アーカイブ&lt;/a>&lt;/li>
-&lt;li>モデレーター &lt;a href="https://twitter.com/shibu_jp">渋川さん&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h2 id="go-言語で楽しくなるシステム開発">Go 言語で楽しくなるシステム開発&lt;/h2>
-&lt;h3 id="自己紹介">自己紹介&lt;/h3>
-&lt;ul>
-&lt;li>&lt;a href="https://twitter.com/mattn_jp">mattn&lt;/a>さん
-&lt;ul>
-&lt;li>Go言語プログラミングエッセンス著者&lt;/li>
-&lt;li>Google open source expert&lt;/li>
-&lt;li>Go歴 13年&lt;/li>
-&lt;li>Software Design
-&lt;ul>
-&lt;li>nostrの連載&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h3 id="概要">概要&lt;/h3>
-&lt;ul>
-&lt;li>簡単な説明&lt;/li>
-&lt;li>特徴&lt;/li>
-&lt;li>Explicit is better than implicit&lt;/li>
-&lt;li>非同期プログラミング&lt;/li>
-&lt;li>最新のGo&lt;/li>
-&lt;/ul>
-&lt;h3 id="goについて">Goについて&lt;/h3>
-&lt;ul>
-&lt;li>C言語の構文を意識しつつ、簡単な文法でコーディングできる&lt;/li>
-&lt;li>すでにいろんな会社で利用&lt;/li>
-&lt;li>プログラミング環境を改善する目的
-&lt;ul>
-&lt;li>C言語を設計した世界的エンジニアで知られる人が関わっている&lt;/li>
-&lt;li>Unixらしさ&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>使用例
-&lt;ul>
-&lt;li>CLI&lt;/li>
-&lt;li>Webサーバー&lt;/li>
-&lt;li>バックエンド&lt;/li>
-&lt;li>広告配信&lt;/li>
-&lt;li>ハードウェア制御&lt;/li>
-&lt;li>機械学習&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h3 id="特徴">特徴&lt;/h3>
-&lt;ul>
-&lt;li>静的型付けコンパイル言語&lt;/li>
-&lt;li>スタティックバイナリ&lt;/li>
-&lt;li>C言語風でありながら、GC&lt;/li>
-&lt;li>非同期を簡単に扱えるランタイム&lt;/li>
-&lt;/ul>
-&lt;h3 id="explicit-is-better-than-implicit">Explicit is better than implicit&lt;/h3>
-&lt;ul>
-&lt;li>曖昧より明確のほうがいいよね&lt;/li>
-&lt;li>RobPike氏が良く言うこと&lt;/li>
-&lt;li>ex) error ハンドリング&lt;/li>
-&lt;li>Goは例外を扱わない&lt;/li>
-&lt;li>result typeを扱わない&lt;/li>
-&lt;li>errorが返ってきたら処理する&lt;/li>
-&lt;li>Goでバグを生み出さないコツ
-&lt;ul>
-&lt;li>すべてのerrorを明示的に対処し暗黙をなくす
-&lt;ul>
-&lt;li>deferをうまく使うことでエラーを減らす&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>errorを受け取ったら、処理を中断し、呼び出し元へ返す&lt;/li>
-&lt;li>→必然的にearly return&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Goが優先したもの
-&lt;ul>
-&lt;li>読みやすさ
-&lt;ul>
-&lt;li>声に出して読めるくらい&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>学びやすさ&lt;/li>
-&lt;li>開発者が明示的に処理を中断させる&lt;/li>
-&lt;li>予約語を増やさない
-&lt;ul>
-&lt;li>複雑さを減らす&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>開発者が意思決定するプログラミング&lt;/li>
-&lt;/ul>
-&lt;h3 id="非同期プログラミングの良さ">非同期プログラミングの良さ&lt;/h3>
-&lt;ul>
-&lt;li>ハードウェアが高性能化&lt;/li>
-&lt;li>非同期は難しい&lt;/li>
-&lt;li>Goの仕組み
-&lt;ul>
-&lt;li>goroutine&lt;/li>
-&lt;li>channel
-&lt;ul>
-&lt;li>リレーのバトンのようなもの&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>気をつけること
-&lt;ul>
-&lt;li>並列と並行は違う&lt;/li>
-&lt;li>スレッドを増やすプログラミング言語
-&lt;ul>
-&lt;li>CPUコアに固定されない。空いたコアが次を担当する
-&lt;ul>
-&lt;li>CPUコアを有効に活用する&lt;/li>
-&lt;li>C言語でやると難しい
-&lt;ul>
-&lt;li>コンテキストスイッチのコストが発生してしまう&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Goのスレッドは軽量なので、多く使っても大丈夫&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>スケールに対応しやすいのでクラウド向き&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h3 id="go-121でくるもの">go 1.21でくるもの&lt;/h3>
-&lt;ul>
-&lt;li>min/max
-&lt;ul>
-&lt;li>数値、文字列など&lt;/li>
-&lt;li>実装するとinterface{}をつかうとコンパイルで気づけない&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>clear
-&lt;ul>
-&lt;li>mapやスライスを空にできる
-&lt;ul>
-&lt;li>スライスの長さが変わらない&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>配列はできない&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>loopvar
-&lt;ul>
-&lt;li>まだ仮
-&lt;ul>
-&lt;li>検証中&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>並列で動かすときに、ループ変数が回り終わった状態で参照していしまうのの対処&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>pgo
-&lt;ul>
-&lt;li>コンパイラによるプロファイルベースの最適化&lt;/li>
-&lt;li>pprofの結果からホットパスをインライン化する
-&lt;ul>
-&lt;li>pprofの結果を読み込んでbuildすると最適化&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>slog
-&lt;ul>
-&lt;li>構造化ログを出力できるように&lt;/li>
-&lt;li>ログレベルも設定&lt;/li>
-&lt;li>スレッドセーフ&lt;/li>
-&lt;li>出力先変更可能&lt;/li>
-&lt;li>グルーピング&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>maps
-&lt;ul>
-&lt;li>型パラメータを使ったmap操作関数&lt;/li>
-&lt;li>genericsができたので&lt;/li>
-&lt;li>key一覧、value一覧をとることができる&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Slices
-&lt;ul>
-&lt;li>slice処理をかける&lt;/li>
-&lt;li>delete, insert, reverse, binarySearch, contains&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>wasi
-&lt;ul>
-&lt;li>wasmの実行環境がブラウザ依存だった&lt;/li>
-&lt;li>wasmを読み込んでgoで直感的にできるように
-&lt;ul>
-&lt;li>標準ライブラリにほぼ対応&lt;/li>
-&lt;li>利用できない/システムコールが必要なおの
-&lt;ul>
-&lt;li>net/http&lt;/li>
-&lt;li>os&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>エッジコンピューティングがしやすくなる&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>(youtubeアンケート、職務内容)&lt;/p></description></item><item><title>AWS Tech talk Night#5</title><link>https://dyuji.dev/blog/memo/2023_0125_aws_tech_talk_night_5/</link><pubDate>Wed, 25 Jan 2023 19:00:47 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2023_0125_aws_tech_talk_night_5/</guid><description>&lt;h1 id="aws-tech-talk-night5-クラウドネイティブ時代のエンジニアが押さえておきたい-ソフトウェアの構築運用で考慮すべき5つのポイント-awsプリンシパルエンジニアの技術記事をソリューションアーキテクトが解説">AWS Tech talk Night#5 クラウドネイティブ時代のエンジニアが押さえておきたい ソフトウェアの構築・運用で考慮すべき5つのポイント &lt;del>AWSプリンシパルエンジニアの技術記事をソリューションアーキテクトが解説&lt;/del>&lt;/h1>
-&lt;ul>
-&lt;li>1/25にZoomウェビナーで実施された、AWSのイベント&lt;/li>
-&lt;li>&lt;a href="https://techplay.jp/event/885662?utm_source=eventRemind&amp;amp;utm_medium=email&amp;amp;utm_campaign=tp_20230124">イベントURL&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;h2 id="概要">概要&lt;/h2>
-&lt;ul>
-&lt;li>
-&lt;p>AWS Japan 千葉さん&lt;/p></description></item><item><title>実用Go言語 Forkwell Library #7</title><link>https://dyuji.dev/blog/memo/2022_1026_forkwell_library7/</link><pubDate>Wed, 26 Oct 2022 19:56:43 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2022_1026_forkwell_library7/</guid><description>&lt;h1 id="実用go言語-forkwell-library-7">実用Go言語 Forkwell Library #7&lt;/h1>
-&lt;h2 id="基調講演">基調講演&lt;/h2>
-&lt;p>&lt;a href="https://twitter.com/search?q=%23Forkwell_Library&amp;amp;src=typed_query&amp;amp;f=live">#Forkwell_Library&lt;/a>&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>3人の著者による発表&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>渋川さん&lt;/p>
-&lt;ul>
-&lt;li>Honda&lt;/li>
-&lt;li>DeNA&lt;/li>
-&lt;li>FutureArchitect&lt;/li>
-&lt;li>趣味 インラインスケート&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>辻さん&lt;/p>
-&lt;ul>
-&lt;li>渋谷区の公務員からフューチャー&lt;/li>
-&lt;li>趣味 競技プログラミング、筋トレ&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>真野さん&lt;/p>
-&lt;ul>
-&lt;li>新卒でフューチャーで13年くらい&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>フューチャーのかるい紹介&lt;/p></description></item><item><title>Docker×Goのマルチステージビルドで必要になるcgoのオプションについて</title><link>https://dyuji.dev/blog/memo/2022_0504_cgo/</link><pubDate>Wed, 04 May 2022 23:51:56 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2022_0504_cgo/</guid><description>&lt;h2 id="dockergoのマルチステージビルドで必要になるcgoのオプションについて">Docker×Goのマルチステージビルドで必要になるcgoのオプションについて&lt;/h2>
-&lt;h3 id="背景">背景&lt;/h3>
-&lt;ul>
-&lt;li>Dockerfileでマルチステージビルドの構築をしていたが、DockerImageのビルドに成功するも、docker runでエラーが出て動かなかった&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-dockerfile" data-lang="dockerfile">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">FROM&lt;/span>&lt;span style="color:#e6db74"> golang:1.18 as builder&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">WORKDIR&lt;/span>&lt;span style="color:#e6db74"> /go/src/&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">COPY&lt;/span> . ./&lt;span style="color:#960050;background-color:#1e0010">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">RUN&lt;/span> go mod download&lt;span style="color:#960050;background-color:#1e0010">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">RUN&lt;/span> go build -v -o server ./cmd&lt;span style="color:#960050;background-color:#1e0010">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">FROM&lt;/span>&lt;span style="color:#e6db74"> alpine:latest&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">RUN&lt;/span> apk --no-cache add ca-certificates&lt;span style="color:#960050;background-color:#1e0010">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">WORKDIR&lt;/span>&lt;span style="color:#e6db74"> /root/&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">COPY&lt;/span> --from&lt;span style="color:#f92672">=&lt;/span>builder /go/src/server ./&lt;span style="color:#960050;background-color:#1e0010">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">EXPOSE&lt;/span>&lt;span style="color:#e6db74"> 8080&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">&lt;/span>&lt;span style="color:#66d9ef">CMD&lt;/span> [&lt;span style="color:#e6db74">&amp;#34;./server&amp;#34;&lt;/span>]&lt;span style="color:#960050;background-color:#1e0010">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>エラーメッセージ&lt;/p></description></item><item><title>Fabric_subprocess</title><link>https://dyuji.dev/blog/memo/2022_0303_fabric_subprocess/</link><pubDate>Thu, 03 Mar 2022 01:45:02 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2022_0303_fabric_subprocess/</guid><description>&lt;h2 id="python2で使うfabricとsubprocessはエラーハンドリングに気をつける">Python2で使うfabricとsubprocessはエラーハンドリングに気をつける&lt;/h2>
-&lt;ul>
-&lt;li>
-&lt;p>&lt;a href="https://fabric-ja.readthedocs.io/ja/latest/tutorial.html">Fabric&lt;/a>は、アプリケーションのデプロイやシステム管理のタスクのためにSSHの利用を簡素化するためのPython2系のライブラリとコマンドラインのツール&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>fab {method}でコマンドラインスクリプトで呼び出しができる&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Pythonの&lt;a href="https://docs.python.org/ja/3/library/subprocess.html">subprocess&lt;/a>はサブプロセスを起動するためのモジュール。python内からコマンド実行するのに使う&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>この2つの組み合わせでのエラーハンドリングには気をつける&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;p>fab_test.py&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-py" data-lang="py">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">from&lt;/span> fabric.api &lt;span style="color:#f92672">import&lt;/span> local
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">def&lt;/span> &lt;span style="color:#a6e22e">hello&lt;/span>():
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> local(&lt;span style="color:#e6db74">&amp;#34;exit 1&amp;#34;&lt;/span>)
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>cmd.py&lt;/p></description></item><item><title>Grpc</title><link>https://dyuji.dev/blog/memo/2021_1230_grpc/</link><pubDate>Thu, 30 Dec 2021 11:14:06 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1230_grpc/</guid><description>&lt;ul>
-&lt;li>
-&lt;p>grpcチュートリアルメモ&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;a href="https://github.com/ymmt2005/grpc-tutorial">https://github.com/ymmt2005/grpc-tutorial&lt;/a>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Remote Procedure Call&lt;/p>
-&lt;ul>
-&lt;li>リモートで呼び出しする手順&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>gRPC&lt;/p>
-&lt;ul>
-&lt;li>Googleで開発された多言語間のRPCを実現するプロトコル&lt;/li>
-&lt;li>多言語対応であることが特徴&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>IDL(interface definition language)&lt;/p></description></item><item><title>Jmeter Hash</title><link>https://dyuji.dev/blog/memo/2021_1228_jmeter_hash/</link><pubDate>Tue, 28 Dec 2021 23:46:09 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1228_jmeter_hash/</guid><description>&lt;ul>
-&lt;li>JMeterのシナリオで変数をHash化する時はBeanShell PreProcesserを使う&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> java.security.MessageDigest;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>String token &lt;span style="color:#f92672">=&lt;/span> vars.&lt;span style="color:#a6e22e">get&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;token&amp;#34;&lt;/span>); &lt;span style="color:#75715e">// Jmeterの変数を取得&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>String api_key &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;hogehuga&amp;#34;&lt;/span>;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>String encrypt_str &lt;span style="color:#f92672">=&lt;/span> token&lt;span style="color:#f92672">+&lt;/span>api_key;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>MessageDigest digest &lt;span style="color:#f92672">=&lt;/span> MessageDigest.&lt;span style="color:#a6e22e">getInstance&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;SHA-256&amp;#34;&lt;/span>);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">byte&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> hash &lt;span style="color:#f92672">=&lt;/span> digest.&lt;span style="color:#a6e22e">digest&lt;/span>(encrypt_str.&lt;span style="color:#a6e22e">getBytes&lt;/span>());
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>StringBuilder sb &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> StringBuilder(2&lt;span style="color:#f92672">*&lt;/span>hash.&lt;span style="color:#a6e22e">length&lt;/span>);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">for&lt;/span> (&lt;span style="color:#66d9ef">byte&lt;/span> b: hash) {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> String hexStr &lt;span style="color:#f92672">=&lt;/span> Integer.&lt;span style="color:#a6e22e">toHexString&lt;/span>(b).&lt;span style="color:#a6e22e">replaceAll&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;ffffff&amp;#34;&lt;/span>,&lt;span style="color:#e6db74">&amp;#34;&amp;#34;&lt;/span>);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> String hex &lt;span style="color:#f92672">=&lt;/span> (hexStr.&lt;span style="color:#a6e22e">length&lt;/span>() &lt;span style="color:#f92672">==&lt;/span> 1) &lt;span style="color:#f92672">?&lt;/span> &lt;span style="color:#e6db74">&amp;#34;0&amp;#34;&lt;/span> &lt;span style="color:#f92672">+&lt;/span> hexStr : hexStr;
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> sb.&lt;span style="color:#a6e22e">append&lt;/span>(hex);
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>String newVariable &lt;span style="color:#f92672">=&lt;/span> sb.&lt;span style="color:#a6e22e">toString&lt;/span>();
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>var.&lt;span style="color:#a6e22e">put&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;ENCRYPTED_TOKEN&amp;#34;&lt;/span>,newVariable); &lt;span style="color:#75715e">// Jmeterの変数にセット&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>「超」入門 失敗の本質</title><link>https://dyuji.dev/blog/memo/2021_1226_essence_of_failure/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_essence_of_failure/</guid><description>&lt;ul>
-&lt;li>大きな戦略における目標に寄与しない無駄な目標を実施しない
-&lt;ul>
-&lt;li>勝利の条件を理解するのは優れたリーダーに必要なこと&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>戦略の成功を図る指標をアップデートする
-&lt;ul>
-&lt;li>既存の指標の発見&lt;/li>
-&lt;li>敵対する指標の無効化&lt;/li>
-&lt;li>新たな指標で戦う戦う&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>成功体験を分析する。経験知を汎用的な指標にする&lt;/li>
-&lt;li>新しいルールをつくる
-&lt;ul>
-&lt;li>人・組織の柔軟な活用&lt;/li>
-&lt;li>新技術の開発&lt;/li>
-&lt;li>技術の運用方法&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>ダブルループ学習を心掛ける
-&lt;ul>
-&lt;li>シングルループ学習
-&lt;ul>
-&lt;li>目標と問題構造を所与ないし一定とした上で最適解を探す&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>ダブルループ学習
-&lt;ul>
-&lt;li>想定した目標と問題自体が間違っているという疑問・検討を含めた学習&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>現場と上層部の乖離を避ける
-&lt;ul>
-&lt;li>専門分野は専門家の知識をあげられるように&lt;/li>
-&lt;li>リーダーが前線で直接確認することで、情報の正確さと問題解決の速度を上げる&lt;/li>
-&lt;li>リーダーは見たくない問題を解決する覚悟の強さが要求される&lt;/li>
-&lt;li>正しい警告を無視しない&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>評価制度は組織に対するメッセージ&lt;/li>
-&lt;li>居心地の良い安定にならず変化できる組織
-&lt;ul>
-&lt;li>異質な情報・知識の交流&lt;/li>
-&lt;li>権力構造の均衡破壊&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>万が一の想定を持っておく&lt;/li>
-&lt;/ul></description></item><item><title>5G</title><link>https://dyuji.dev/blog/memo/2021_1226_5g/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_5g/</guid><description>&lt;p>&lt;a href="https://www.amazon.co.jp/dp/B08CDN21X7/">5G 大容量・低遅延・多接続のしくみ&lt;/a>
-感想：5Gの普及でより情報量の多いコンテンツの配信等ができるようになるのは間違いない。今まで有線のPCでしか出来なかったことがスマホ端末でもできるようになっていくと思われるが、消費者的に一番恩恵を受けるのはゲームの分野かと思った。&lt;/p></description></item><item><title>dockerからlocalhostに接続</title><link>https://dyuji.dev/blog/memo/2021_1226_docker_localhost/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_docker_localhost/</guid><description>&lt;p>&lt;a href="https://qiita.com/Asayu123/items/ccfe4ccfc417ce57f445">Docker for Mac上のコンテナから、Mac上のアプリケーションに簡単に接続する方法&lt;/a>&lt;/p>
-&lt;ul>
-&lt;li>Mysqlに接続する例 DSN&lt;/li>
-&lt;/ul>
-&lt;pre tabindex="0">&lt;code>user1:password@tcp(docker.for.mac.localhost)/database_name
-&lt;/code>&lt;/pre></description></item><item><title>echoとbase64</title><link>https://dyuji.dev/blog/memo/2021_1226_echo_base64/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_echo_base64/</guid><description>&lt;ul>
-&lt;li>echoコマンドはデフォルトでは改行文字が含まれるため、暗号化時などに気をつける
-&lt;ul>
-&lt;li>これが原因でmysqlのdsnでエラーが発生した&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>改行なしオプションは-n&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>例&lt;/strong>&lt;/p></description></item><item><title>go testをDockerfileで実施する</title><link>https://dyuji.dev/blog/memo/2021_1226_gotest_and_docker/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_gotest_and_docker/</guid><description>&lt;ul>
-&lt;li>gorm v2がgo v1.14以降じゃないとビルドできない&lt;/li>
-&lt;li>Jenkinsサーバーがgo v1.12でgo testのときにエラーがでる&lt;/li>
-&lt;li>docker imageのビルドの時にgo imageでgo testがしたいができるのか?
-&lt;ul>
-&lt;li>テストが落ちたらビルドも止まるか&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h3 id="試作コード">試作コード&lt;/h3>
-&lt;p>&lt;strong>cmd/main.go&lt;/strong>&lt;/p></description></item><item><title>Golang memo</title><link>https://dyuji.dev/blog/memo/2021_1226_golang/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_golang/</guid><description>&lt;h1 id="golang-memo">Golang memo&lt;/h1>
-&lt;h2 id="他の言語からすると紛らわしい単語">他の言語からすると紛らわしい単語&lt;/h2>
-&lt;ul>
-&lt;li>map
-&lt;ul>
-&lt;li>Goでは辞書型&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>interface&lt;/li>
-&lt;/ul>
-&lt;h2 id="go">go&lt;/h2>
-&lt;ul>
-&lt;li>環境変数の場所を間違えない&lt;/li>
-&lt;li>基本wslで書いて検証したとしても、vscodeの補完に使うgoのライブラリたちはwindows本体側を参照しているのでちゃんと設定する&lt;/li>
-&lt;/ul>
-&lt;h2 id="switch-と-select">switch と select&lt;/h2>
-&lt;p>見た目が似てるけど、違う用途&lt;/p></description></item><item><title>iotaとエラーハンドリング</title><link>https://dyuji.dev/blog/memo/2021_1226_iota_and_error/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_iota_and_error/</guid><description>&lt;ul>
-&lt;li>
-&lt;p>&lt;a href="jwt.md">jwtのエラー&lt;/a>を調べている時に以下のコードを見て不思議に思った&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;a href="https://github.com/dgrijalva/jwt-go/blob/master/claims.go#L38-L52">dgrijalva/jwt-go/claims.go#L38-L52&lt;/a>&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">VerifyExpiresAt&lt;/span>(&lt;span style="color:#a6e22e">now&lt;/span>, &lt;span style="color:#66d9ef">false&lt;/span>) &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#66d9ef">false&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">delta&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Unix&lt;/span>(&lt;span style="color:#a6e22e">now&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>).&lt;span style="color:#a6e22e">Sub&lt;/span>(&lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Unix&lt;/span>(&lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">ExpiresAt&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>))
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">vErr&lt;/span>.&lt;span style="color:#a6e22e">Inner&lt;/span> = &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Errorf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;token is expired by %v&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">delta&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">vErr&lt;/span>.&lt;span style="color:#a6e22e">Errors&lt;/span> &lt;span style="color:#f92672">|=&lt;/span> &lt;span style="color:#a6e22e">ValidationErrorExpired&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">VerifyIssuedAt&lt;/span>(&lt;span style="color:#a6e22e">now&lt;/span>, &lt;span style="color:#66d9ef">false&lt;/span>) &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#66d9ef">false&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">vErr&lt;/span>.&lt;span style="color:#a6e22e">Inner&lt;/span> = &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Errorf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Token used before issued&amp;#34;&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">vErr&lt;/span>.&lt;span style="color:#a6e22e">Errors&lt;/span> &lt;span style="color:#f92672">|=&lt;/span> &lt;span style="color:#a6e22e">ValidationErrorIssuedAt&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">c&lt;/span>.&lt;span style="color:#a6e22e">VerifyNotBefore&lt;/span>(&lt;span style="color:#a6e22e">now&lt;/span>, &lt;span style="color:#66d9ef">false&lt;/span>) &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#66d9ef">false&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">vErr&lt;/span>.&lt;span style="color:#a6e22e">Inner&lt;/span> = &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Errorf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;token is not valid yet&amp;#34;&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">vErr&lt;/span>.&lt;span style="color:#a6e22e">Errors&lt;/span> &lt;span style="color:#f92672">|=&lt;/span> &lt;span style="color:#a6e22e">ValidationErrorNotValidYet&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
-&lt;li>
-&lt;p>goで&lt;code>|=&lt;/code>はOR演算子を表すが、エラーでなんでOR演算子を使うのか？&lt;/p></description></item><item><title>jwtの"Token used before issued" Error</title><link>https://dyuji.dev/blog/memo/2021_1226_jwt/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_jwt/</guid><description>&lt;ul>
-&lt;li>Token used before issued はjwtのParseの時iatが現在時刻より未来の場合発生する&lt;/li>
-&lt;li>サーバー間の時刻のずれでも発生するので注意する&lt;/li>
-&lt;li>Parseはerrorがnilでない時もtokenを返すので、後処理はできる&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">package&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> (
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;fmt&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;github.com/dgrijalva/jwt-go&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// iatが2030年になっている
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#a6e22e">tokenstring&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxOTE2MjM5MDIyfQ.jHQiBm09vEVjEx9347u2hU7LTreUVtEbWRPWrr9DG_A&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">secret&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;my_secret_token&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">token&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">tokenParse&lt;/span>(&lt;span style="color:#a6e22e">tokenstring&lt;/span>, []byte(&lt;span style="color:#a6e22e">secret&lt;/span>))
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Printf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Error:%v\n&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">claims&lt;/span>, &lt;span style="color:#a6e22e">ok&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">token&lt;/span>.&lt;span style="color:#a6e22e">Claims&lt;/span>.(&lt;span style="color:#a6e22e">jwt&lt;/span>.&lt;span style="color:#a6e22e">MapClaims&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">ok&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Println&lt;/span>(&lt;span style="color:#a6e22e">claims&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Println&lt;/span>(&lt;span style="color:#a6e22e">claims&lt;/span>[&lt;span style="color:#e6db74">&amp;#34;name&amp;#34;&lt;/span>])
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">tokenParse&lt;/span>(&lt;span style="color:#a6e22e">idToken&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span>, &lt;span style="color:#a6e22e">hmacSecret&lt;/span> []&lt;span style="color:#66d9ef">byte&lt;/span>) (&lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">jwt&lt;/span>.&lt;span style="color:#a6e22e">Token&lt;/span>, &lt;span style="color:#66d9ef">error&lt;/span>) {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">token&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">jwt&lt;/span>.&lt;span style="color:#a6e22e">Parse&lt;/span>(&lt;span style="color:#a6e22e">idToken&lt;/span>, &lt;span style="color:#66d9ef">func&lt;/span>(&lt;span style="color:#a6e22e">token&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">jwt&lt;/span>.&lt;span style="color:#a6e22e">Token&lt;/span>) (&lt;span style="color:#66d9ef">interface&lt;/span>{}, &lt;span style="color:#66d9ef">error&lt;/span>) {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// アルゴリズムの判定
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">_&lt;/span>, &lt;span style="color:#a6e22e">ok&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">token&lt;/span>.&lt;span style="color:#a6e22e">Method&lt;/span>.(&lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">jwt&lt;/span>.&lt;span style="color:#a6e22e">SigningMethodHMAC&lt;/span>); !&lt;span style="color:#a6e22e">ok&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span>, &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Errorf&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;unexpected signing method: %v&amp;#34;&lt;/span>, &lt;span style="color:#a6e22e">token&lt;/span>.&lt;span style="color:#a6e22e">Header&lt;/span>[&lt;span style="color:#e6db74">&amp;#34;alg&amp;#34;&lt;/span>])
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">hmacSecret&lt;/span>, &lt;span style="color:#66d9ef">nil&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> })
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">token&lt;/span>, &lt;span style="color:#a6e22e">err&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>mysqlのkey index</title><link>https://dyuji.dev/blog/memo/2021_1226_mysql_key_index/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_mysql_key_index/</guid><description>&lt;ul>
-&lt;li>describeはテーブル情報を出すが、複合キーの場合keyのカラムが1つのみmulになる&lt;/li>
-&lt;li>indexを全て確認する際はshow indexを使う&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sql" data-lang="sql">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">describe&lt;/span> &lt;span style="color:#66d9ef">table_name&lt;/span>;
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sql" data-lang="sql">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">show&lt;/span> &lt;span style="color:#66d9ef">index&lt;/span> &lt;span style="color:#66d9ef">from&lt;/span> &lt;span style="color:#66d9ef">table_name&lt;/span>;
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>例&lt;/p></description></item><item><title>Terraform 勉強</title><link>https://dyuji.dev/blog/memo/2021_1226_gcp_tutorial_memo/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_gcp_tutorial_memo/</guid><description>&lt;h1 id="terraform-勉強">Terraform 勉強&lt;/h1>
-&lt;h2 id="introduction-to-infrastructure-as-code-with-terraform">Introduction to Infrastructure as Code with Terraform&lt;/h2>
-&lt;ul>
-&lt;li>
-&lt;p>Infrastructure as Code(IaC)&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>Terraformはproviderと呼ばれるTerraformプラグインでAPIを呼び出し、インフラの操作をする&lt;/p>
-&lt;ul>
-&lt;li>AWS GCP Azureなど有名なもののproviderは作成されている&lt;/li>
-&lt;li>独自でproviderを作成することも可能&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>providerがインフラの要素をresourceとして定義&lt;/p></description></item><item><title>time</title><link>https://dyuji.dev/blog/memo/2021_1226_time/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_time/</guid><description>&lt;h1 id="time">time&lt;/h1>
-&lt;ul>
-&lt;li>timeパッケージはデフォルトがmsなので注意する&lt;/li>
-&lt;/ul></description></item><item><title>URL Encode</title><link>https://dyuji.dev/blog/memo/2021_1226_urlencode/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_urlencode/</guid><description>&lt;ul>
-&lt;li>net/urlパッケージのURLエンコードは2種類&lt;/li>
-&lt;li>url.QueryEscape()
-&lt;ul>
-&lt;li>スペースが+になる&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>url.PathEscape()
-&lt;ul>
-&lt;li>スペースが%20になる&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;a href="https://text.baldanders.info/golang/uri-encoding/">こちらに詳しい URI エンコーディングについて&lt;/a>&lt;/p>
-&lt;ul>
-&lt;li>url.EncodeではQueryEscapeの方が使われているため、URLの+を変換したいときは正規表現を用いる&lt;/li>
-&lt;/ul>
-&lt;p>&lt;a href="https://cipepser.hatenablog.com/entry/2017/07/29/083729">こちらに詳しい&lt;/a>&lt;/p></description></item><item><title>WIP スタートアップ企業の業績決定要因 -質的比較分析(QCA)によるアプローチ</title><link>https://dyuji.dev/blog/memo/2021_1226_start_up/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_start_up/</guid><description>&lt;p>&lt;a href="https://www.jstage.jst.go.jp/article/keieijournal/42/0/42_40/_article/-char/ja/">https://www.jstage.jst.go.jp/article/keieijournal/42/0/42_40/_article/-char/ja/&lt;/a>
-2019 年 42 巻 p. 40-51&lt;/p>
-&lt;ul>
-&lt;li>中小企業の業績に影響を与える要因
-&lt;ul>
-&lt;li>企業家の特性&lt;/li>
-&lt;li>リーダーシップ&lt;/li>
-&lt;li>経営資源&lt;/li>
-&lt;li>戦略&lt;/li>
-&lt;li>社会的関係資本&lt;/li>
-&lt;li>創業者の年齢&lt;/li>
-&lt;li>成長指向&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>開業から28カ月以内のスタートアップ&lt;/p></description></item><item><title>チャネルの受信とClose</title><link>https://dyuji.dev/blog/memo/2022_1226_channel_receive/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2022_1226_channel_receive/</guid><description>&lt;ul>
-&lt;li>チャネルはCloseしたら0値を返すので、受信側がCloseかどうかは第二引数をとって判別する&lt;/li>
-&lt;/ul>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">package&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> (
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;fmt&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#e6db74">&amp;#34;time&amp;#34;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">A&lt;/span>(&lt;span style="color:#a6e22e">ch&lt;/span> &lt;span style="color:#66d9ef">chan&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span>) {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">select&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> &lt;span style="color:#a6e22e">v&lt;/span>, &lt;span style="color:#a6e22e">ok&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#f92672">&amp;lt;-&lt;/span>&lt;span style="color:#a6e22e">ch&lt;/span>:
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Println&lt;/span>(&lt;span style="color:#a6e22e">v&lt;/span>, &lt;span style="color:#a6e22e">ok&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">ch&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> make(&lt;span style="color:#66d9ef">chan&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span>, &lt;span style="color:#ae81ff">10&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">go&lt;/span> &lt;span style="color:#a6e22e">A&lt;/span>(&lt;span style="color:#a6e22e">ch&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> &lt;span style="color:#a6e22e">i&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>; &lt;span style="color:#a6e22e">i&lt;/span> &lt;span style="color:#f92672">&amp;lt;=&lt;/span> &lt;span style="color:#ae81ff">5&lt;/span>; &lt;span style="color:#a6e22e">i&lt;/span>&lt;span style="color:#f92672">++&lt;/span> {
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">ch&lt;/span> &lt;span style="color:#f92672">&amp;lt;-&lt;/span> &lt;span style="color:#a6e22e">i&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> close(&lt;span style="color:#a6e22e">ch&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Sleep&lt;/span>(&lt;span style="color:#ae81ff">100&lt;/span> &lt;span style="color:#f92672">*&lt;/span> &lt;span style="color:#a6e22e">time&lt;/span>.&lt;span style="color:#a6e22e">Microsecond&lt;/span>)
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>結果&lt;/p></description></item><item><title>デバッグ</title><link>https://dyuji.dev/blog/memo/2021_1226_debug/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_debug/</guid><description>&lt;ul>
-&lt;li>変更でエラーが発生するようになった時は正しく動いていたversionまで遡ってみる&lt;/li>
-&lt;li>大きな変更に注意する
-&lt;ul>
-&lt;li>ライブラリのメジャーバージョンアップ&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>変更の履歴をちゃんと残す&lt;/li>
-&lt;/ul></description></item><item><title>価値観をアップデートしていくにはどうするべきか(仮)</title><link>https://dyuji.dev/blog/memo/2021_1226_update_values/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_update_values/</guid><description>&lt;h2 id="価値観をアップデートしていくにはどうするべきか仮">価値観をアップデートしていくにはどうするべきか(仮)&lt;/h2>
-&lt;ul>
-&lt;li>軸を増やす&lt;/li>
-&lt;li>未知の体験&lt;/li>
-&lt;li>サンプリングを変える&lt;/li>
-&lt;/ul></description></item><item><title>外国語学習に成功する人，しない人 第二言語習得論への招待</title><link>https://dyuji.dev/blog/memo/2021_1226_foreign_language/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_foreign_language/</guid><description>&lt;p>from &lt;a href="https://www.iwanami.co.jp/book/b265858.html">外国語学習に成功する人，しない人 第二言語習得論への招待&lt;/a>&lt;/p>
-&lt;ul>
-&lt;li>インプット
-&lt;ul>
-&lt;li>背景知識がある題材を選ぶと良い&lt;/li>
-&lt;li>リスニングは80％くらいわかる教材を何度も聞く方がよい&lt;/li>
-&lt;li>リスニングのスクリプトを読んで理解してから再度聞いてみる&lt;/li>
-&lt;li>外国語で情報を収集する&lt;/li>
-&lt;li>ほとんどわからないものでも、聞かないより聞いた方がいい&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>アウトプット
-&lt;ul>
-&lt;li>アウトプット(話すこと、書くこと)は、毎日少しづつでもやる&lt;/li>
-&lt;li>話す練習はまずは意味を通じさせること、次に正しい文を意識する&lt;/li>
-&lt;li>話すときにコミュニケーションストラテジー(間の語)を話して時間を稼ぐ&lt;/li>
-&lt;li>言いたい単語が思いつかない時は別の簡単な表現で言い換える&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>単語の学習
-&lt;ul>
-&lt;li>文脈の中で覚える&lt;/li>
-&lt;li>丸暗記はなるべく避ける&lt;/li>
-&lt;li>知らない単語はなるべく推測する&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>発音・音声
-&lt;ul>
-&lt;li>難しい発音は意識しておき(lとrなど)、意識すればできるようにする&lt;/li>
-&lt;li>意味文法などを理解している文の音声をできるだけ正確に真似て練習する&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>文法
-&lt;ul>
-&lt;li>基本的なものを文をつくりアウトプットできるレベルに&lt;/li>
-&lt;li>説明を読んでも分からないものは無視&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>動機付け
-&lt;ul>
-&lt;li>高める工夫する
-&lt;ul>
-&lt;li>授業をとる、仲間とやる、好きな内容を使う、資格を受ける、外国語のことに興味を持つ&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul></description></item><item><title>図解 モチベーション大百科</title><link>https://dyuji.dev/blog/memo/2021_1226_motivation/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_motivation/</guid><description>&lt;h2 id="目標設定のコツ">目標設定のコツ&lt;/h2>
-&lt;p>&lt;a href="https://www.amazon.co.jp/dp/B0748CWPVS">図解 モチベーション大百科&lt;/a>より&lt;/p>
-&lt;ul>
-&lt;li>目標を具体的な数値に変える
-&lt;ul>
-&lt;li>数値にする(割合、時刻など)&lt;/li>
-&lt;li>最大値、最小値の範囲で予測する&lt;/li>
-&lt;li>多めに目標を持つ&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>期待をもって行動する
-&lt;ul>
-&lt;li>運が良いと思う&lt;/li>
-&lt;li>学べることがあると思い行動する&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>締め切りは細かく区切る
-&lt;ul>
-&lt;li>タスクを分解する&lt;/li>
-&lt;li>締め切りをつける&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>行動する理由を考えるより、行動のための手順を書く
-&lt;ul>
-&lt;li>やることを書き出すのと、遂行することを分ける&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul></description></item><item><title>Googleドメインの設定</title><link>https://dyuji.dev/blog/memo/2020_1130_domain/</link><pubDate>Mon, 30 Nov 2020 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2020_1130_domain/</guid><description>&lt;p>&lt;a href="https://domains.google/intl/ja_jp/">Google Domain&lt;/a>にてドメインを購入しました。
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Blogs on dyuji.dev</title><link>https://dyuji.dev/blog/</link><description>Recent content in Blogs on dyuji.dev</description><generator>Hugo -- 0.150.1</generator><language>ja</language><lastBuildDate>Thu, 02 Oct 2025 15:15:00 +0900</lastBuildDate><atom:link href="https://dyuji.dev/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>Golang Tokyo #41 参加メモ</title><link>https://dyuji.dev/blog/memo/2025_0929_golang.tokyo/</link><pubDate>Thu, 02 Oct 2025 15:15:00 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2025_0929_golang.tokyo/</guid><description>&lt;h1 id="golangtokyo-41"&gt;golang.tokyo #41&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Goコミュニティの技術談義&lt;/li&gt;
+&lt;li&gt;今回はGMOベパポ主催&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://golangtokyo.connpass.com/event/366620/"&gt;イベントURL&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="lt1-go-embedでwasm埋め込み"&gt;LT1 Go Embedでwasm埋め込み&lt;/h2&gt;
+&lt;script async class="docswell-embed" src="https://www.docswell.com/assets/libs/docswell-embed/docswell-embed.min.js" data-src="https://www.docswell.com/slide/KLV6VQ/embed" data-aspect="0.5625"&gt;&lt;/script&gt;&lt;div class="docswell-link"&gt;&lt;a href="https://www.docswell.com/s/7328957/KLV6VQ-2025-09-30-073314"&gt;Go Embedでwasm埋め込み by @7328957&lt;/a&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;竹田さん&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;株式会社ラクス&lt;/p&gt;</description></item><item><title>Hugoの改善</title><link>https://dyuji.dev/blog/memo/2025_0102_hugo/</link><pubDate>Thu, 02 Jan 2025 19:00:00 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2025_0102_hugo/</guid><description>&lt;h1 id="hugoの改善"&gt;Hugoの改善&lt;/h1&gt;
+&lt;h2 id="hugo単体のバージョンアップ"&gt;Hugo単体のバージョンアップ&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;aptでインストールできるバージョンが古いので手動でインストール
+&lt;ul&gt;
+&lt;li&gt;参考→ &lt;a href="https://gkzz.dev/posts/hugo-installation-on-ubuntu/"&gt;https://gkzz.dev/posts/hugo-installation-on-ubuntu/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;wget https://github.com/gohugoio/hugo/releases/download/v0.140.2/hugo_0.140.2_linux-amd64.deb
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;sudo dpkg -i hugo_0.140.2_linux-amd64.deb
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;hugo version
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="tagページとsearchページの追加"&gt;tagページとsearchページの追加&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;config.ymlに以下を追記&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-yml" data-lang="yml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - &lt;span style="color:#f92672"&gt;identifier&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;search&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;name&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;search&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;url&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;/search&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; - &lt;span style="color:#f92672"&gt;identifier&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;tags&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;name&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;tags&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;url&lt;/span&gt;: &lt;span style="color:#ae81ff"&gt;/tags/&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="iframeの表示"&gt;iframeの表示&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;config.ymlに以下を追記&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-yml" data-lang="yml"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;markup&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;goldmark&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;renderer&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#f92672"&gt;unsafe&lt;/span&gt;: &lt;span style="color:#66d9ef"&gt;true&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id="グラフ"&gt;グラフ&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;goat記法が使える
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/bep/goat"&gt;https://github.com/bep/goat&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="goat svg-container "&gt;
+&lt;svg
+xmlns="http://www.w3.org/2000/svg"
+font-family="Menlo,Lucida Console,monospace"
+viewBox="0 0 680 121"
+&gt;
+&lt;g transform='translate(8,16)'&gt;
+&lt;path d='M 440,0 L 464,0' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 576,0 L 584,0' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 408,16 L 440,16' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 552,16 L 560,16' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 144,32 L 176,32' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 176,32 L 208,32' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 296,32 L 312,32' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 312,32 L 328,32' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 440,32 L 464,32' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 576,32 L 584,32' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 384,48 L 408,48' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 512,48 L 536,48' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 128,64 L 144,64' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 144,64 L 160,64' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 192,64 L 208,64' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 208,64 L 224,64' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 440,64 L 464,64' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 576,64 L 584,64' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 408,80 L 440,80' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 552,80 L 560,80' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 440,96 L 464,96' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 576,96 L 584,96' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 128,64 L 128,80' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 144,32 L 144,64' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 160,64 L 160,80' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 176,0 L 176,32' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 192,64 L 192,80' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 208,32 L 208,64' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 224,64 L 224,80' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 280,48 L 280,64' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 312,0 L 312,32' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 344,48 L 344,64' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 408,16 L 408,48' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 408,48 L 408,80' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 440,0 L 440,16' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 440,16 L 440,32' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 440,64 L 440,80' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 440,80 L 440,96' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 536,32 L 536,48' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 536,48 L 536,64' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 8,80 L 24,48' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 24,48 L 48,0' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 56,80 L 72,48' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 624,48 L 640,16' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 640,16 L 648,0' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 640,80 L 648,64' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 24,48 L 40,80' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 48,0 L 72,48' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 72,48 L 88,80' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 624,48 L 640,80' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 640,80 L 648,96' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 640,16 L 648,32' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 576,0 A 16,16 0 0,0 560,16' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 552,16 A 16,16 0 0,0 536,32' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 296,32 A 16,16 0 0,0 280,48' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 328,32 A 16,16 0 0,1 344,48' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 560,16 A 16,16 0 0,0 576,32' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 280,64 A 16,16 0 0,0 264,80' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 280,64 A 16,16 0 0,1 296,80' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 344,64 A 16,16 0 0,0 328,80' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 344,64 A 16,16 0 0,1 360,80' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 576,64 A 16,16 0 0,0 560,80' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 536,64 A 16,16 0 0,0 552,80' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;path d='M 560,80 A 16,16 0 0,0 576,96' fill='none' stroke='currentColor'&gt;&lt;/path&gt;
+&lt;text text-anchor='middle' x='8' y='100' fill='currentColor' style='font-size:1em'&gt;1&lt;/text&gt;
+&lt;text text-anchor='middle' x='40' y='100' fill='currentColor' style='font-size:1em'&gt;2&lt;/text&gt;
+&lt;text text-anchor='middle' x='56' y='100' fill='currentColor' style='font-size:1em'&gt;3&lt;/text&gt;
+&lt;text text-anchor='middle' x='88' y='100' fill='currentColor' style='font-size:1em'&gt;4&lt;/text&gt;
+&lt;text text-anchor='middle' x='128' y='100' fill='currentColor' style='font-size:1em'&gt;1&lt;/text&gt;
+&lt;text text-anchor='middle' x='160' y='100' fill='currentColor' style='font-size:1em'&gt;2&lt;/text&gt;
+&lt;text text-anchor='middle' x='192' y='100' fill='currentColor' style='font-size:1em'&gt;3&lt;/text&gt;
+&lt;text text-anchor='middle' x='224' y='100' fill='currentColor' style='font-size:1em'&gt;4&lt;/text&gt;
+&lt;text text-anchor='middle' x='264' y='100' fill='currentColor' style='font-size:1em'&gt;1&lt;/text&gt;
+&lt;text text-anchor='middle' x='296' y='100' fill='currentColor' style='font-size:1em'&gt;2&lt;/text&gt;
+&lt;text text-anchor='middle' x='328' y='100' fill='currentColor' style='font-size:1em'&gt;3&lt;/text&gt;
+&lt;text text-anchor='middle' x='360' y='100' fill='currentColor' style='font-size:1em'&gt;4&lt;/text&gt;
+&lt;text text-anchor='middle' x='480' y='4' fill='currentColor' style='font-size:1em'&gt;1&lt;/text&gt;
+&lt;text text-anchor='middle' x='480' y='36' fill='currentColor' style='font-size:1em'&gt;2&lt;/text&gt;
+&lt;text text-anchor='middle' x='480' y='68' fill='currentColor' style='font-size:1em'&gt;3&lt;/text&gt;
+&lt;text text-anchor='middle' x='480' y='100' fill='currentColor' style='font-size:1em'&gt;4&lt;/text&gt;
+&lt;text text-anchor='middle' x='600' y='4' fill='currentColor' style='font-size:1em'&gt;1&lt;/text&gt;
+&lt;text text-anchor='middle' x='600' y='36' fill='currentColor' style='font-size:1em'&gt;2&lt;/text&gt;
+&lt;text text-anchor='middle' x='600' y='68' fill='currentColor' style='font-size:1em'&gt;3&lt;/text&gt;
+&lt;text text-anchor='middle' x='600' y='100' fill='currentColor' style='font-size:1em'&gt;4&lt;/text&gt;
+&lt;text text-anchor='middle' x='664' y='4' fill='currentColor' style='font-size:1em'&gt;1&lt;/text&gt;
+&lt;text text-anchor='middle' x='664' y='36' fill='currentColor' style='font-size:1em'&gt;2&lt;/text&gt;
+&lt;text text-anchor='middle' x='664' y='68' fill='currentColor' style='font-size:1em'&gt;3&lt;/text&gt;
+&lt;text text-anchor='middle' x='664' y='100' fill='currentColor' style='font-size:1em'&gt;4&lt;/text&gt;
+&lt;/g&gt;
+&lt;/svg&gt;
+&lt;/div&gt;</description></item><item><title>t_wadaさんが後世に残したい実録レガシーコード改善</title><link>https://dyuji.dev/blog/memo/2024_0308_legacy/</link><pubDate>Fri, 08 Mar 2024 19:44:33 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2024_0308_legacy/</guid><description>&lt;p&gt;2024/01/15 &lt;a href="https://www.youtube.com/watch?v=WQRU_BJaVoU"&gt;youtube 録画&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://findy.connpass.com/event/304101/"&gt;イベント情報&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id="実録レガシーコード改善"&gt;実録レガシーコード改善&lt;/h2&gt;
+&lt;p&gt;twadaさん(和田卓人さん)&lt;/p&gt;
+&lt;iframe class="speakerdeck-iframe" frameborder="0" src="https://speakerdeck.com/player/31a5f9cf7de2438b94c66deb15c83511" title="実録レガシーコード改善 / Working with Legacy Code: the True Record" allowfullscreen="true" style="border: 0px; background: padding-box padding-box rgba(0, 0, 0, 0.1); margin: 0px; padding: 0px; border-radius: 6px; box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 40px; width: 100%; height: auto; aspect-ratio: 560 / 315;" data-ratio="1.7777777777777777"&gt;&lt;/iframe&gt;
+&lt;ul&gt;
+&lt;li&gt;チャット実況してほしい&lt;/li&gt;
+&lt;li&gt;スクショOK&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="講演の背景"&gt;講演の背景&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;以前実施した講演の改訂版&lt;/li&gt;
+&lt;li&gt;前回の講演が映像に残っていないので残したい&lt;/li&gt;
+&lt;li&gt;2018年に実際に行った受託開発
+&lt;ul&gt;
+&lt;li&gt;プロダクトオーナー許可済み&lt;/li&gt;
+&lt;li&gt;コードは本物を使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;技術が2018のものなので若干古い&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="シナリオ"&gt;シナリオ&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;スマートスピーカーの開発(都道府県クイズ)&lt;/p&gt;</description></item><item><title>Go_prog_forkwell_27</title><link>https://dyuji.dev/blog/memo/2023_0708_go_prog_forkwell27/</link><pubDate>Sat, 08 Jul 2023 19:44:33 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2023_0708_go_prog_forkwell27/</guid><description>&lt;h1 id="go言語プログラミングエッセンス---forkwell-library27"&gt;Go言語プログラミングエッセンス - Forkwell Library#27&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://forkwell.connpass.com/event/288035/"&gt;イベント内容&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://t.co/Iz5nswgxtz"&gt;動画アーカイブ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;モデレーター &lt;a href="https://twitter.com/shibu_jp"&gt;渋川さん&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="go-言語で楽しくなるシステム開発"&gt;Go 言語で楽しくなるシステム開発&lt;/h2&gt;
+&lt;h3 id="自己紹介"&gt;自己紹介&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://twitter.com/mattn_jp"&gt;mattn&lt;/a&gt;さん
+&lt;ul&gt;
+&lt;li&gt;Go言語プログラミングエッセンス著者&lt;/li&gt;
+&lt;li&gt;Google open source expert&lt;/li&gt;
+&lt;li&gt;Go歴 13年&lt;/li&gt;
+&lt;li&gt;Software Design
+&lt;ul&gt;
+&lt;li&gt;nostrの連載&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="概要"&gt;概要&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;簡単な説明&lt;/li&gt;
+&lt;li&gt;特徴&lt;/li&gt;
+&lt;li&gt;Explicit is better than implicit&lt;/li&gt;
+&lt;li&gt;非同期プログラミング&lt;/li&gt;
+&lt;li&gt;最新のGo&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="goについて"&gt;Goについて&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;C言語の構文を意識しつつ、簡単な文法でコーディングできる&lt;/li&gt;
+&lt;li&gt;すでにいろんな会社で利用&lt;/li&gt;
+&lt;li&gt;プログラミング環境を改善する目的
+&lt;ul&gt;
+&lt;li&gt;C言語を設計した世界的エンジニアで知られる人が関わっている&lt;/li&gt;
+&lt;li&gt;Unixらしさ&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;使用例
+&lt;ul&gt;
+&lt;li&gt;CLI&lt;/li&gt;
+&lt;li&gt;Webサーバー&lt;/li&gt;
+&lt;li&gt;バックエンド&lt;/li&gt;
+&lt;li&gt;広告配信&lt;/li&gt;
+&lt;li&gt;ハードウェア制御&lt;/li&gt;
+&lt;li&gt;機械学習&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="特徴"&gt;特徴&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;静的型付けコンパイル言語&lt;/li&gt;
+&lt;li&gt;スタティックバイナリ&lt;/li&gt;
+&lt;li&gt;C言語風でありながら、GC&lt;/li&gt;
+&lt;li&gt;非同期を簡単に扱えるランタイム&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="explicit-is-better-than-implicit"&gt;Explicit is better than implicit&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;曖昧より明確のほうがいいよね&lt;/li&gt;
+&lt;li&gt;RobPike氏が良く言うこと&lt;/li&gt;
+&lt;li&gt;ex) error ハンドリング&lt;/li&gt;
+&lt;li&gt;Goは例外を扱わない&lt;/li&gt;
+&lt;li&gt;result typeを扱わない&lt;/li&gt;
+&lt;li&gt;errorが返ってきたら処理する&lt;/li&gt;
+&lt;li&gt;Goでバグを生み出さないコツ
+&lt;ul&gt;
+&lt;li&gt;すべてのerrorを明示的に対処し暗黙をなくす
+&lt;ul&gt;
+&lt;li&gt;deferをうまく使うことでエラーを減らす&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;errorを受け取ったら、処理を中断し、呼び出し元へ返す&lt;/li&gt;
+&lt;li&gt;→必然的にearly return&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Goが優先したもの
+&lt;ul&gt;
+&lt;li&gt;読みやすさ
+&lt;ul&gt;
+&lt;li&gt;声に出して読めるくらい&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;学びやすさ&lt;/li&gt;
+&lt;li&gt;開発者が明示的に処理を中断させる&lt;/li&gt;
+&lt;li&gt;予約語を増やさない
+&lt;ul&gt;
+&lt;li&gt;複雑さを減らす&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;開発者が意思決定するプログラミング&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="非同期プログラミングの良さ"&gt;非同期プログラミングの良さ&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;ハードウェアが高性能化&lt;/li&gt;
+&lt;li&gt;非同期は難しい&lt;/li&gt;
+&lt;li&gt;Goの仕組み
+&lt;ul&gt;
+&lt;li&gt;goroutine&lt;/li&gt;
+&lt;li&gt;channel
+&lt;ul&gt;
+&lt;li&gt;リレーのバトンのようなもの&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;気をつけること
+&lt;ul&gt;
+&lt;li&gt;並列と並行は違う&lt;/li&gt;
+&lt;li&gt;スレッドを増やすプログラミング言語
+&lt;ul&gt;
+&lt;li&gt;CPUコアに固定されない。空いたコアが次を担当する
+&lt;ul&gt;
+&lt;li&gt;CPUコアを有効に活用する&lt;/li&gt;
+&lt;li&gt;C言語でやると難しい
+&lt;ul&gt;
+&lt;li&gt;コンテキストスイッチのコストが発生してしまう&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Goのスレッドは軽量なので、多く使っても大丈夫&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;スケールに対応しやすいのでクラウド向き&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="go-121でくるもの"&gt;go 1.21でくるもの&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;min/max
+&lt;ul&gt;
+&lt;li&gt;数値、文字列など&lt;/li&gt;
+&lt;li&gt;実装するとinterface{}をつかうとコンパイルで気づけない&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;clear
+&lt;ul&gt;
+&lt;li&gt;mapやスライスを空にできる
+&lt;ul&gt;
+&lt;li&gt;スライスの長さが変わらない&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;配列はできない&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;loopvar
+&lt;ul&gt;
+&lt;li&gt;まだ仮
+&lt;ul&gt;
+&lt;li&gt;検証中&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;並列で動かすときに、ループ変数が回り終わった状態で参照していしまうのの対処&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;pgo
+&lt;ul&gt;
+&lt;li&gt;コンパイラによるプロファイルベースの最適化&lt;/li&gt;
+&lt;li&gt;pprofの結果からホットパスをインライン化する
+&lt;ul&gt;
+&lt;li&gt;pprofの結果を読み込んでbuildすると最適化&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;slog
+&lt;ul&gt;
+&lt;li&gt;構造化ログを出力できるように&lt;/li&gt;
+&lt;li&gt;ログレベルも設定&lt;/li&gt;
+&lt;li&gt;スレッドセーフ&lt;/li&gt;
+&lt;li&gt;出力先変更可能&lt;/li&gt;
+&lt;li&gt;グルーピング&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;maps
+&lt;ul&gt;
+&lt;li&gt;型パラメータを使ったmap操作関数&lt;/li&gt;
+&lt;li&gt;genericsができたので&lt;/li&gt;
+&lt;li&gt;key一覧、value一覧をとることができる&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Slices
+&lt;ul&gt;
+&lt;li&gt;slice処理をかける&lt;/li&gt;
+&lt;li&gt;delete, insert, reverse, binarySearch, contains&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;wasi
+&lt;ul&gt;
+&lt;li&gt;wasmの実行環境がブラウザ依存だった&lt;/li&gt;
+&lt;li&gt;wasmを読み込んでgoで直感的にできるように
+&lt;ul&gt;
+&lt;li&gt;標準ライブラリにほぼ対応&lt;/li&gt;
+&lt;li&gt;利用できない/システムコールが必要なおの
+&lt;ul&gt;
+&lt;li&gt;net/http&lt;/li&gt;
+&lt;li&gt;os&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;エッジコンピューティングがしやすくなる&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;(youtubeアンケート、職務内容)&lt;/p&gt;</description></item><item><title>エンジニアの処方箋 #1 〜エンジニアのメンタルヘルスを考える〜 視聴メモ</title><link>https://dyuji.dev/blog/memo/2023_0307_mental/</link><pubDate>Tue, 07 Mar 2023 23:15:00 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2023_0307_mental/</guid><description>&lt;h1 id="エンジニアの処方箋-1-エンジニアのメンタルヘルスを考える"&gt;エンジニアの処方箋 #1 〜エンジニアのメンタルヘルスを考える〜&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://forkwell.connpass.com/event/273206/"&gt;イベントURL&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;3/7に実施されたイベントの録画を視聴した&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.youtube.com/watch?v=4_j1KanWkQ8"&gt;動画URL&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="エンジニアのメンタル不調対策"&gt;エンジニアのメンタル不調対策&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;榎本 純也氏&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://twitter.com/ej_appdate"&gt;https://twitter.com/ej_appdate&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;メンタルヘルスはエンジニアにも必要となる知識&lt;/p&gt;</description></item><item><title>AWS Tech talk Night#5</title><link>https://dyuji.dev/blog/memo/2023_0125_aws_tech_talk_night_5/</link><pubDate>Wed, 25 Jan 2023 19:00:47 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2023_0125_aws_tech_talk_night_5/</guid><description>&lt;h1 id="aws-tech-talk-night5-クラウドネイティブ時代のエンジニアが押さえておきたい-ソフトウェアの構築運用で考慮すべき5つのポイント-awsプリンシパルエンジニアの技術記事をソリューションアーキテクトが解説"&gt;AWS Tech talk Night#5 クラウドネイティブ時代のエンジニアが押さえておきたい ソフトウェアの構築・運用で考慮すべき5つのポイント &lt;del&gt;AWSプリンシパルエンジニアの技術記事をソリューションアーキテクトが解説&lt;/del&gt;&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;1/25にZoomウェビナーで実施された、AWSのイベント&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://techplay.jp/event/885662?utm_source=eventRemind&amp;amp;utm_medium=email&amp;amp;utm_campaign=tp_20230124"&gt;イベントURL&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="概要"&gt;概要&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;AWS Japan 千葉さん&lt;/p&gt;</description></item><item><title>実用Go言語 Forkwell Library #7</title><link>https://dyuji.dev/blog/memo/2022_1026_forkwell_library7/</link><pubDate>Wed, 26 Oct 2022 19:56:43 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2022_1026_forkwell_library7/</guid><description>&lt;h1 id="実用go言語-forkwell-library-7"&gt;実用Go言語 Forkwell Library #7&lt;/h1&gt;
+&lt;h2 id="基調講演"&gt;基調講演&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://twitter.com/search?q=%23Forkwell_Library&amp;amp;src=typed_query&amp;amp;f=live"&gt;#Forkwell_Library&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;3人の著者による発表&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;渋川さん&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Honda&lt;/li&gt;
+&lt;li&gt;DeNA&lt;/li&gt;
+&lt;li&gt;FutureArchitect&lt;/li&gt;
+&lt;li&gt;趣味 インラインスケート&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;辻さん&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;渋谷区の公務員からフューチャー&lt;/li&gt;
+&lt;li&gt;趣味 競技プログラミング、筋トレ&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;真野さん&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;新卒でフューチャーで13年くらい&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;フューチャーのかるい紹介&lt;/p&gt;</description></item><item><title>Docker×Goのマルチステージビルドで必要になるcgoのオプションについて</title><link>https://dyuji.dev/blog/memo/2022_0504_cgo/</link><pubDate>Wed, 04 May 2022 23:51:56 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2022_0504_cgo/</guid><description>&lt;h2 id="dockergoのマルチステージビルドで必要になるcgoのオプションについて"&gt;Docker×Goのマルチステージビルドで必要になるcgoのオプションについて&lt;/h2&gt;
+&lt;h3 id="背景"&gt;背景&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Dockerfileでマルチステージビルドの構築をしていたが、DockerImageのビルドに成功するも、docker runでエラーが出て動かなかった&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-dockerfile" data-lang="dockerfile"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; &lt;span style="color:#e6db74"&gt;golang:1.18&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;as&lt;/span&gt; &lt;span style="color:#e6db74"&gt;builder&lt;/span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;&lt;/span&gt;&lt;span style="color:#66d9ef"&gt;WORKDIR&lt;/span&gt; &lt;span style="color:#e6db74"&gt;/go/src&lt;/span&gt;/&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;&lt;/span&gt;&lt;span style="color:#66d9ef"&gt;COPY&lt;/span&gt; . ./&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;&lt;/span&gt;&lt;span style="color:#66d9ef"&gt;RUN&lt;/span&gt; go mod download&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;&lt;/span&gt;&lt;span style="color:#66d9ef"&gt;RUN&lt;/span&gt; go build -v -o server ./cmd&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;&lt;/span&gt;&lt;span style="color:#66d9ef"&gt;FROM&lt;/span&gt; &lt;span style="color:#e6db74"&gt;alpine:latest&lt;/span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;&lt;/span&gt;&lt;span style="color:#66d9ef"&gt;RUN&lt;/span&gt; apk --no-cache add ca-certificates&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;&lt;/span&gt;&lt;span style="color:#66d9ef"&gt;WORKDIR&lt;/span&gt; &lt;span style="color:#e6db74"&gt;/root&lt;/span&gt;/&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;&lt;/span&gt;&lt;span style="color:#66d9ef"&gt;COPY&lt;/span&gt; --from&lt;span style="color:#f92672"&gt;=&lt;/span&gt;builder /go/src/server ./&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;&lt;/span&gt;&lt;span style="color:#66d9ef"&gt;EXPOSE&lt;/span&gt; &lt;span style="color:#e6db74"&gt;8080&lt;/span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#960050;background-color:#1e0010"&gt;&lt;/span&gt;&lt;span style="color:#66d9ef"&gt;CMD&lt;/span&gt; [&lt;span style="color:#e6db74"&gt;&amp;#34;./server&amp;#34;&lt;/span&gt;]&lt;span style="color:#960050;background-color:#1e0010"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;エラーメッセージ&lt;/p&gt;</description></item><item><title>Fabric_subprocess</title><link>https://dyuji.dev/blog/memo/2022_0303_fabric_subprocess/</link><pubDate>Thu, 03 Mar 2022 01:45:02 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2022_0303_fabric_subprocess/</guid><description>&lt;h2 id="python2で使うfabricとsubprocessはエラーハンドリングに気をつける"&gt;Python2で使うfabricとsubprocessはエラーハンドリングに気をつける&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://fabric-ja.readthedocs.io/ja/latest/tutorial.html"&gt;Fabric&lt;/a&gt;は、アプリケーションのデプロイやシステム管理のタスクのためにSSHの利用を簡素化するためのPython2系のライブラリとコマンドラインのツール&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;fab {method}でコマンドラインスクリプトで呼び出しができる&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pythonの&lt;a href="https://docs.python.org/ja/3/library/subprocess.html"&gt;subprocess&lt;/a&gt;はサブプロセスを起動するためのモジュール。python内からコマンド実行するのに使う&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;この2つの組み合わせでのエラーハンドリングには気をつける&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;fab_test.py&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-py" data-lang="py"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;from&lt;/span&gt; fabric.api &lt;span style="color:#f92672"&gt;import&lt;/span&gt; local
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;def&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;hello&lt;/span&gt;():
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; local(&lt;span style="color:#e6db74"&gt;&amp;#34;exit 1&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;cmd.py&lt;/p&gt;</description></item><item><title>Grpc</title><link>https://dyuji.dev/blog/memo/2021_1230_grpc/</link><pubDate>Thu, 30 Dec 2021 11:14:06 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1230_grpc/</guid><description>&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;grpcチュートリアルメモ&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/ymmt2005/grpc-tutorial"&gt;https://github.com/ymmt2005/grpc-tutorial&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Remote Procedure Call&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;リモートで呼び出しする手順&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;gRPC&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Googleで開発された多言語間のRPCを実現するプロトコル&lt;/li&gt;
+&lt;li&gt;多言語対応であることが特徴&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;IDL(interface definition language)&lt;/p&gt;</description></item><item><title>Jmeter Hash</title><link>https://dyuji.dev/blog/memo/2021_1228_jmeter_hash/</link><pubDate>Tue, 28 Dec 2021 23:46:09 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1228_jmeter_hash/</guid><description>&lt;ul&gt;
+&lt;li&gt;JMeterのシナリオで変数をHash化する時はBeanShell PreProcesserを使う&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-java" data-lang="java"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;import&lt;/span&gt; java.security.MessageDigest;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;String token &lt;span style="color:#f92672"&gt;=&lt;/span&gt; vars.&lt;span style="color:#a6e22e"&gt;get&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;token&amp;#34;&lt;/span&gt;); &lt;span style="color:#75715e"&gt;// Jmeterの変数を取得&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;String api_key &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;hogehuga&amp;#34;&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;String encrypt_str &lt;span style="color:#f92672"&gt;=&lt;/span&gt; token&lt;span style="color:#f92672"&gt;+&lt;/span&gt;api_key;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;MessageDigest digest &lt;span style="color:#f92672"&gt;=&lt;/span&gt; MessageDigest.&lt;span style="color:#a6e22e"&gt;getInstance&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;SHA-256&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;byte&lt;/span&gt;&lt;span style="color:#f92672"&gt;[]&lt;/span&gt; hash &lt;span style="color:#f92672"&gt;=&lt;/span&gt; digest.&lt;span style="color:#a6e22e"&gt;digest&lt;/span&gt;(encrypt_str.&lt;span style="color:#a6e22e"&gt;getBytes&lt;/span&gt;());
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;StringBuilder sb &lt;span style="color:#f92672"&gt;=&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;new&lt;/span&gt; StringBuilder(2&lt;span style="color:#f92672"&gt;*&lt;/span&gt;hash.&lt;span style="color:#a6e22e"&gt;length&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;for&lt;/span&gt; (&lt;span style="color:#66d9ef"&gt;byte&lt;/span&gt; b: hash) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; String hexStr &lt;span style="color:#f92672"&gt;=&lt;/span&gt; Integer.&lt;span style="color:#a6e22e"&gt;toHexString&lt;/span&gt;(b).&lt;span style="color:#a6e22e"&gt;replaceAll&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;ffffff&amp;#34;&lt;/span&gt;,&lt;span style="color:#e6db74"&gt;&amp;#34;&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; String hex &lt;span style="color:#f92672"&gt;=&lt;/span&gt; (hexStr.&lt;span style="color:#a6e22e"&gt;length&lt;/span&gt;() &lt;span style="color:#f92672"&gt;==&lt;/span&gt; 1) &lt;span style="color:#f92672"&gt;?&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;0&amp;#34;&lt;/span&gt; &lt;span style="color:#f92672"&gt;+&lt;/span&gt; hexStr : hexStr;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; sb.&lt;span style="color:#a6e22e"&gt;append&lt;/span&gt;(hex);
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;String newVariable &lt;span style="color:#f92672"&gt;=&lt;/span&gt; sb.&lt;span style="color:#a6e22e"&gt;toString&lt;/span&gt;();
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;var.&lt;span style="color:#a6e22e"&gt;put&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;ENCRYPTED_TOKEN&amp;#34;&lt;/span&gt;,newVariable); &lt;span style="color:#75715e"&gt;// Jmeterの変数にセット&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title>「超」入門 失敗の本質</title><link>https://dyuji.dev/blog/memo/2021_1226_essence_of_failure/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_essence_of_failure/</guid><description>&lt;ul&gt;
+&lt;li&gt;大きな戦略における目標に寄与しない無駄な目標を実施しない
+&lt;ul&gt;
+&lt;li&gt;勝利の条件を理解するのは優れたリーダーに必要なこと&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;戦略の成功を図る指標をアップデートする
+&lt;ul&gt;
+&lt;li&gt;既存の指標の発見&lt;/li&gt;
+&lt;li&gt;敵対する指標の無効化&lt;/li&gt;
+&lt;li&gt;新たな指標で戦う戦う&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;成功体験を分析する。経験知を汎用的な指標にする&lt;/li&gt;
+&lt;li&gt;新しいルールをつくる
+&lt;ul&gt;
+&lt;li&gt;人・組織の柔軟な活用&lt;/li&gt;
+&lt;li&gt;新技術の開発&lt;/li&gt;
+&lt;li&gt;技術の運用方法&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;ダブルループ学習を心掛ける
+&lt;ul&gt;
+&lt;li&gt;シングルループ学習
+&lt;ul&gt;
+&lt;li&gt;目標と問題構造を所与ないし一定とした上で最適解を探す&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;ダブルループ学習
+&lt;ul&gt;
+&lt;li&gt;想定した目標と問題自体が間違っているという疑問・検討を含めた学習&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;現場と上層部の乖離を避ける
+&lt;ul&gt;
+&lt;li&gt;専門分野は専門家の知識をあげられるように&lt;/li&gt;
+&lt;li&gt;リーダーが前線で直接確認することで、情報の正確さと問題解決の速度を上げる&lt;/li&gt;
+&lt;li&gt;リーダーは見たくない問題を解決する覚悟の強さが要求される&lt;/li&gt;
+&lt;li&gt;正しい警告を無視しない&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;評価制度は組織に対するメッセージ&lt;/li&gt;
+&lt;li&gt;居心地の良い安定にならず変化できる組織
+&lt;ul&gt;
+&lt;li&gt;異質な情報・知識の交流&lt;/li&gt;
+&lt;li&gt;権力構造の均衡破壊&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;万が一の想定を持っておく&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>5G</title><link>https://dyuji.dev/blog/memo/2021_1226_5g/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_5g/</guid><description>&lt;p&gt;&lt;a href="https://www.amazon.co.jp/dp/B08CDN21X7/"&gt;5G 大容量・低遅延・多接続のしくみ&lt;/a&gt;
+感想：5Gの普及でより情報量の多いコンテンツの配信等ができるようになるのは間違いない。今まで有線のPCでしか出来なかったことがスマホ端末でもできるようになっていくと思われるが、消費者的に一番恩恵を受けるのはゲームの分野かと思った。&lt;/p&gt;</description></item><item><title>dockerからlocalhostに接続</title><link>https://dyuji.dev/blog/memo/2021_1226_docker_localhost/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_docker_localhost/</guid><description>&lt;p&gt;&lt;a href="https://qiita.com/Asayu123/items/ccfe4ccfc417ce57f445"&gt;Docker for Mac上のコンテナから、Mac上のアプリケーションに簡単に接続する方法&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Mysqlに接続する例 DSN&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre tabindex="0"&gt;&lt;code&gt;user1:password@tcp(docker.for.mac.localhost)/database_name
+&lt;/code&gt;&lt;/pre&gt;</description></item><item><title>echoとbase64</title><link>https://dyuji.dev/blog/memo/2021_1226_echo_base64/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_echo_base64/</guid><description>&lt;ul&gt;
+&lt;li&gt;echoコマンドはデフォルトでは改行文字が含まれるため、暗号化時などに気をつける
+&lt;ul&gt;
+&lt;li&gt;これが原因でmysqlのdsnでエラーが発生した&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;改行なしオプションは-n&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;例&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>go testをDockerfileで実施する</title><link>https://dyuji.dev/blog/memo/2021_1226_gotest_and_docker/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_gotest_and_docker/</guid><description>&lt;ul&gt;
+&lt;li&gt;gorm v2がgo v1.14以降じゃないとビルドできない&lt;/li&gt;
+&lt;li&gt;Jenkinsサーバーがgo v1.12でgo testのときにエラーがでる&lt;/li&gt;
+&lt;li&gt;docker imageのビルドの時にgo imageでgo testがしたいができるのか?
+&lt;ul&gt;
+&lt;li&gt;テストが落ちたらビルドも止まるか&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="試作コード"&gt;試作コード&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;cmd/main.go&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>Golang memo</title><link>https://dyuji.dev/blog/memo/2021_1226_golang/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_golang/</guid><description>&lt;h1 id="golang-memo"&gt;Golang memo&lt;/h1&gt;
+&lt;h2 id="他の言語からすると紛らわしい単語"&gt;他の言語からすると紛らわしい単語&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;map
+&lt;ul&gt;
+&lt;li&gt;Goでは辞書型&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;interface&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="go"&gt;go&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;環境変数の場所を間違えない&lt;/li&gt;
+&lt;li&gt;基本wslで書いて検証したとしても、vscodeの補完に使うgoのライブラリたちはwindows本体側を参照しているのでちゃんと設定する&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="switch-と-select"&gt;switch と select&lt;/h2&gt;
+&lt;p&gt;見た目が似てるけど、違う用途&lt;/p&gt;</description></item><item><title>iotaとエラーハンドリング</title><link>https://dyuji.dev/blog/memo/2021_1226_iota_and_error/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_iota_and_error/</guid><description>&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="jwt.md"&gt;jwtのエラー&lt;/a&gt;を調べている時に以下のコードを見て不思議に思った&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://github.com/dgrijalva/jwt-go/blob/master/claims.go#L38-L52"&gt;dgrijalva/jwt-go/claims.go#L38-L52&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-go" data-lang="go"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;c&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;VerifyExpiresAt&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;now&lt;/span&gt;, &lt;span style="color:#66d9ef"&gt;false&lt;/span&gt;) &lt;span style="color:#f92672"&gt;==&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;false&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;delta&lt;/span&gt; &lt;span style="color:#f92672"&gt;:=&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;time&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;Unix&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;now&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;).&lt;span style="color:#a6e22e"&gt;Sub&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;time&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;Unix&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;c&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;ExpiresAt&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;0&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;vErr&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;Inner&lt;/span&gt; = &lt;span style="color:#a6e22e"&gt;fmt&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;Errorf&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;token is expired by %v&amp;#34;&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;delta&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;vErr&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;Errors&lt;/span&gt; &lt;span style="color:#f92672"&gt;|=&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;ValidationErrorExpired&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;c&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;VerifyIssuedAt&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;now&lt;/span&gt;, &lt;span style="color:#66d9ef"&gt;false&lt;/span&gt;) &lt;span style="color:#f92672"&gt;==&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;false&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;vErr&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;Inner&lt;/span&gt; = &lt;span style="color:#a6e22e"&gt;fmt&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;Errorf&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;Token used before issued&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;vErr&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;Errors&lt;/span&gt; &lt;span style="color:#f92672"&gt;|=&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;ValidationErrorIssuedAt&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;c&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;VerifyNotBefore&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;now&lt;/span&gt;, &lt;span style="color:#66d9ef"&gt;false&lt;/span&gt;) &lt;span style="color:#f92672"&gt;==&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;false&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;vErr&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;Inner&lt;/span&gt; = &lt;span style="color:#a6e22e"&gt;fmt&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;Errorf&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;token is not valid yet&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;vErr&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;Errors&lt;/span&gt; &lt;span style="color:#f92672"&gt;|=&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;ValidationErrorNotValidYet&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;goで&lt;code&gt;|=&lt;/code&gt;はOR演算子を表すが、エラーでなんでOR演算子を使うのか？&lt;/p&gt;</description></item><item><title>jwtの"Token used before issued" Error</title><link>https://dyuji.dev/blog/memo/2021_1226_jwt/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_jwt/</guid><description>&lt;ul&gt;
+&lt;li&gt;Token used before issued はjwtのParseの時iatが現在時刻より未来の場合発生する&lt;/li&gt;
+&lt;li&gt;サーバー間の時刻のずれでも発生するので注意する&lt;/li&gt;
+&lt;li&gt;Parseはerrorがnilでない時もtokenを返すので、後処理はできる&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-go" data-lang="go"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;package&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;main&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;import&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;fmt&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;github.com/dgrijalva/jwt-go&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;func&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;main&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// iatが2030年になっている&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;tokenstring&lt;/span&gt; &lt;span style="color:#f92672"&gt;:=&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxOTE2MjM5MDIyfQ.jHQiBm09vEVjEx9347u2hU7LTreUVtEbWRPWrr9DG_A&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;secret&lt;/span&gt; &lt;span style="color:#f92672"&gt;:=&lt;/span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;my_secret_token&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;token&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;err&lt;/span&gt; &lt;span style="color:#f92672"&gt;:=&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;tokenParse&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;tokenstring&lt;/span&gt;, []byte(&lt;span style="color:#a6e22e"&gt;secret&lt;/span&gt;))
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;err&lt;/span&gt; &lt;span style="color:#f92672"&gt;!=&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;nil&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;fmt&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;Printf&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;Error:%v\n&amp;#34;&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;err&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;claims&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;ok&lt;/span&gt; &lt;span style="color:#f92672"&gt;:=&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;token&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;Claims&lt;/span&gt;.(&lt;span style="color:#a6e22e"&gt;jwt&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;MapClaims&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;ok&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;fmt&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;Println&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;claims&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;fmt&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;Println&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;claims&lt;/span&gt;[&lt;span style="color:#e6db74"&gt;&amp;#34;name&amp;#34;&lt;/span&gt;])
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;func&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;tokenParse&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;idToken&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;string&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;hmacSecret&lt;/span&gt; []&lt;span style="color:#66d9ef"&gt;byte&lt;/span&gt;) (&lt;span style="color:#f92672"&gt;*&lt;/span&gt;&lt;span style="color:#a6e22e"&gt;jwt&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;Token&lt;/span&gt;, &lt;span style="color:#66d9ef"&gt;error&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;token&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;err&lt;/span&gt; &lt;span style="color:#f92672"&gt;:=&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;jwt&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;Parse&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;idToken&lt;/span&gt;, &lt;span style="color:#66d9ef"&gt;func&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;token&lt;/span&gt; &lt;span style="color:#f92672"&gt;*&lt;/span&gt;&lt;span style="color:#a6e22e"&gt;jwt&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;Token&lt;/span&gt;) (&lt;span style="color:#66d9ef"&gt;interface&lt;/span&gt;{}, &lt;span style="color:#66d9ef"&gt;error&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#75715e"&gt;// アルゴリズムの判定&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;if&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;_&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;ok&lt;/span&gt; &lt;span style="color:#f92672"&gt;:=&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;token&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;Method&lt;/span&gt;.(&lt;span style="color:#f92672"&gt;*&lt;/span&gt;&lt;span style="color:#a6e22e"&gt;jwt&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;SigningMethodHMAC&lt;/span&gt;); !&lt;span style="color:#a6e22e"&gt;ok&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;nil&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;fmt&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;Errorf&lt;/span&gt;(&lt;span style="color:#e6db74"&gt;&amp;#34;unexpected signing method: %v&amp;#34;&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;token&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;Header&lt;/span&gt;[&lt;span style="color:#e6db74"&gt;&amp;#34;alg&amp;#34;&lt;/span&gt;])
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;hmacSecret&lt;/span&gt;, &lt;span style="color:#66d9ef"&gt;nil&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; })
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;return&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;token&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;err&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description></item><item><title>mysqlのkey index</title><link>https://dyuji.dev/blog/memo/2021_1226_mysql_key_index/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_mysql_key_index/</guid><description>&lt;ul&gt;
+&lt;li&gt;describeはテーブル情報を出すが、複合キーの場合keyのカラムが1つのみmulになる&lt;/li&gt;
+&lt;li&gt;indexを全て確認する際はshow indexを使う&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;describe&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;table_name&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;show&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;index&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;from&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;table_name&lt;/span&gt;;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;例&lt;/p&gt;</description></item><item><title>Terraform 勉強</title><link>https://dyuji.dev/blog/memo/2021_1226_gcp_tutorial_memo/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_gcp_tutorial_memo/</guid><description>&lt;h1 id="terraform-勉強"&gt;Terraform 勉強&lt;/h1&gt;
+&lt;h2 id="introduction-to-infrastructure-as-code-with-terraform"&gt;Introduction to Infrastructure as Code with Terraform&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Infrastructure as Code(IaC)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Terraformはproviderと呼ばれるTerraformプラグインでAPIを呼び出し、インフラの操作をする&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;AWS GCP Azureなど有名なもののproviderは作成されている&lt;/li&gt;
+&lt;li&gt;独自でproviderを作成することも可能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;providerがインフラの要素をresourceとして定義&lt;/p&gt;</description></item><item><title>time</title><link>https://dyuji.dev/blog/memo/2021_1226_time/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_time/</guid><description>&lt;h1 id="time"&gt;time&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;timeパッケージはデフォルトがmsなので注意する&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>URL Encode</title><link>https://dyuji.dev/blog/memo/2021_1226_urlencode/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_urlencode/</guid><description>&lt;ul&gt;
+&lt;li&gt;net/urlパッケージのURLエンコードは2種類&lt;/li&gt;
+&lt;li&gt;url.QueryEscape()
+&lt;ul&gt;
+&lt;li&gt;スペースが+になる&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;url.PathEscape()
+&lt;ul&gt;
+&lt;li&gt;スペースが%20になる&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://text.baldanders.info/golang/uri-encoding/"&gt;こちらに詳しい URI エンコーディングについて&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;url.EncodeではQueryEscapeの方が使われているため、URLの+を変換したいときは正規表現を用いる&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href="https://cipepser.hatenablog.com/entry/2017/07/29/083729"&gt;こちらに詳しい&lt;/a&gt;&lt;/p&gt;</description></item><item><title>WIP スタートアップ企業の業績決定要因 -質的比較分析(QCA)によるアプローチ</title><link>https://dyuji.dev/blog/memo/2021_1226_start_up/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_start_up/</guid><description>&lt;p&gt;&lt;a href="https://www.jstage.jst.go.jp/article/keieijournal/42/0/42_40/_article/-char/ja/"&gt;https://www.jstage.jst.go.jp/article/keieijournal/42/0/42_40/_article/-char/ja/&lt;/a&gt;
+2019 年 42 巻 p. 40-51&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;中小企業の業績に影響を与える要因
+&lt;ul&gt;
+&lt;li&gt;企業家の特性&lt;/li&gt;
+&lt;li&gt;リーダーシップ&lt;/li&gt;
+&lt;li&gt;経営資源&lt;/li&gt;
+&lt;li&gt;戦略&lt;/li&gt;
+&lt;li&gt;社会的関係資本&lt;/li&gt;
+&lt;li&gt;創業者の年齢&lt;/li&gt;
+&lt;li&gt;成長指向&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;開業から28カ月以内のスタートアップ&lt;/p&gt;</description></item><item><title>チャネルの受信とClose</title><link>https://dyuji.dev/blog/memo/2022_1226_channel_receive/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2022_1226_channel_receive/</guid><description>&lt;ul&gt;
+&lt;li&gt;チャネルはCloseしたら0値を返すので、受信側がCloseかどうかは第二引数をとって判別する&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"&gt;&lt;code class="language-go" data-lang="go"&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;package&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;main&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#f92672"&gt;import&lt;/span&gt; (
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;fmt&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#e6db74"&gt;&amp;#34;time&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;func&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;A&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;ch&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;chan&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;for&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;select&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;case&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;v&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;ok&lt;/span&gt; &lt;span style="color:#f92672"&gt;:=&lt;/span&gt; &lt;span style="color:#f92672"&gt;&amp;lt;-&lt;/span&gt;&lt;span style="color:#a6e22e"&gt;ch&lt;/span&gt;:
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;fmt&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;Println&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;v&lt;/span&gt;, &lt;span style="color:#a6e22e"&gt;ok&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;&lt;span style="color:#66d9ef"&gt;func&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;main&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;ch&lt;/span&gt; &lt;span style="color:#f92672"&gt;:=&lt;/span&gt; make(&lt;span style="color:#66d9ef"&gt;chan&lt;/span&gt; &lt;span style="color:#66d9ef"&gt;int&lt;/span&gt;, &lt;span style="color:#ae81ff"&gt;10&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;go&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;A&lt;/span&gt;(&lt;span style="color:#a6e22e"&gt;ch&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#66d9ef"&gt;for&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;i&lt;/span&gt; &lt;span style="color:#f92672"&gt;:=&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;1&lt;/span&gt;; &lt;span style="color:#a6e22e"&gt;i&lt;/span&gt; &lt;span style="color:#f92672"&gt;&amp;lt;=&lt;/span&gt; &lt;span style="color:#ae81ff"&gt;5&lt;/span&gt;; &lt;span style="color:#a6e22e"&gt;i&lt;/span&gt;&lt;span style="color:#f92672"&gt;++&lt;/span&gt; {
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;ch&lt;/span&gt; &lt;span style="color:#f92672"&gt;&amp;lt;-&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;i&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; close(&lt;span style="color:#a6e22e"&gt;ch&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt; &lt;span style="color:#a6e22e"&gt;time&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;Sleep&lt;/span&gt;(&lt;span style="color:#ae81ff"&gt;100&lt;/span&gt; &lt;span style="color:#f92672"&gt;*&lt;/span&gt; &lt;span style="color:#a6e22e"&gt;time&lt;/span&gt;.&lt;span style="color:#a6e22e"&gt;Microsecond&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style="display:flex;"&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;結果&lt;/p&gt;</description></item><item><title>デバッグ</title><link>https://dyuji.dev/blog/memo/2021_1226_debug/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_debug/</guid><description>&lt;ul&gt;
+&lt;li&gt;変更でエラーが発生するようになった時は正しく動いていたversionまで遡ってみる&lt;/li&gt;
+&lt;li&gt;大きな変更に注意する
+&lt;ul&gt;
+&lt;li&gt;ライブラリのメジャーバージョンアップ&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;変更の履歴をちゃんと残す&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>価値観をアップデートしていくにはどうするべきか(仮)</title><link>https://dyuji.dev/blog/memo/2021_1226_update_values/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_update_values/</guid><description>&lt;h2 id="価値観をアップデートしていくにはどうするべきか仮"&gt;価値観をアップデートしていくにはどうするべきか(仮)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;軸を増やす&lt;/li&gt;
+&lt;li&gt;未知の体験&lt;/li&gt;
+&lt;li&gt;サンプリングを変える&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>外国語学習に成功する人，しない人 第二言語習得論への招待</title><link>https://dyuji.dev/blog/memo/2021_1226_foreign_language/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_foreign_language/</guid><description>&lt;p&gt;from &lt;a href="https://www.iwanami.co.jp/book/b265858.html"&gt;外国語学習に成功する人，しない人 第二言語習得論への招待&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;インプット
+&lt;ul&gt;
+&lt;li&gt;背景知識がある題材を選ぶと良い&lt;/li&gt;
+&lt;li&gt;リスニングは80％くらいわかる教材を何度も聞く方がよい&lt;/li&gt;
+&lt;li&gt;リスニングのスクリプトを読んで理解してから再度聞いてみる&lt;/li&gt;
+&lt;li&gt;外国語で情報を収集する&lt;/li&gt;
+&lt;li&gt;ほとんどわからないものでも、聞かないより聞いた方がいい&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;アウトプット
+&lt;ul&gt;
+&lt;li&gt;アウトプット(話すこと、書くこと)は、毎日少しづつでもやる&lt;/li&gt;
+&lt;li&gt;話す練習はまずは意味を通じさせること、次に正しい文を意識する&lt;/li&gt;
+&lt;li&gt;話すときにコミュニケーションストラテジー(間の語)を話して時間を稼ぐ&lt;/li&gt;
+&lt;li&gt;言いたい単語が思いつかない時は別の簡単な表現で言い換える&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;単語の学習
+&lt;ul&gt;
+&lt;li&gt;文脈の中で覚える&lt;/li&gt;
+&lt;li&gt;丸暗記はなるべく避ける&lt;/li&gt;
+&lt;li&gt;知らない単語はなるべく推測する&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;発音・音声
+&lt;ul&gt;
+&lt;li&gt;難しい発音は意識しておき(lとrなど)、意識すればできるようにする&lt;/li&gt;
+&lt;li&gt;意味文法などを理解している文の音声をできるだけ正確に真似て練習する&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;文法
+&lt;ul&gt;
+&lt;li&gt;基本的なものを文をつくりアウトプットできるレベルに&lt;/li&gt;
+&lt;li&gt;説明を読んでも分からないものは無視&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;動機付け
+&lt;ul&gt;
+&lt;li&gt;高める工夫する
+&lt;ul&gt;
+&lt;li&gt;授業をとる、仲間とやる、好きな内容を使う、資格を受ける、外国語のことに興味を持つ&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>図解 モチベーション大百科</title><link>https://dyuji.dev/blog/memo/2021_1226_motivation/</link><pubDate>Sun, 26 Dec 2021 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2021_1226_motivation/</guid><description>&lt;h2 id="目標設定のコツ"&gt;目標設定のコツ&lt;/h2&gt;
+&lt;p&gt;&lt;a href="https://www.amazon.co.jp/dp/B0748CWPVS"&gt;図解 モチベーション大百科&lt;/a&gt;より&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;目標を具体的な数値に変える
+&lt;ul&gt;
+&lt;li&gt;数値にする(割合、時刻など)&lt;/li&gt;
+&lt;li&gt;最大値、最小値の範囲で予測する&lt;/li&gt;
+&lt;li&gt;多めに目標を持つ&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;期待をもって行動する
+&lt;ul&gt;
+&lt;li&gt;運が良いと思う&lt;/li&gt;
+&lt;li&gt;学べることがあると思い行動する&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;締め切りは細かく区切る
+&lt;ul&gt;
+&lt;li&gt;タスクを分解する&lt;/li&gt;
+&lt;li&gt;締め切りをつける&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;行動する理由を考えるより、行動のための手順を書く
+&lt;ul&gt;
+&lt;li&gt;やることを書き出すのと、遂行することを分ける&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>Googleドメインの設定</title><link>https://dyuji.dev/blog/memo/2020_1130_domain/</link><pubDate>Mon, 30 Nov 2020 11:15:29 +0900</pubDate><guid>https://dyuji.dev/blog/memo/2020_1130_domain/</guid><description>&lt;p&gt;&lt;a href="https://domains.google/intl/ja_jp/"&gt;Google Domain&lt;/a&gt;にてドメインを購入しました。
 購入にあたってKyashは使えませんでした。
 昔、Github Pages用に作ったリポジトリを転用しています。
 Githubのsettingから購入したドメインを設定し、GoogleDomain側からもレコードを設定しました。
 レコードの反映は思ったより早かったです。
-細かい見た目とかはおいおいやるとして、とりあえずmarkdownで記録を残そうと思います。&lt;/p></description></item></channel></rss>
+細かい見た目とかはおいおいやるとして、とりあえずmarkdownで記録を残そうと思います。&lt;/p&gt;</description></item></channel></rss>
